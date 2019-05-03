@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Image, User} = require('../db/models')
+const {Image} = require('../db/models')
 module.exports = router
 
 router.get('/', async(req, res, next) => {
@@ -9,10 +9,17 @@ router.get('/', async(req, res, next) => {
     } catch(err) {next(err)}
 })
 
+router.get('/:id', async(req, res, next) => {
+    try {
+        const imageId = req.params.id
+        const image = await Image.findByPk(imageId)
+        res.status(200).json(image)
+    } catch(err) {next(err)}
+})
+
 router.post('/', async (req, res, next) => {
     try {
         const image = await Image.create(req.body)
-        console.log('IMAGE', image)
         res.status(200).json(image)
     } catch(err) {next(err)}
 })
@@ -27,8 +34,8 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const image = await Image.findByPk(req.params.id)
-        await Image.destroy(image)
+        const imageId = req.params.id
+        await Image.destroy({where: {id: imageId}})
         res.status(200)
     } catch(err) {next(err)}
 })
