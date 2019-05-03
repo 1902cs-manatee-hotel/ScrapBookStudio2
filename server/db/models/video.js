@@ -10,11 +10,11 @@ const Video = db.define('video', {
             isUrl: true
         }
     },
-    x_corrd: {
+    x_coord: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    y_corrd: {
+    y_coord: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
