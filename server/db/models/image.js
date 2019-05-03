@@ -4,23 +4,23 @@ const db = require('../db')
 const Image = db.define('image', {
     path: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        // allowNull: false,
         validate: {
-            notEmpty: true,
+            // notEmpty: true,
             isUrl: true
         }
     },
-    x_corrd: {
+    x_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
-    y_corrd: {
+    y_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     tilt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     color: {
         type: Sequelize.STRING,     
