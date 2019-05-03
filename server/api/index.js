@@ -5,6 +5,7 @@ router.use('/users', require('./users'))
 router.use('/images', require('./image'))
 router.use('/videos', require('./video'))
 router.use('/pages', require('./page'))
+router.use('/canvastext', require('./canvastext'))
 router.use('/scrapbooks', require('./scrapbook'))
 
 router.use((req, res, next) => {
