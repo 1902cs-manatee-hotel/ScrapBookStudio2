@@ -5,8 +5,9 @@ import axios from 'axios'
  */
 const GET_ALL_SCRAPBOOKS = 'GET_ALL_SCRAPBOOKS'
 const GET_SINGLE_SCRAPBOOK = 'GET_SINGLE_SCRAPBOOK'
-const DELETE_SINGLE_SCRAPBOOK = 'DELETE_SINGLE_SCRAPBOOK'
-const UPDATE_SINGLE_SCRAPBOOK = 'UPDATE_SINGLE_SCRAPBOOK'
+const DELETE_SCRAPBOOK = 'DELETE_SCRAPBOOK'
+const UPDATE_SCRAPBOOK = 'UPDATE_SCRAPBOOK'
+
 const GET_ALL_PAGES = 'GET_ALL_PAGES'
 const GET_SINGLE_PAGE = 'GET_SINGLE_PAGE'
 const DELETE_SINGLE_PAGE = 'DELETE_SINGLE_PAGE'
@@ -24,13 +25,13 @@ const getSingleScrapbook = (id) => ({
     id
 })
 
-const deleteSingleScrapbook = (id) => ({
-    type: DELETE_SINGLE_SCRAPBOOK,
+const deleteScrapbook = (id) => ({
+    type: DELETE_SCRAPBOOK,
     id
 })
 
-const updateSingleScrapbook = (scrapbook) => ({
-    type: UPDATE_SINGLE_SCRAPBOOK,
+const updateScrapbook = (scrapbook) => ({
+    type: UPDATE_SCRAPBOOK,
     scrapbook
 })
 
@@ -52,26 +53,42 @@ const deleteSinglePage = (id) => ({
  /**
  * THUNK CREATORS
  */
-export const getAllScrapbooksThunk = () => async dispatch => {
-    try {
-        const {data} = await axios.get('/api/scrapbooks')
-        dispatch(getAllScrapbooks(data))
-    } catch(err) {console.error(err)}
+export const getAllScrapbooksThunk = () => {
+    return dispatch => {
+        axios.get('/api/scrapbooks')
+        .then(res => res.data)
+         .then(scrapbooks => {
+             const action = getAllScrapbooks(scrapbooks)
+             dispatch(action)
+            })
+            .catch(err => console.error('Failed to get scrapbooks', err))
+    }
 }
 
-export const deleteSingleScrapbookThunk = (id) => async dispatch => {
-    try {
-        await axios.delete(`/api/scrapbooks/${id}`)
-        dispatch(deleteSingleScrapbook(id))
-    } catch(err) {console.error(err)}
+export const deleteScrapbookThunk = scrapbook => {
+    return dispatch => {
+        dispatch(deleteScrapbook(scrapbook))
+        axios.delete(`/api/scrapbook/${scrapbook.id}`)
+        .catch(err => console.error('Failed to delete scrapbook', err))
+    }
 }
 
-export const updateSingleScrapbookThunk = (id, updatedScrapbook) => async dispatch => {
-    try {
-        const {data} = await axios.put(`/api/scrapbooks/${id}`, updatedScrapbook)
-        dispatch(updateSingleScrapbook(data))
-    } catch(err) {console.error(err)}
+export const updateScrapbookThunk = scrapbook => {
+    return  dispatch => {
+        dispatch(updateScrapbook(scrapbook))
+        axios.put(`/api/scrapbooks/${scrapbook.id}`, scrapbook)
+            .then(({data: s}) => dispatch(updateScrapbook(s)))
+            .catch(err => console.error('Failed to update scrapbook', err))
+    }
+
 }
+
+
+
+
+ /**
+ * NOT YET COMPLETED THUNK CREATORS   *************** ************** ***************
+ */
 
 export const getAllPagesThunk = () => async dispatch => {
     try {
@@ -87,6 +104,7 @@ export const deleteSinglePageThunk = (id) => async dispatch => {
     } catch(err) {console.error(err)}
 }
 
+
  /**
  * INITIAL STATE
  */
@@ -101,13 +119,15 @@ const initialState = {
  * REDUCER
  */
 
- export default function(state=initialState, action) {
-     const newState = {...state}
+ export default function(state = initialState, action) {
+     
      switch(action.type) {
         case GET_ALL_SCRAPBOOKS:
-            newState.scrapbooks=action.scrapbooks
-            return 
+            return {...state, scrapbooks: action.scrapbooks}
+        case DELETE_SCRAPBOOK:
+            return state.scrapbooks.filter(scrapbook =>
+                scrapbook.id !== action.scrapbook.id)
         default:
-            return newState
+            return state
      }
  }

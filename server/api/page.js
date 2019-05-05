@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Page } = require('../db/models')
+const { Page, Video, CanvasText } = require('../db/models')
 module.exports = router
 
 router.get('/:id', async (req, res, next) => {

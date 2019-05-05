@@ -9,6 +9,12 @@ const ScrapBook = db.define('scrapbook', {
     description: {
         type: Sequelize.STRING
     },
+    image: {
+        type: Sequelize.STRING,
+        validate: {
+            isUrl: true
+        } 
+    },
     password: {
         type: Sequelize.STRING
     },  

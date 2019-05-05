@@ -1,34 +1,61 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { getAllScrapbooksThunk } from '../store/scrapbooks'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+
+class UserHome extends Component {
+  componentDidMount() {
+    this.props.fetchScrapBooks()
+  }
+
+
+  render() {
+    return (
+      <div>
+        <h2>Welcome Back {this.props.user.firstName} !</h2>
+        
+        {
+          this.props.scrapbooks.map(book => {
+            return (
+              <div key={book.id}>
+                <Link to={`/scrapbooks/${book.id}`}>{book.name}</Link>
+                <br />
+                <img  width='120px' height="120px" src={book.image}></img>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
 }
+
 
 /**
  * CONTAINER
  */
 const mapState = state => {
+  console.log('tE', state)
   return {
-    email: state.user.email
+    scrapbooks: state.scrapbooks.scrapbooks,
+    user: state.user
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatchToProps = dispatch => ({
+  fetchScrapBooks: () => {
+    dispatch(getAllScrapbooksThunk())
+  }
+})
+
+export default connect(mapState, mapDispatchToProps)(UserHome)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+
