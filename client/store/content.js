@@ -1,0 +1,26 @@
+import axios from 'axios'
+
+/**
+ * ACTION TYPES
+ */
+
+ const SET_TEXT = 'SET_TEXT'
+ const UPDATE_TEXT = 'UPDATE_TEXT'
+ const CREATE_TEXT = 'CREATE_TEXT'
+ const DELETE_TEXT = 'DELETE_TEXT'
+
+ const SET_IMAGE = 'SET_IMAGE'
+ const UPDATE_IMAGE = 'UPDATE_IMAGE'
+ const CREATE_IMAGE = 'CREATE_IMAGE'
+ const DELETE_IMAGE = 'DELETE_IMAGE'
+
+ const SET_VIDEO = 'SET_VIDEO'
+ const UPDATE_VIDEO = 'UPDATE_VIDEO'
+ const CREATE_VIDEO = 'CREATE_VIDEO'
+ const DELETE_VIDEO = 'DELETE_VIDEO'
+
+/**
+ * ACTION CREATORS
+ */
+
+ const setText =
