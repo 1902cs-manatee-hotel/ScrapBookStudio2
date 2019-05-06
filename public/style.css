@@ -32,10 +32,6 @@ form div {
   margin-bottom: 15px;
 }
 
-.canvas-background-color {
-  background-color: aqua;
-}
-
 .canvas {
   margin-left: 100px;
   margin-right: 100px;
@@ -45,4 +41,8 @@ form div {
 
 .add-page-button {
   margin-bottom: -1.47rem;
+}
+
+.toolbar {
+  width: 20rem;
 }

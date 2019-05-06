@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 class Toolbar extends Component {
   render() {
     return (
-      <div className="box">
+      <div className="box toolbar">
         <h1 className="title">Toolbar</h1>
         <button className='button is-primary space' type='submit'>Image</button>
         <br/>

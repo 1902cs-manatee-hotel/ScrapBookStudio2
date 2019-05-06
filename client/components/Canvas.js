@@ -15,8 +15,8 @@ class Canvas extends Component {
           </div>
           <div className='tile is-child'>
             <Stage
-              className="canvas-background-color"
-              width={1000}
+              className="box"
+              width={1300}
               height={500}
             >
               <Layer>
