@@ -19,3 +19,30 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.centered-forms {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+}
+
+.space {
+  margin-bottom: 15px;
+}
+
+.canvas {
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 100px;
+  text-align: center;
+}
+
+.add-page-button {
+  margin-bottom: -1.47rem;
+}
+
+.toolbar {
+  width: 20rem;
+}

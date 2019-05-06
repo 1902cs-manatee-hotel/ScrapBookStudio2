@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -10,22 +11,28 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="box centered-forms">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
+        <div className="field">
+          <label className="label" htmlFor="email">
             <small>Email</small>
           </label>
-          <input name="email" type="text" />
+          <input className="input" name="email" type="text" />
         </div>
-        <div>
-          <label htmlFor="password">
+        <br />
+        <div className="field">
+          <label className="label" htmlFor="password">
             <small>Password</small>
           </label>
-          <input name="password" type="password" />
+          <input className="input" name="password" type="password" />
         </div>
+        <br />
         <div>
-          <button type="submit">{displayName}</button>
+          <button className="button is-success" type="submit">{displayName}</button>
+        </div>
+        <br />
+        <div>
+        <Link to="/signup">Sign Up</Link>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
