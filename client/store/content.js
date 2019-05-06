@@ -3,7 +3,7 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
- const GET_ALL_TEXT = 'GET_ALL_TEXT' 
+ const GET_ALL_TEXT = 'GET_ALL_TEXT'
  const GET_TEXT = 'GET_TEXT'
  const UPDATE_TEXT = 'UPDATE_TEXT'
  const CREATE_TEXT = 'CREATE_TEXT'
@@ -30,22 +30,22 @@ import axios from 'axios'
     allText
  })
 
- const getText = (text) => ({
+ const getSingleText = (text) => ({
      type: GET_TEXT,
      text
  })
 
- const updateText = (text) => ({
+ const updateSingleText = (text) => ({
      type: UPDATE_TEXT,
      text
  })
 
- const createText = (text) => ({
+ const createSingleText = (text) => ({
      type: CREATE_TEXT,
      text
  })
 
- const deleteText = (id) => ({
+ const deleteSingleText = (id) => ({
      type: DELETE_TEXT,
      id
  })
@@ -55,22 +55,22 @@ import axios from 'axios'
     allImage
  })
 
- const getImage = (image) => ({
+ const getSingleImage = (image) => ({
      type: GET_IMAGE,
      image
  })
 
- const updateImage = (image) => ({
+ const updateSingleImage = (image) => ({
      type: UPDATE_IMAGE,
      image
  })
 
- const createImage = (image) => ({
+ const createSingleImage = (image) => ({
      type: CREATE_IMAGE,
      image
  })
 
- const deleteImage = (id) => ({
+ const deleteSingleImage = (id) => ({
      type: DELETE_IMAGE,
      id
  })
@@ -80,25 +80,83 @@ import axios from 'axios'
     allVideos
  })
 
- const getVideo = (video) => ({
+ const getSingleVideo = (video) => ({
      type: GET_VIDEO,
      video
  })
 
- const updateVideo = (video) => ({
+ const updateSingleVideo = (video) => ({
      type: UPDATE_VIDEO,
      video
  })
 
- const createVideo = (video) => ({
+ const createSingleVideo = (video) => ({
      type: CREATE_VIDEO,
      video
  })
 
- const deleteViideo = (id) => ({
+ const deleteSingleVideo = (id) => ({
      type: DELETE_VIDEO,
      id
  })
+
+ //Thunks
+ export const getAllTextThunk = () => async dispatch => {
+  try {
+      const {data} = await axios.get('/api/canvastext')
+      dispatch(getAllText(data))
+  } catch(err) {console.error(err)}
+}
+
+export const getSingleTextThunk = (id) =>  async dispatch => {
+  try {
+     const {data} = await axios.get(`/api/canvastext/${id}`)
+      dispatch(getSingleText(data))
+  } catch (err) {console.error(err)}
+}
+
+export const deleteSingleTextThunk = id => async dispatch => {
+  try {
+      await axios.delete(`api/canvastext/${id}`)
+      dispatch(deleteSingleText(id))
+  } catch (err) {console.error(err)}
+}
+
+export const updateSingleTextThunk = (updatedProp, id) => async dispatch => {
+      try {
+          const {data} = await axios.put(`/api/canvastext/${id}`, updatedProp)
+          dispatch(updateSingleText(data))
+      } catch (err) {console.log(err)}
+}
+
+export const getAllTextThunk = () => async dispatch => {
+  try {
+      const {data} = await axios.get('/api/canvastext')
+      dispatch(getAllText(data))
+  } catch(err) {console.error(err)}
+}
+
+export const getSingleTextThunk = (id) =>  async dispatch => {
+  try {
+     const {data} = await axios.get(`/api/canvastext/${id}`)
+      dispatch(getSingleText(data))
+  } catch (err) {console.error(err)}
+}
+
+export const deleteSingleTextThunk = id => async dispatch => {
+  try {
+      await axios.delete(`api/canvastext/${id}`)
+      dispatch(deleteSingleText(id))
+  } catch (err) {console.error(err)}
+}
+
+export const updateSingleTextThunk = (updatedProp, id) => async dispatch => {
+      try {
+          const {data} = await axios.put(`/api/canvastext/${id}`, updatedProp)
+          dispatch(updateSingleText(data))
+      } catch (err) {console.log(err)}
+}
+
 
 
 

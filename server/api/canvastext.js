@@ -2,6 +2,21 @@ const router = require('express').Router()
 const {CanvasText} = require('../db/models')
 module.exports = router
 
+router.get('/', async (req, res, next) => {
+  try {
+    const allText = await CanvasText.findAll();
+    res.status(200).json(allText)
+  } catch (error) { next(error) }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const text = await CanvasText.findByPk(id);
+    res.status(200).json(text)
+  } catch (error) { next(error) }
+})
+
 router.post('/', async (req, res, next) => {
     try {
         const newCanvasText = await CanvasText.create({
