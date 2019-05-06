@@ -24,23 +24,7 @@ router.post('/', async (req, res, next) => {
     } catch(err) {next(err)}
 })
 
-router.put('/:id/change-size', async (req, res, next) => {
-    try {
-        const image = await Image.findByPk(req.params.id)
-        const updatedImage = await image.update(req.body)
-        res.status(200).json(updatedImage)
-    } catch(err) {next(err)}
-})
-
-router.put('/:id/change-coords', async (req, res, next) => {
-    try {
-        const image = await Image.findByPk(req.params.id)
-        const updatedImage = await image.update(req.body)
-        res.status(200).json(updatedImage)
-    } catch(err) {next(err)}
-})
-
-router.put('/:id/change-tilt', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
         const image = await Image.findByPk(req.params.id)
         const updatedImage = await image.update(req.body)
