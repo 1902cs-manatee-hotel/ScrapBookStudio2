@@ -9,11 +9,11 @@ const CanvasText = db.define('canvas-text', {
             notEmpty: true
         }
     },
-    x_corrd: {
+    x_coord: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    y_corrd: {
+    y_coord: {
         type: Sequelize.INTEGER,
         allowNull: false
     },

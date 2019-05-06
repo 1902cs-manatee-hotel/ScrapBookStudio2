@@ -4,9 +4,10 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
     try {
-        const userId = req.params.id
+        console.log('req.body', req.user)
+        const id = req.user.dataValues.id
         const scrapbooks = await ScrapBook.findAll({
-            where: { userId }
+            where: { userId: id }
         })
         res.status(200).json(scrapbooks)
       } catch(err){

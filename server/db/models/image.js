@@ -22,9 +22,6 @@ const Image = db.define('image', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    color: {
-        type: Sequelize.STRING,     
-    },
     size: {
         type: Sequelize.INTEGER,
         validate: {

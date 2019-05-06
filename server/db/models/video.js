@@ -22,9 +22,6 @@ const Video = db.define('video', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    color: {
-        type: Sequelize.STRING,     
-    },
     size: {
         type: Sequelize.INTEGER,
         validate: {
