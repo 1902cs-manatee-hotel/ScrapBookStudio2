@@ -5,30 +5,33 @@ const CanvasText = db.define('canvas-text', {
     content: {
         type: Sequelize.TEXT,
         allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        defaultValue: 'Enter Text'
     },
     x_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 50
     },
     y_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 50
     },
     tilt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     },
     color: {
-        type: Sequelize.STRING,     
+        type: Sequelize.STRING, 
+        defaultValue: 'black'
     },
     size: {
         type: Sequelize.INTEGER,
         validate: {
             min: 5
-        }
+        },
+        defaultValue: 12
     }
 })
 

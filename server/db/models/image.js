@@ -12,21 +12,21 @@ const Image = db.define('image', {
     },
     x_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 50
     },
     y_coord: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 50
     },
     tilt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     },
     size: {
         type: Sequelize.INTEGER,
-        validate: {
-            min: 5
-        }
     },
     filter: {
         type: Sequelize.STRING
