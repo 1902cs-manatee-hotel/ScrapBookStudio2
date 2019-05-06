@@ -7,18 +7,15 @@ import {Link} from 'react-router-dom'
  * COMPONENT
  */
 
-
 class UserHome extends Component {
   componentDidMount() {
     this.props.fetchScrapBooks()
   }
 
-
   render() {
     return (
-      <div>
+      <div className='centered-forms title'>
         <h2>Welcome Back {this.props.user.firstName} !</h2>
-        
         {
           this.props.scrapbooks.map(book => {
             return (
@@ -34,7 +31,6 @@ class UserHome extends Component {
     )
   }
 }
-
 
 /**
  * CONTAINER
@@ -58,4 +54,3 @@ export default connect(mapState, mapDispatchToProps)(UserHome)
 /**
  * PROP TYPES
  */
-
