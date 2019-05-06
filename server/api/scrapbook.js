@@ -26,10 +26,17 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
+router.post('/', async (req, res, next) => {
+  try {
+      const scrapbook = await ScrapBook.create(req.body)
+      res.status(200).json(scrapbook)
+  } catch(err) {next(err)}
+})
+
 router.put('/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        const scrapbook = await Image.findByPk(id)
+        const scrapbook = await ScrapBook.findByPk(id)
 
         const updatedScrapbook = await scrapbook.update(req.body)
         res.status(200).json(updatedScrapbook)
