@@ -20,9 +20,9 @@ const getAllScrapbooks = (scrapbooks) => ({
     scrapbooks
 })
 
-const getSingleScrapbook = (id) => ({
+const getSingleScrapbook = (scrapbook) => ({
     type: GET_SINGLE_SCRAPBOOK,
-    id
+    scrapbook
 })
 
 const deleteScrapbook = (id) => ({
@@ -40,9 +40,9 @@ const getAllPages = (pages) => ({
     pages
 })
 
-const getSinglePage = (id) => ({
+const getSinglePage = (page) => ({
     type: GET_SINGLE_PAGE,
-    id
+    page
 })
 
 const deleteSinglePage = (id) => ({
@@ -65,30 +65,26 @@ export const getAllScrapbooksThunk = () => {
     }
 }
 
-export const deleteScrapbookThunk = scrapbook => {
-    return dispatch => {
-        dispatch(deleteScrapbook(scrapbook))
-        axios.delete(`/api/scrapbook/${scrapbook.id}`)
-        .catch(err => console.error('Failed to delete scrapbook', err))
-    }
+export const deleteScrapbookThunk = id => async dispatch => {
+    try {
+        await axios.delete(`api/scrapbooks/${id}`)
+        dispatch(deleteScrapbook(id))
+    } catch (err) {console.error(err)}
 }
 
-export const updateScrapbookThunk = scrapbook => {
-    return  dispatch => {
-        dispatch(updateScrapbook(scrapbook))
-        axios.put(`/api/scrapbooks/${scrapbook.id}`, scrapbook)
-            .then(({data: s}) => dispatch(updateScrapbook(s)))
-            .catch(err => console.error('Failed to update scrapbook', err))
-    }
-
+export const updateScrapbookThunk = (updatedProp, id) => async dispatch => {
+        try {
+            const {data} = await axios.put(`/api/scrapbooks/${id}`, updatedProp)
+            dispatch(updateScrapbook(data))
+        } catch (err) {console.log(err)}
 }
 
-
-
-
- /**
- * NOT YET COMPLETED THUNK CREATORS   *************** ************** ***************
- */
+ export const getSingleScrapbookThunk = (id) =>  async dispatch => {
+    try {
+       const {data} = await axios.get(`/api/scrapbooks/${id}`)
+        dispatch(getSingleScrapbook(data))
+    } catch (err) {console.error(err)}
+ }
 
 export const getAllPagesThunk = () => async dispatch => {
     try {
@@ -102,6 +98,13 @@ export const deleteSinglePageThunk = (id) => async dispatch => {
         await axios.delete(`/api/pages/${id}`)
         dispatch(deleteSinglePage(id))
     } catch(err) {console.error(err)}
+}
+
+export const getSinglePageThunk = (id) => async dispatch => {
+    try {
+         const {data} = await axios.get(`api/pages/${id}`)
+         dispatch(getSinglePage(data))
+    } catch (err) {console.error(err)}
 }
 
 
@@ -120,13 +123,31 @@ const initialState = {
  */
 
  export default function(state = initialState, action) {
-     
+     const newState = {...state}
      switch(action.type) {
         case GET_ALL_SCRAPBOOKS:
-            return {...state, scrapbooks: action.scrapbooks}
+            newState.scrapbooks = action.scrapbooks
+            return newState
         case DELETE_SCRAPBOOK:
-            return state.scrapbooks.filter(scrapbook =>
-                scrapbook.id !== action.scrapbook.id)
+            newState.scrapbooks = newState.scrapbooks.filter(scrapbook =>
+            scrapbook.id !== action.id)
+            return newState
+        case GET_SINGLE_SCRAPBOOK:
+            newState.singleScrapbook = action.scrapbook
+            return newState
+        case UPDATE_SCRAPBOOK:
+            newState.singleScrapbook = action.scrapbook
+            return newState
+        case GET_ALL_PAGES:
+            newState.pages = action.pages
+            return newState
+        case GET_SINGLE_PAGE:
+            newState.singlePage = action.page
+            return newState
+        case DELETE_SINGLE_PAGE:
+             newState.pages = newState.pages.filter(page => 
+             page.is !== action.id)
+             return newState
         default:
             return state
      }
