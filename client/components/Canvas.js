@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Stage, Layer, Text} from 'react-konva'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 import Toolbar from './Toolbar'
 
 class Canvas extends Component {
