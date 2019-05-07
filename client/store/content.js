@@ -115,9 +115,9 @@ export const getSingleTextThunk = (id) =>  async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const createSingleTextThunk = (updatedProp, id) => async dispatch => {
+export const createSingleTextThunk = (updatedProp) => async dispatch => {
   try {
-      const {data} = await axios.post(`/api/canvastext/${id}`, updatedProp)
+      const {data} = await axios.post('/api/canvastext', updatedProp)
       dispatch(createSingleText(data))
   } catch (err) {console.log(err)}
 }
@@ -150,9 +150,9 @@ export const getSingleVideoThunk = (id) =>  async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const createSingleVideoThunk = (updatedProp, id) => async dispatch => {
+export const createSingleVideoThunk = (updatedProp) => async dispatch => {
   try {
-      const {data} = await axios.post(`/api/videos/${id}`, updatedProp)
+      const {data} = await axios.post('/api/videos', updatedProp)
       dispatch(createSingleVideo(data))
   } catch (err) {console.log(err)}
 }
@@ -185,10 +185,11 @@ export const getSingleImageThunk = (id) =>  async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const createSingleImageThunk = (updatedProp, id) => async dispatch => {
+export const createSingleImageThunk = (updatedProp) => async dispatch => {
   try {
-      const {data} = await axios.post(`/api/images/${id}`, updatedProp)
+      const {data} = await axios.post('/api/images', updatedProp)
       dispatch(createSingleImage(data))
+      console.log('createSingeImageThunk', data);
   } catch (err) {console.log(err)}
 }
 
@@ -205,8 +206,6 @@ export const deleteSingleImageThunk = id => async dispatch => {
       dispatch(deleteSingleImage(id))
   } catch (err) {console.error(err)}
 }
-
-
 
   /**
  * INITIAL STATE

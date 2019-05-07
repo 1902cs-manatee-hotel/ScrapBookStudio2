@@ -2,7 +2,7 @@ const User = require('./user')
 const Contributor = require('./contributor')
 const Image = require('./image')
 const Page = require('./pages')
-const ScrapBook = require('./scrapbook')
+const Scrapbook = require('./scrapbook')
 const CanvasText = require('./canvastext')
 const Video = require('./video')
 /**
@@ -11,17 +11,20 @@ const Video = require('./video')
  *
  *    BlogPost.belongsTo(User)
  */
-User.hasMany(ScrapBook)
-ScrapBook.belongsTo(User)
+User.hasMany(Scrapbook)
+Scrapbook.belongsTo(User)
 
-ScrapBook.hasMany(Contributor)
-Contributor.belongsTo(ScrapBook)
+Scrapbook.hasMany(Contributor)
+Contributor.belongsTo(Scrapbook)
 
-ScrapBook.hasMany(Page)
-Page.belongsTo(ScrapBook)
+Scrapbook.hasMany(Page)
+Page.belongsTo(Scrapbook)
 
 Page.hasMany(CanvasText)
 CanvasText.belongsTo(Page)
+
+Scrapbook.hasMany(Image)
+Image.belongsTo(Scrapbook)
 
 Page.hasMany(Image)
 Image.belongsTo(Page)
@@ -36,7 +39,7 @@ Video.belongsTo(Page)
  */
 module.exports = {
   User,
-  ScrapBook,
+  Scrapbook,
   CanvasText,
   Image,
   Page,

@@ -19,8 +19,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const image = await Image.create(req.body)
-        res.status(200).json(image)
+      const arr = Object.keys(req.body)
+      const image = await Image.create({path: arr[0]})
+      res.status(200).json(image)
     } catch(err) {next(err)}
 })
 
