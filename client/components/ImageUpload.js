@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {cloud_name, api_key, upload_preset} from './config/cloudinary.js'
-
+import {createSingleImageThunk} from '../store/content'
 
 class ImageUpload extends Component {
     constructor() {
@@ -16,6 +17,8 @@ class ImageUpload extends Component {
               if (!error && result && result.event === "success") { 
                 console.log('Done! Here is the image info: ', result.info);
                 console.log('CLICK HERE:', result.info.secure_url);
+                let path = result.info.secure_url
+                this.props.postImage(path)
               }
             }
           )
@@ -31,4 +34,10 @@ class ImageUpload extends Component {
     }
 }
 
-export default ImageUpload
+const mapDispatchToProps = (dispatch) => {
+    return {
+        postImage: (imageUrl) => dispatch(createSingleImageThunk(imageUrl))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ImageUpload)
