@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {Stage, Layer, Text} from 'react-konva'
 import Toolbar from './Toolbar'
-import { getAllTextThunk } from '../store/content'
+import { getPageContentThunk } from '../store/content'
 import { connect } from 'react-redux';
 
 class Canvas extends Component {
   componentDidMount() {
-    this.props.getAllText()
+    this.props.getPageContent(1)
   }
 
   render() {
@@ -53,7 +53,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getAllText: () => dispatch(getAllTextThunk())
+    getPageContent: (pageId) => dispatch(getPageContentThunk(pageId))
   }
 }
 

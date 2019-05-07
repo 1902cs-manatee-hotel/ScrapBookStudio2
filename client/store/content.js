@@ -3,26 +3,29 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
+
+ const GET_PAGE_CONTENT = 'GET_PAGE_CONTENT'
+
  const GET_SINGLE_TEXT = 'GET_SINGLE_TEXT'
  const UPDATE_SINGLE_TEXT = 'UPDATE_SINGLE_TEXT'
  const CREATE_SINGLE_TEXT = 'CREATE_SINGLE_TEXT'
  const DELETE_SINGLE_TEXT = 'DELETE_SINGLE_TEXT'
 
- const GET_PAGE_CONTENT = 'GET_PAGE_CONTENT'
+
 
  const GET_SINGLE_MEDIA = 'GET_SINGLE_MEDIA'
  const UPDATE_SINGLE_MEDIA = 'UPDATE_SINGLE_MEDIA'
  const CREATE_SINGLE_MEDIA = 'CREATE_SINGLE_MEDIA'
  const DELETE_SINGLE_MEDIA = 'DELETE_SINGLE_MEDIA'
 
-
 /**
  * ACTION CREATORS
  */
-//  getPageContent .... getPageContentThunk ----> takes id
- const getPageContent = (id) => ({
-    type: GET_PAGE_CONTENT,
-    id
+
+ const getPageContent = (pageText, pageMedia) => ({
+   type: GET_PAGE_CONTENT,
+   pageText,
+   pageMedia
  })
 
  const getSingleText = (id) => ({
@@ -64,6 +67,14 @@ import axios from 'axios'
  })
 
  //Thunks
+ export const getPageContentThunk = (id) => async dispatch => {
+  try {
+      const {data} = await axios.get(`/api/pages/${id}`)
+      console.log('OUR DATA:', data)
+      const { canvas_texts, media} = data
+      dispatch(getPageContent(canvas_texts, media))
+  } catch(err) {console.error(err)}
+}
 
 export const getSingleTextThunk = (id) =>  async dispatch => {
   try {
@@ -126,11 +137,9 @@ export const deleteSingleMediaThunk = id => async dispatch => {
  */
 const initialState = {
     allText: [],
-    selectedText: {},
-    allImages: [],
-    selectedImage: {},
-    allVideos: [],
-    slectedVideo: {}
+    selectedText: '',
+    allMedia: [],
+    selectedMedia: ''
 }
 
 //Reducer
@@ -139,6 +148,7 @@ export default function(state = initialState, action) {
   const newState = {...state}
   switch(action.type) {
     case GET_PAGE_CONTENT:
+         newState.allText = action.pageText
          newState.allMedia = action.allMedia
          return newState
     case GET_SINGLE_TEXT:
