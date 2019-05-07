@@ -149,7 +149,7 @@ export default function(state = initialState, action) {
   switch(action.type) {
     case GET_PAGE_CONTENT:
          newState.allText = action.pageText
-         newState.allMedia = action.allMedia
+         newState.allMedia = action.pageMedia
          return newState
     case GET_SINGLE_TEXT:
         newState.selectedText = action.id
