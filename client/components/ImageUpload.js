@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
+import {cloud_name, api_key, upload_preset} from './config/cloudinary.js'
+
 
 class ImageUpload extends Component {
     constructor() {
@@ -9,10 +10,12 @@ class ImageUpload extends Component {
 
     uploadImage() {
         var myWidget = cloudinary.createUploadWidget({
-            cloudName: 'dv7hoa5iv', 
-            uploadPreset: 'my_preset'}, (error, result) => { 
+            cloudName: cloud_name,
+            api_key: api_key,
+            uploadPreset: upload_preset}, (error, result) => { 
               if (!error && result && result.event === "success") { 
-                console.log('Done! Here is the image info: ', result.info); 
+                console.log('Done! Here is the image info: ', result.info);
+                console.log('CLICK HERE:', result.info.secure_url);
               }
             }
           )
