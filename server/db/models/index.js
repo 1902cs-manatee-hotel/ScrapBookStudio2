@@ -1,10 +1,9 @@
 const User = require('./user')
 const Contributor = require('./contributor')
-const Image = require('./image')
+const Media = require('./media')
 const Page = require('./pages')
 const Scrapbook = require('./scrapbook')
 const CanvasText = require('./canvastext')
-const Video = require('./video')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -23,14 +22,12 @@ Page.belongsTo(Scrapbook)
 Page.hasMany(CanvasText)
 CanvasText.belongsTo(Page)
 
-Scrapbook.hasMany(Image)
-Image.belongsTo(Scrapbook)
+Scrapbook.hasMany(Media)
+Media.belongsTo(Scrapbook)
 
-Page.hasMany(Image)
-Image.belongsTo(Page)
+Page.hasMany(Media)
+Media.belongsTo(Page)
 
-Page.hasMany(Video)
-Video.belongsTo(Page)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -41,8 +38,7 @@ module.exports = {
   User,
   Scrapbook,
   CanvasText,
-  Image,
+  Media,
   Page,
-  Video,
   Contributor
 }

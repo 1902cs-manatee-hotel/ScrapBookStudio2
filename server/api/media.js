@@ -1,42 +1,42 @@
 const router = require('express').Router()
-const {Image} = require('../db/models')
+const {Media} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const images = await Image.findAll();
-    res.status(200).json(images)
+    const media = await Media.findAll();
+    res.status(200).json(media)
   } catch (error) { next(error) }
 })
 
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const image = await Image.findByPk(id);
-    res.status(200).json(image)
+    const media = await Media.findByPk(id);
+    res.status(200).json(media)
   } catch (error) { next(error) }
 })
 
 router.post('/', async (req, res, next) => {
     try {
       const arr = Object.keys(req.body)
-      const image = await Image.create({path: arr[0]})
-      res.status(200).json(image)
+      const media = await Media.create({path: arr[0]})
+      res.status(200).json(media)
     } catch(err) {next(err)}
 })
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const image = await Image.findByPk(req.params.id)
-        const updatedImage = await image.update(req.body)
-        res.status(200).json(updatedImage)
+        const media = await Media.findByPk(req.params.id)
+        const updatedMedia = await media.update(req.body)
+        res.status(200).json(updatedMedia)
     } catch(err) {next(err)}
 })
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const imageId = req.params.id
-        await Image.destroy({where: {id: imageId}})
+        const mediaId = req.params.id
+        await Media.destroy({where: {id: mediaId}})
         res.status(200)
     } catch(err) {next(err)}
 })
