@@ -38,6 +38,7 @@
   "dependencies": {
     "@slate-editor/bold-plugin": "^5.1.0",
     "axios": "^0.18.0",
+    "cloudinary-react": "^1.1.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
     "express": "^4.16.4",

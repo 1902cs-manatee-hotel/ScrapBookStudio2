@@ -3,7 +3,7 @@
 const db = require('../server/db')
 const {
   User,
-  ScrapBook,
+  Scrapbook,
   CanvasText,
   Image,
   Page,
@@ -18,9 +18,9 @@ async function seed() {
   await Promise.all([
     User.create({ firstName: 'Cody', lastName: 'Jones', email: 'cody@email.com', password: '123' }),
     User.create({ firstName: 'Murphy', lastName: 'Smith', email: 'murphy@email.com', password: '321' }),
-    ScrapBook.create({name: 'EuroTrip', description: 'Good times!', image: 'https://i.ytimg.com/vi/VyaTwRK4qsU/maxresdefault.jpg',  password: '123'}),
-    ScrapBook.create({name: 'Birthday', description: 'My Bday Party', image:'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/749363', password: '123'}),
-    ScrapBook.create({name: 'Bootcamp', description: 'Good times, right ?', image:'https://www.builtinnyc.com/sites/www.builtinnyc.com/files/fullstack_oct_21_2015-48.jpg', password: '123'}),
+    Scrapbook.create({name: 'EuroTrip', description: 'Good times!', image: 'https://i.ytimg.com/vi/VyaTwRK4qsU/maxresdefault.jpg',  password: '123'}),
+    Scrapbook.create({name: 'Birthday', description: 'My Bday Party', image:'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/749363', password: '123'}),
+    Scrapbook.create({name: 'Bootcamp', description: 'Good times, right ?', image:'https://www.builtinnyc.com/sites/www.builtinnyc.com/files/fullstack_oct_21_2015-48.jpg', password: '123'}),
     Page.create({scrapbookId: 1}),
     Page.create({scrapbookId: 1}),
     Page.create({scrapbookId: 1}),
