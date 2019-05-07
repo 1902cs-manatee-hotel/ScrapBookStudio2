@@ -33,13 +33,14 @@ import axios from 'axios'
      id
  })
 
- const updateSingleText = (id) => ({
+ const updateSingleText = (text) => ({
      type: UPDATE_SINGLE_TEXT,
-     id
+     text
  })
 
- const createSingleText = () => ({
-     type: CREATE_SINGLE_TEXT
+ const createSingleText = (text) => ({
+     type: CREATE_SINGLE_TEXT,
+     text
  })
 
  const deleteSingleText = (id) => ({
@@ -52,13 +53,14 @@ import axios from 'axios'
      id
  })
 
- const updateSingleMedia = (id) => ({
+ const updateSingleMedia = (media) => ({
      type: UPDATE_SINGLE_MEDIA,
-     id
+     media
  })
 
- const createSingleMedia = () => ({
-     type: CREATE_SINGLE_MEDIA
+ const createSingleMedia = (media) => ({
+     type: CREATE_SINGLE_MEDIA,
+     media
  })
 
  const deleteSingleMedia = (id) => ({
@@ -156,10 +158,10 @@ export default function(state = initialState, action) {
         return newState
     case CREATE_SINGLE_TEXT:
         newState.allText = [...newState.allText, action.text]
-        newState.selectedText = action.text
+        newState.selectedText = action.text.id
         return newState
     case UPDATE_SINGLE_TEXT:
-        newState.selectedText = action.text
+        newState.selectedText = action.id
         return newState
     case DELETE_SINGLE_TEXT:
          newState.allText = newState.allText.filter(text =>
@@ -169,15 +171,15 @@ export default function(state = initialState, action) {
         newState.selectedMedia = action.id
         return newState
     case CREATE_SINGLE_MEDIA:
-        newState.allVideos = [...newState.allVideos, action.video]
-        newState.selectedVideo = action.video
+        newState.allMedia = [...newState.allMedia, action.media]
+        newState.selectedMedia = action.media.id
         return newState
     case UPDATE_SINGLE_MEDIA:
-        newState.selectedVideo = action.video
+        newState.selectedMedia = action.id
         return newState
     case DELETE_SINGLE_MEDIA:
-         newState.allVideos = newState.allVideos.filter(video =>
-         video.id !== action.id)
+         newState.allMedia = newState.allMedia.filter(media =>
+         media.id !== action.id)
          return newState
      default:
          return state
