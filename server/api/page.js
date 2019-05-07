@@ -1,20 +1,19 @@
 const router = require('express').Router()
-const { Page, Video, CanvasText } = require('../db/models')
+const { Page, Media, CanvasText } = require('../db/models')
 module.exports = router
 
 router.get('/:id', async (req, res, next) => {
     try {
        const pageId = req.params.id
        const page = await Page.findByPk(pageId, {
-           include: [{model: Page, where: {pageId}},
-                    {model: Video, where: {pageId}},
-                    {model: CanvasText, where: {pageId} }
+           include: [{model: Media, where: {pageId}},
+                    {model: CanvasText, where: {pageId}}
         ]
-       }) 
+       })
             res.status(200).json(page)
     } catch (err) {
         next(err)
-    } 
+    }
 })
 
 router.post('/', async (req, res, next) => {

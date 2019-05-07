@@ -3,31 +3,22 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
- const GET_ALL_TEXT = 'GET_ALL_TEXT'
+
+ const GET_PAGE_CONTENT = 'GET_PAGE_CONTENT'
+
  const GET_SINGLE_TEXT = 'GET_SINGLE_TEXT'
  const UPDATE_SINGLE_TEXT = 'UPDATE_SINGLE_TEXT'
  const CREATE_SINGLE_TEXT = 'CREATE_SINGLE_TEXT'
  const DELETE_SINGLE_TEXT = 'DELETE_SINGLE_TEXT'
 
- const GET_ALL_IMAGES = 'GET_ALL_IMAGES'
- const GET_SINGLE_IMAGE = 'GET_SINGLE_IMAGE'
- const UPDATE_SINGLE_IMAGE = 'UPDATE_SINGLE_IMAGE'
- const CREATE_SINGLE_IMAGE = 'CREATE_SINGLE_IMAGE'
- const DELETE_SINGLE_IMAGE = 'DELETE_SINGLE_IMAGE'
-
- const GET_ALL_VIDEOS = 'GET_ALL_VIDEOS'
- const GET_SINGLE_VIDEO = 'GET_SINGLE_VIDEO'
- const UPDATE_SINGLE_VIDEO = 'UPDATE_SINGLE_VIDEO'
- const CREATE_SINGLE_VIDEO = 'CREATE_SINGLE_VIDEO'
- const DELETE_SINGLE_VIDEO = 'DELETE_SINGLE_VIDEO'
-
 /**
  * ACTION CREATORS
  */
 
- const getAllText = (allText) => ({
-    type: GET_ALL_TEXT,
-    allText
+ const getPageContent = (pageText, pageMedia) => ({
+   type: GET_PAGE_CONTENT,
+   pageText,
+   pageMedia
  })
 
  const getSingleText = (text) => ({
@@ -50,11 +41,6 @@ import axios from 'axios'
      id
  })
 
- const getAllImages = (allImages) => ({
-    type: GET_ALL_IMAGES,
-    allImages
- })
-
  const getSingleImage = (image) => ({
      type: GET_SINGLE_IMAGE,
      image
@@ -73,11 +59,6 @@ import axios from 'axios'
  const deleteSingleImage = (id) => ({
      type: DELETE_SINGLE_IMAGE,
      id
- })
-
- const getAllVideos = (allVideos) => ({
-    type: GET_ALL_VIDEOS,
-    allVideos
  })
 
  const getSingleVideo = (video) => ({
@@ -101,10 +82,12 @@ import axios from 'axios'
  })
 
  //Thunks
- export const getAllTextThunk = () => async dispatch => {
+ export const getPageContentThunk = (id) => async dispatch => {
   try {
-      const {data} = await axios.get('/api/canvastext')
-      dispatch(getAllText(data))
+      const {data} = await axios.get(`/api/pages/${id}`)
+      console.log('OUR DATA:', data)
+      const { canvas_texts, media} = data
+      dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
 }
 
@@ -136,13 +119,6 @@ export const deleteSingleTextThunk = id => async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const getAllVideosThunk = () => async dispatch => {
-  try {
-      const {data} = await axios.get('/api/videos')
-      dispatch(getAllVideos(data))
-  } catch(err) {console.error(err)}
-}
-
 export const getSingleVideoThunk = (id) =>  async dispatch => {
   try {
      const {data} = await axios.get(`/api/videos/${id}`)
@@ -169,13 +145,6 @@ export const deleteSingleVideoThunk = id => async dispatch => {
       await axios.delete(`api/videos/${id}`)
       dispatch(deleteSingleVideo(id))
   } catch (err) {console.error(err)}
-}
-
-export const getAllImagesThunk = () => async dispatch => {
-  try {
-      const {data} = await axios.get('/api/images')
-      dispatch(getAllImages(data))
-  } catch(err) {console.error(err)}
 }
 
 export const getSingleImageThunk = (id) =>  async dispatch => {
@@ -212,11 +181,9 @@ export const deleteSingleImageThunk = id => async dispatch => {
  */
 const initialState = {
     allText: [],
-    selectedText: {},
-    allImages: [],
-    selectedImage: {},
-    allVideos: [],
-    slectedVideo: {}
+    selectedText: '',
+    allMedia: [],
+    selectedMedia: ''
 }
 
 //Reducer
@@ -224,8 +191,9 @@ const initialState = {
 export default function(state = initialState, action) {
   const newState = {...state}
   switch(action.type) {
-    case GET_ALL_TEXT:
-         newState.allText = action.allText
+    case GET_PAGE_CONTENT:
+         newState.allText = action.pageText
+         newState.allMedia = action.allMedia
          return newState
     case GET_SINGLE_TEXT:
         newState.selectedText = action.text
@@ -240,9 +208,6 @@ export default function(state = initialState, action) {
     case DELETE_SINGLE_TEXT:
          newState.allText = newState.allText.filter(text =>
          text.id !== action.id)
-         return newState
-    case GET_ALL_VIDEOS:
-         newState.allVideos = action.allVideos
          return newState
     case GET_SINGLE_VIDEO:
         newState.selectedVideo = action.video
