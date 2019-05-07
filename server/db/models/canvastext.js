@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const CanvasText = db.define('canvas-text', {
+const CanvasText = db.define('canvas_text', {
     content: {
         type: Sequelize.TEXT,
         allowNull: false,
@@ -23,7 +23,7 @@ const CanvasText = db.define('canvas-text', {
         defaultValue: 0
     },
     color: {
-        type: Sequelize.STRING, 
+        type: Sequelize.STRING,
         defaultValue: 'black'
     },
     size: {
