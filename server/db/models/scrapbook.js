@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const ScrapBook = db.define('scrapbook', {
+const Scrapbook = db.define('scrapbook', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -20,4 +20,4 @@ const ScrapBook = db.define('scrapbook', {
     },  
 })
 
-module.exports = ScrapBook
+module.exports = Scrapbook
