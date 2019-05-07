@@ -30,6 +30,10 @@ const Image = db.define('image', {
     },
     filter: {
         type: Sequelize.STRING
+    },
+    pageId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
     }
 })
 
