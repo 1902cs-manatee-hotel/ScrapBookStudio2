@@ -15,9 +15,7 @@ class CanvasText extends Component {
 
     render() {
         return(
-            <Text onClick={this.handleOnClick}>
-                {this.props.content}
-            </Text>
+            <Text onClick={this.handleOnClick} />
         )
     }
 }

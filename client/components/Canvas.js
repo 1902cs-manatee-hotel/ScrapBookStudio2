@@ -28,7 +28,7 @@ class Canvas extends Component {
               <Layer>
                 {this.props.allText.map((text) => {
                   return <Text key={text.id}
-                  content={text.content}
+                  text={text.content}
                   x_coord={text.x_coord}
                   y_coord={text.y_coord}
                   tilt={text.tilt}
