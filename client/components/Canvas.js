@@ -3,13 +3,16 @@ import {Stage, Layer, Text} from 'react-konva'
 import Toolbar from './Toolbar'
 import { getPageContentThunk } from '../store/content'
 import { connect } from 'react-redux';
+import CanvasMedia from './CanvasMedia'
 
 class Canvas extends Component {
+
   componentDidMount() {
     this.props.getPageContent(1)
   }
 
   render() {
+    console.log('CANVAS', this.props.allMedia)
     return (
       <div className="tile is-ancestor canvas">
         <div className="tile">
@@ -34,8 +37,24 @@ class Canvas extends Component {
                   tilt={text.tilt}
                   color={text.color}
                   size={text.size}
+                  draggable
                   />
                 })}
+                {
+                  this.props.allMedia.map((media)=> {
+                    return <CanvasMedia 
+                    key={media.id}
+                    src={media.path}
+                    x={media.x_coord}
+                    y={media.y_coord}
+                    width={media.width}
+                    height={media.height}
+                    tilt={media.tilt}
+                    filter={media.filter}                    
+                    />
+                  })
+                }
+                {/* <CanvasMedia src="https://konvajs.org/assets/yoda.jpg" x={150}/> */}
               </Layer>
             </Stage>
           </div>
@@ -47,7 +66,8 @@ class Canvas extends Component {
 
 const mapState = (state) => {
   return {
-    allText: state.content.allText
+    allText: state.content.allText,
+    allMedia: state.content.allMedia
   }
 }
 
