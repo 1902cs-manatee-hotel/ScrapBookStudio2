@@ -72,7 +72,6 @@ import axios from 'axios'
  export const getPageContentThunk = (id) => async dispatch => {
   try {
       const {data} = await axios.get(`/api/pages/${id}`)
-      console.log('OUR DATA:', data)
       const { canvas_texts, media} = data
       dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
@@ -100,23 +99,23 @@ export const deleteSingleTextThunk = id => async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const createSingleMediaThunk = () => async dispatch => {
+export const createSingleMediaThunk = (path) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/content')
+      const {data} = await axios.post('/api/media', path)
       dispatch(createSingleMedia(data))
   } catch (err) {console.log(err)}
 }
 
 export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
-          const {data} = await axios.put(`/api/content/${id}`, updatedProp)
+          const {data} = await axios.put(`/api/media/${id}`, updatedProp)
           dispatch(updateSingleMedia(data))
       } catch (err) {console.log(err)}
 }
 
 export const deleteSingleMediaThunk = id => async dispatch => {
   try {
-      await axios.delete(`api/content/${id}`)
+      await axios.delete(`api/media/${id}`)
       dispatch(deleteSingleMedia(id))
   } catch (err) {console.error(err)}
 }

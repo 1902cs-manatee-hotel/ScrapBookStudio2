@@ -32,8 +32,8 @@ async function seed() {
     Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 70, y_coord: 70, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
     Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 75, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 2 }),
     Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 75, y_coord: 60, tilt: 0, width: 100, height: 100, filter: 2, pageId: 2 }),
-    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, tilt: 0, width: 5, height: 5, filter: 2, pageId: 1 }),
-    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, tilt: 0, width: 5, height: 5, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
     CanvasText.create({ content: 'Great Time!', x_coord: 50, y_coord: 50, tilt: 0, color: 'blue', size: 10, pageId: 1 }),
     CanvasText.create({ content: 'LOL', x_coord: 50, y_coord: 50, tilt: 0, color: 'red', size: 20, pageId: 1 }),
     CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, tilt: 0, color: 'red', size: 20, pageId: 2 })

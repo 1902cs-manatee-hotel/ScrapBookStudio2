@@ -27,9 +27,11 @@ const Media = db.define('media', {
     },
     width: {
         type: Sequelize.INTEGER,
+        defaultValue: 100
     },
     height: {
         type: Sequelize.INTEGER,
+        defaultValue: 100
     },
     filter: {
         type: Sequelize.STRING
