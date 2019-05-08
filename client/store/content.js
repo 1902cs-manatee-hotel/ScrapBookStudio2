@@ -100,9 +100,10 @@ export const deleteSingleTextThunk = id => async dispatch => {
   } catch (err) {console.error(err)}
 }
 
-export const createSingleMediaThunk = () => async dispatch => {
+export const createSingleMediaThunk = (path) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/content')
+      const {data} = await axios.post('/api/content', {path})
+      console.log('DATA FROM CONTENT THUNK', data)
       dispatch(createSingleMedia(data))
   } catch (err) {console.log(err)}
 }

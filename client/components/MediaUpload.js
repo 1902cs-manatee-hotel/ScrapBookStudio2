@@ -6,10 +6,10 @@ import {createSingleMediaThunk} from '../store/content'
 class MediaUpload extends Component {
     constructor() {
         super()
-        this.uploadImage = this.uploadImage.bind(this)
+        this.uploadMedia = this.uploadMedia.bind(this)
     }
 
-    uploadImage() {
+    uploadMedia() {
         var myWidget = cloudinary.createUploadWidget({
             cloudName: cloud_name,
             api_key: api_key,
@@ -18,7 +18,7 @@ class MediaUpload extends Component {
                 console.log('Done! Here is the image info: ', result.info);
                 console.log('CLICK HERE:', result.info.secure_url);
                 let path = result.info.secure_url
-                this.props.postImage(path)
+                this.props.postMedia(path)
               }
             }
           )
@@ -28,7 +28,7 @@ class MediaUpload extends Component {
     render() {
         return (
             <div>
-                <button className='button is-warning space' type='submit' onClick={this.uploadImage}>Image</button>
+                <button className='button is-warning space' type='submit' onClick={this.uploadMedia}>Image</button>
             </div>
         )
     }
@@ -36,7 +36,7 @@ class MediaUpload extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        postImage: (imageUrl) => dispatch(createSingleMediaThunk(imageUrl))
+        postMedia: (imageUrl) => dispatch(createSingleMediaThunk(imageUrl))
     }
 }
 
