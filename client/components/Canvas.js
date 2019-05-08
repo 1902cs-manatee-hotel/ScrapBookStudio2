@@ -4,6 +4,7 @@ import Toolbar from './Toolbar'
 import { getPageContentThunk } from '../store/content'
 import { connect } from 'react-redux';
 import CanvasMedia from './CanvasMedia'
+import CanvasText from './CanvasText'
 
 class Canvas extends Component {
 
@@ -12,7 +13,6 @@ class Canvas extends Component {
   }
 
   render() {
-    console.log('CANVAS', this.props.allMedia)
     return (
       <div className="tile is-ancestor canvas">
         <div className="tile">
@@ -31,13 +31,13 @@ class Canvas extends Component {
               <Layer>
                 {this.props.allText.map((text) => {
                   return <Text key={text.id}
+                  draggable
                   text={text.content}
                   x_coord={text.x_coord}
                   y_coord={text.y_coord}
                   tilt={text.tilt}
                   color={text.color}
                   size={text.size}
-                  draggable
                   />
                 })}
                 {
@@ -54,7 +54,6 @@ class Canvas extends Component {
                     />
                   })
                 }
-                {/* <CanvasMedia src="https://konvajs.org/assets/yoda.jpg" x={150}/> */}
               </Layer>
             </Stage>
           </div>
