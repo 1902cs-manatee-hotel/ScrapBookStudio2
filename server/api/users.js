@@ -15,3 +15,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id/scrapbooks', async (req, res, next) => {
+  try {
+      console.log('req.body', req.user)
+      const id = req.user.dataValues.id
+      const scrapbooks = await Scrapbook.findAll({
+          where: { userId: id }
+      })
+      res.status(200).json(scrapbooks)
+    } catch(err){
+        next(err)
+    }
+})
