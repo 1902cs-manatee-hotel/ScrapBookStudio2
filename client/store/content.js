@@ -86,9 +86,9 @@ export const createSingleTextThunk = () => async dispatch => {
   } catch (err) {console.log(err)}
 }
 
-export const updateSingleTextThunk = (id) => async dispatch => {
+export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
       try {
-          const {data} = await axios.put(`/api/canvastext/${id}`)
+          const {data} = await axios.put(`/api/canvastext/${id}`, updatedProp)
           dispatch(updateSingleText(data))
       } catch (err) {console.log(err)}
 }
@@ -107,9 +107,9 @@ export const createSingleMediaThunk = () => async dispatch => {
   } catch (err) {console.log(err)}
 }
 
-export const updateSingleMediaThunk = (id) => async dispatch => {
+export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
-          const {data} = await axios.put(`/api/content/${id}`)
+          const {data} = await axios.put(`/api/content/${id}`, updatedProp)
           dispatch(updateSingleMedia(data))
       } catch (err) {console.log(err)}
 }
