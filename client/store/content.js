@@ -28,7 +28,7 @@ import axios from 'axios'
    pageMedia
  })
 
- const getSingleText = (id) => ({
+ export const getSingleText = (id) => ({
      type: GET_SINGLE_TEXT,
      id
  })
@@ -48,7 +48,7 @@ import axios from 'axios'
      id
  })
 
- const getSingleMedia = (id) => ({
+ export const getSingleMedia = (id) => ({
      type: GET_SINGLE_MEDIA,
      id
  })
@@ -78,12 +78,6 @@ import axios from 'axios'
   } catch(err) {console.error(err)}
 }
 
-export const getSingleTextThunk = (id) =>  async dispatch => {
-  try {
-     const {data} = await axios.get(`/api/canvastext/${id}`)
-      dispatch(getSingleText(data))
-  } catch (err) {console.error(err)}
-}
 
 export const createSingleTextThunk = () => async dispatch => {
   try {
@@ -103,13 +97,6 @@ export const deleteSingleTextThunk = id => async dispatch => {
   try {
       await axios.delete(`api/canvastext/${id}`)
       dispatch(deleteSingleText(id))
-  } catch (err) {console.error(err)}
-}
-
-export const getSingleMediaThunk = (id) =>  async dispatch => {
-  try {
-     const {data} = await axios.get(`/api/content/${id}`)
-      dispatch(getSingleMedia(data))
   } catch (err) {console.error(err)}
 }
 
@@ -161,11 +148,12 @@ export default function(state = initialState, action) {
         newState.selectedText = action.text.id
         return newState
     case UPDATE_SINGLE_TEXT:
-        newState.selectedText = action.id
+    newState.allText = [...newState.allText, action.text]
         return newState
     case DELETE_SINGLE_TEXT:
          newState.allText = newState.allText.filter(text =>
          text.id !== action.id)
+         newState.selectedText = ''
          return newState
     case GET_SINGLE_MEDIA:
         newState.selectedMedia = action.id
@@ -175,11 +163,12 @@ export default function(state = initialState, action) {
         newState.selectedMedia = action.media.id
         return newState
     case UPDATE_SINGLE_MEDIA:
-        newState.selectedMedia = action.id
+        newState.allMedia = [...newState.allMedia, action.media]        
         return newState
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>
          media.id !== action.id)
+         newState.selectedMedia = ''
          return newState
      default:
          return state
