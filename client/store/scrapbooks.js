@@ -13,6 +13,7 @@ const GET_ALL_PAGES = 'GET_ALL_PAGES'
 const GET_SINGLE_PAGE = 'GET_SINGLE_PAGE'
 const CREATE_SINGLE_PAGE = 'CREATE_SINGLE_PAGE'
 const DELETE_SINGLE_PAGE = 'DELETE_SINGLE_PAGE'
+const GET_ALL_SCRAPBOOK_MEDIA = 'GET_ALL_SCRAPBOOK_MEDIA'
 
  /**
  * ACTION CREATORS
@@ -61,6 +62,11 @@ const createSinglePage = (page) => ({
 const deleteSinglePage = (id) => ({
     type: DELETE_SINGLE_PAGE,
     id
+})
+
+const getAllScrapbookMedia = (media) => ({
+  type: GET_ALL_SCRAPBOOK_MEDIA,
+  media
 })
 
  /**
@@ -117,6 +123,13 @@ export const deleteSinglePageThunk = (id) => async dispatch => {
     } catch(err) {console.error(err)}
 }
 
+export const getAllScrapbookMediaThunk = (scrapbookId) => async dispatch => {
+  try {
+      const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/media`)
+      dispatch(getAllScrapbookMedia(data))
+  } catch(err) {console.error(err)}
+}
+
  /**
  * INITIAL STATE
  */
@@ -125,6 +138,7 @@ const initialState = {
     singleScrapbook: '',
     pages: [],
     singlePage: '',
+    allScrapbookMedia: []
 }
 
 /**
@@ -161,12 +175,16 @@ const initialState = {
             return newState
         case CREATE_SINGLE_PAGE:
               newState.pages = [newState.pages, ...action.page]
+              newState.singlePage = action.page.id
               return newState
         case DELETE_SINGLE_PAGE:
              newState.pages = newState.pages.filter(page =>
              page.id !== action.id)
              newState.singlePage = ''
              return newState
+        case GET_ALL_SCRAPBOOK_MEDIA:
+            newState.allScrapbookMedia = action.media
+            return newState
         default:
             return state
      }
