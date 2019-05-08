@@ -14,7 +14,6 @@ router.post('/', async (req, res, next) => {
     try {
       const arr = Object.keys(req.body)
       const media = await Media.create({path: arr[0]})
-      console.log('MEDIA ROUTE', media, req.body)
       res.status(200).json(media)
     } catch(err) {next(err)}
 })
