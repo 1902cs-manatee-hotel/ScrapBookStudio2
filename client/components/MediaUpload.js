@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {cloud_name, api_key, upload_preset} from './config/cloudinary.js'
-import {createSingleImageThunk} from '../store/content'
+import {createSingleMediaThunk} from '../store/content'
 
 class MediaUpload extends Component {
     constructor() {
@@ -36,7 +36,7 @@ class MediaUpload extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        postImage: (imageUrl) => dispatch(createSingleImageThunk(imageUrl))
+        postImage: (imageUrl) => dispatch(createSingleMediaThunk(imageUrl))
     }
 }
 
