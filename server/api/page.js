@@ -18,7 +18,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const page = await Page.create(req.body)
+        const page = await Page.create({
+          scrapbookId: req.user.dataValues.id            
+        })
         res.status(200).json(page)
     } catch(err) {next(err)}
 })

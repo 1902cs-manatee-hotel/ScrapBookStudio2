@@ -8,11 +8,11 @@ import CanvasMedia from './CanvasMedia'
 class Canvas extends Component {
 
   componentDidMount() {
-    this.props.getPageContent(1)
+    // this.props.getPageContent() get from state
   }
 
   render() {
-    console.log('CANVAS', this.props.allMedia)
+    console.log('CANVAS ************************************', this.props)
     return (
       <div className="tile is-ancestor canvas">
         <div className="tile">

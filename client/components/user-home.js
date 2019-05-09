@@ -36,7 +36,6 @@ class UserHome extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('tE', state)
   return {
     scrapbooks: state.scrapbooks.scrapbooks,
     user: state.user

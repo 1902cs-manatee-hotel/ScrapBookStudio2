@@ -7,43 +7,41 @@ class Create extends Component {
     constructor() {
         super()
         this.state = {
-            title: '',
+            name: '',
             description: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDescChange = this.handleDescChange.bind(this)
-        this.handleTitleChange = this.handleTitleChange.bind(this)
+        this.handleNameChange = this.handleNameChange.bind(this)
     }
 
-    handleSubmit(event) {
-      event.preventDefault();
-        console.log('inside handleSumbit')
-      this.props.createScrapbook({title: this.state.title,
+    handleSubmit() {
+    //   event.preventDefault(); 
+      this.props.createScrapbook({name: this.state.name,
                                 description: this.state.description
     })
     }
 
-    handleTitleChange(event) {
+    handleNameChange(event) {
         this.setState({
-            title: event.target.value
+            name: event.target.value
         })
     }
 
     handleDescChange(event) {
+
         this.setState({
             description: event.target.value
         })
     }
 
     render() {
-        console.log('Create Comp', this.props)
         return (
             <div className="box form centered-forms">
-              <form onSubmit={this.handleSubmit}>
                 <div className="field">
                     <div className="control">
-                        <input className="input" name="title" type="text" placeholder="Enter  title" onChange={this.handleSubmit} value={this.state.title}/>
+                        <input className="input" name="name" type="text" placeholder="Enter Scrapbook Name" onChange={this.handleNameChange} value={this.state.name}/>
                     </div>
                 </div>
                 <div className="field">
@@ -52,9 +50,8 @@ class Create extends Component {
                     </div>
                 </div>
                 <Link to="/scrapbooksetup">
-                    <button className="button is-primary" type="submit">Create Scrapbook</button>
+                    <button className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
                 </Link>
-                </form>
             </div>
         )
     }

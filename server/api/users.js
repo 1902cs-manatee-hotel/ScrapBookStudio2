@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id/scrapbooks', async (req, res, next) => {
   try {
-      console.log('req.body', req.user)
       const id = req.user.dataValues.id
       const scrapbooks = await Scrapbook.findAll({
           where: { userId: id }
