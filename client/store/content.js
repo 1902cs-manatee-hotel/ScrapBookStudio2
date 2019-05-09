@@ -86,7 +86,8 @@ export const createSingleTextThunk = () => async dispatch => {
 }
 
 export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
-      try {
+    console.log('our id: ', id)  
+    try {
           const {data} = await axios.put(`/api/canvastext/${id}`, updatedProp)
           dispatch(updateSingleText(data))
       } catch (err) {console.log(err)}
