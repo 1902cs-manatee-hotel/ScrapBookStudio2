@@ -5,6 +5,7 @@ import { getPageContentThunk } from '../store/content'
 import { connect, ReactReduxContext, Provider } from 'react-redux';
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
+import MediaResizer from './MediaResizer'
 
 class Canvas extends Component {
 
@@ -57,6 +58,7 @@ class Canvas extends Component {
                     />
                   })
                 }
+                <MediaResizer />
               </Layer>
               </Provider>
             </Stage>
