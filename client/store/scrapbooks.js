@@ -80,9 +80,10 @@ export const getAllScrapbooksThunk = (userId) => async dispatch => {
   } catch(err) {console.error(err)}
 }
 
-export const createScrapbookThunk = () => async dispatch => {
+export const createScrapbookThunk = (setProps) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/scrapbooks/')
+      const {data} = await axios.post('/api/scrapbooks/', setProps)
+      console.log('setPROPSSSS', setProps)
       dispatch(createScrapbook(data))
   } catch (err) {console.log(err)}
 }
