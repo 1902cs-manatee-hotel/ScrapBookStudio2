@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Scrapbook, Media } = require('../db/models')
+const { Scrapbook, Media, Page } = require('../db/models')
 module.exports = router
 
 router.get('/:id/media', async (req, res, next) => {
@@ -9,6 +9,19 @@ router.get('/:id/media', async (req, res, next) => {
           where: {scrapbookId: id }
         })
       res.status(200).json(media)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/:id/pages', async (req, res, next) => {
+    try {
+        console.log('REQ', req.user)
+      const id = req.scrapbook.id
+      const pages = await Page.findAll({
+          where: {scrapbookId: id }
+      })
+      res.status(200).json(pages)
     } catch (err) {
         next(err)
     }
