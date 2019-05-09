@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Stage, Layer, Text} from 'react-konva'
 import Toolbar from './Toolbar'
 import { getPageContentThunk } from '../store/content'
-import { connect } from 'react-redux';
+import { connect, ReactReduxContext, Provider } from 'react-redux';
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
 
@@ -14,7 +14,9 @@ class Canvas extends Component {
 
   render() {
     return (
-      <div className="tile is-ancestor canvas">
+      <ReactReduxContext.Consumer>
+        {({ store }) => (
+          <div className="tile is-ancestor canvas">
         <div className="tile">
           <Toolbar />
         </div>
@@ -28,16 +30,17 @@ class Canvas extends Component {
               width={1300}
               height={500}
             >
+            <Provider store={store}>
               <Layer>
                 {this.props.allText.map((text) => {
-                  return <Text key={text.id}
-                  draggable
-                  text={text.content}
+                  return <CanvasText key={text.id}
+                  content={text.content}
                   x_coord={text.x_coord}
                   y_coord={text.y_coord}
                   tilt={text.tilt}
                   color={text.color}
                   size={text.size}
+                  id={text.id}
                   />
                 })}
                 {
@@ -55,10 +58,14 @@ class Canvas extends Component {
                   })
                 }
               </Layer>
+              </Provider>
             </Stage>
           </div>
         </div>
       </div>
+        )
+      }
+      </ReactReduxContext.Consumer>
     )
   }
 }

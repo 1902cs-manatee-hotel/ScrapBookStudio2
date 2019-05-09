@@ -5,35 +5,51 @@ import FormatToolbar from './FormatToolbar'
 import Icon from 'react-icons-kit'
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
+import {connect} from 'react-redux'
+import { updateSingleTextThunk } from '../store/content'
+import Plain from 'slate-plain-serializer'
 
-const initialValue = Value.fromJSON({
-    document: {
-      nodes: [
-        {
-          object: 'block',
-          type: 'paragraph',
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  text: 'A line of text in a paragraph.',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  })
+// const initialValue = Value.fromJSON({
+//     document: {
+//       nodes: [
+//         {
+//           object: 'block',
+//           type: 'paragraph',
+//           nodes: [
+//             {
+//               object: 'text',
+//               leaves: [
+//                 {
+//                   text: 'A line of text in a paragraph.',
+//                 },
+//               ],
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   })
 
-export default class TextEditor extends Component {
+const existingValue = localStorage.getItem('content')
+
+const initialValue = Plain.deserialize(
+  existingValue || 'hello world'
+)
+
+class TextEditor extends Component {
     state={
         value: initialValue
     }
 
     onChange = ({ value }) => {
-        this.setState({ value })
+      console.log('OUR VALUE: ', value)
+      // const content = JSON.stringify(value.toJSON())
+      if(value.document != this.state.value.document) {
+        const content = Plain.serialize(value)
+        localStorage.setItem('content', content)
+        this.props.updateText(this.props.selectedText, {content})
+      }
+      this.setState({ value })
     }
 
     render() {
@@ -53,3 +69,16 @@ export default class TextEditor extends Component {
     }
 }
 
+const mapState = state => {
+  return {
+    selectedText: state.content.selectedText
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    updateText: (id, updatedProp) => dispatch(updateSingleTextThunk(id, updatedProp))
+  }
+}
+
+export default connect(mapState, mapDispatch)(TextEditor)
