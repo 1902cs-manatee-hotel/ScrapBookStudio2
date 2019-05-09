@@ -8,7 +8,7 @@ class Toolbar extends Component {
     return (
       <div className="box toolbar">
         <h1 className="title">Toolbar</h1>
-        {/* <MediaUpload /> */}
+        <MediaUpload />
         <button className='button is-primary space' type='submit'>Text</button>
         <br/>
         <button className='button is-primary space' type='submit'>Background</button>
