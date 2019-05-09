@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Scrapbook} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id/scrapbooks', async (req, res, next) => {
   try {
-      console.log('req.body', req.user)
       const id = req.user.dataValues.id
       const scrapbooks = await Scrapbook.findAll({
           where: { userId: id }

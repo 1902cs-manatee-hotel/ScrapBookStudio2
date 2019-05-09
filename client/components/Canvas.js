@@ -9,7 +9,7 @@ import CanvasText from './CanvasText'
 class Canvas extends Component {
 
   componentDidMount() {
-    this.props.getPageContent(1)
+    // this.props.getPageContent() get from state
   }
 
   render() {

@@ -80,9 +80,9 @@ export const getAllScrapbooksThunk = (userId) => async dispatch => {
   } catch(err) {console.error(err)}
 }
 
-export const createScrapbookThunk = () => async dispatch => {
+export const createScrapbookThunk = (setProps) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/scrapbooks/')
+      const {data} = await axios.post('/api/scrapbooks/', setProps)
       dispatch(createScrapbook(data))
   } catch (err) {console.log(err)}
 }
@@ -156,7 +156,7 @@ const initialState = {
             newState.singleScrapbook = action.id
             return newState
         case CREATE_SCRAPBOOK:
-            newState.scrapbooks = [newState.scrapbooks, ...action.scrapbook]
+            newState.scrapbooks = [newState.scrapbooks, action.scrapbook]
             newState.singleScrapbook = action.scrapbook.id
             return newState
         case UPDATE_SCRAPBOOK:
@@ -174,7 +174,7 @@ const initialState = {
             newState.singlePage = action.id
             return newState
         case CREATE_SINGLE_PAGE:
-              newState.pages = [newState.pages, ...action.page]
+              newState.pages = [newState.pages, action.page]
               newState.singlePage = action.page.id
               return newState
         case DELETE_SINGLE_PAGE:

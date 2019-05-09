@@ -28,7 +28,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-      const scrapbook = await Scrapbook.create(req.body)
+      const scrapbook = await Scrapbook.create({
+          name: req.body.name,
+          description: req.body.description,
+          userId: req.user.dataValues.id
+      })
       res.status(200).json(scrapbook)
   } catch(err) {next(err)}
 })
