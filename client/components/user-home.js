@@ -35,7 +35,7 @@ class UserHome extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     scrapbooks: state.scrapbooks.scrapbooks,
     user: state.user
@@ -48,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatchToProps)(UserHome)
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome)
 
 /**
  * PROP TYPES

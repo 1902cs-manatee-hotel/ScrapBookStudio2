@@ -11,6 +11,7 @@ const Scrapbook = db.define('scrapbook', {
     },
     image: {
         type: Sequelize.STRING,
+        defaultValue: 'http://www.hobbycraft.co.uk/supplyimages/620793_1000_1_800.jpg',
         validate: {
             isUrl: true
         } 

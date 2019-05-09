@@ -102,9 +102,11 @@ export const deleteScrapbookThunk = id => async dispatch => {
 }
 
 
-export const getAllPagesThunk = () => async dispatch => {
+export const getAllPagesThunk = (scrapbookId) => async dispatch => {
     try {
-        const {data} = await axios.get('/api/pages')
+        console.log('getAllPages')
+        const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
+        console.log('THUNKKKKK', data )
         dispatch(getAllPages(data))
     } catch(err) {console.error(err)}
 }
@@ -168,7 +170,9 @@ const initialState = {
             newState.singleScrapbook = ''
             return newState
         case GET_ALL_PAGES:
+            console.log('NEW STATE', newState.pages)
             newState.pages = action.pages
+            console.log('ACTION', action.pages)
             return newState
         case GET_SINGLE_PAGE:
             newState.singlePage = action.id

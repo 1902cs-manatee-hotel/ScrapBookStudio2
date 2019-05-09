@@ -5,15 +5,29 @@ import { getPageContentThunk } from '../store/content'
 import { connect, ReactReduxContext, Provider } from 'react-redux';
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
+import {createSinglePageThunk} from '../store/scrapbooks'
 import MediaResizer from './MediaResizer'
 
-class Canvas extends Component {
 
-  componentDidMount() {
-    // this.props.getPageContent() get from state
+class Canvas extends Component {
+  constructor() {
+    super()
+
+    this.handlePageSubmit = this.handlePageSubmit.bind(this)
   }
 
+  componentDidMount() {
+    this.props.getPageContent(1) 
+    // get from state
+  }
+
+  handlePageSubmit() {
+      this.props.addPage()
+  }
+
+
   render() {
+    console.log('Inside CANVAS', this.props)
     return (
       <ReactReduxContext.Consumer>
         {({ store }) => (
@@ -23,7 +37,7 @@ class Canvas extends Component {
         </div>
         <div className="tile is-parent is-vertical">
           <div className='tile is-child'>
-            <button className="button is-primary is-fullwidth add-page-button" type='submit'>Add Page</button>
+            <button className="button is-primary is-fullwidth add-page-button" onClick={this.handlePageSubmit} type='submit'>Add Page</button>
           </div>
           <div className='tile is-child'>
             <Stage
@@ -81,7 +95,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getPageContent: (pageId) => dispatch(getPageContentThunk(pageId))
+    getPageContent: () => dispatch(getPageContentThunk(1)),
+    addPage: () => dispatch(createSinglePageThunk())
   }
 }
 
