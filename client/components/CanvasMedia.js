@@ -45,6 +45,7 @@ class CanvasMedia extends Component {
             ref={node => {
               this.imageNode = node;
             }}
+            name={this.props.name}
             draggable
           />
         );
