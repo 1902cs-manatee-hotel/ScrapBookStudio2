@@ -14,29 +14,32 @@ router.get('/:id/media', async (req, res, next) => {
     }
 })
 
-router.get('/:id/pages', async (req, res, next) => {
-    try {
-        console.log('REQ', req.user)
-      const id = req.scrapbook.id
-      const pages = await Page.findAll({
-          where: {scrapbookId: id }
-      })
-      res.status(200).json(pages)
-    } catch (err) {
-        next(err)
-    }
-})
-
 router.get('/:id', async (req, res, next) => {
+    console.log('******hi there*******')
     try {
-      const id = req.params.id
-      const scrapbook = await Scrapbook.findByPk(id)
+      const scrapbookId = req.params.id
+      const scrapbook = await Scrapbook.findByPk(scrapbookId, {
+          include: [{model: Page, where: {scrapbookId}}]
+      })
 
       res.status(200).json(scrapbook)
     } catch (err) {
         next(err)
     }
 });
+
+// router.get('/:id/pages', async (req, res, next) => {
+//     try {
+//         console.log('****REQ', req.params)
+//       const id = req.params.id
+//       const pages = await Page.findAll({
+//           where: {scrapbookId: id }
+//       })
+//       res.status(200).json(pages)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
 
 
 router.post('/', async (req, res, next) => {
