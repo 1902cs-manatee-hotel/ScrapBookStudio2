@@ -12,10 +12,10 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
+        const {pageId, content} = req.body
         const newCanvasText = await CanvasText.create({
-            content: req.params.content,
-            x_corrd: 200,
-            y_corrd: 200
+            content,
+            pageId
         })
         res.send(newCanvasText)
     } catch (error) {
@@ -36,9 +36,8 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const {id} = req.params
-        const canvasText = await CanvasText.findByPk(id)
-        await canvasText.destroy()
-        res.status(200)
+        await CanvasText.destroy({where: {id}})
+        res.sendStatus(200)
     } catch (error) {
         next(error)
     }

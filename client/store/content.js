@@ -19,6 +19,8 @@ import axios from 'axios'
  const CREATE_SINGLE_MEDIA = 'CREATE_SINGLE_MEDIA'
  const DELETE_SINGLE_MEDIA = 'DELETE_SINGLE_MEDIA'
 
+ const DESELECT_CANVAS_ELEMENT = 'DESELECT_CANVAS_ELEMENT'
+
 /**
  * ACTION CREATORS
  */
@@ -74,6 +76,10 @@ import axios from 'axios'
       content
  })
 
+ export const deselectCanvasElement = () => ({
+   type: DESELECT_CANVAS_ELEMENT
+ })
+
  //Thunks
  export const getPageContentThunk = (id) => async dispatch => {
   try {
@@ -84,9 +90,9 @@ import axios from 'axios'
 }
 
 
-export const createSingleTextThunk = () => async dispatch => {
+export const createSingleTextThunk = (pageId, content) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/canvastext')
+      const {data} = await axios.post('/api/canvastext', {pageId, content})
       dispatch(createSingleText(data))
   } catch (err) {console.log(err)}
 }
@@ -100,10 +106,11 @@ export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
 
 export const deleteSingleTextThunk = id => async dispatch => {
   try {
-      await axios.delete(`api/canvastext/${id}`)
-      dispatch(deleteSingleText(id))
-  } catch (err) {console.error(err)}
+    await axios.delete(`api/canvastext/${id}`)
+    dispatch(deleteSingleText(id))
+} catch (err) {console.error(err)}
 }
+
 
 export const createSingleMediaThunk = (path) => async dispatch => {
   try {
@@ -160,7 +167,6 @@ export default function(state = initialState, action) {
     case UPDATE_SINGLE_TEXT:
     // newState.allText = [...newState.allText, action.text]
     newState.allText = [...newState.allText.filter(text => text.id !== action.text.id), action.text]
-    console.log('ALL TEXT:', newState.allText)
         return newState
     case DELETE_SINGLE_TEXT:
          newState.allText = newState.allText.filter(text =>
@@ -180,6 +186,10 @@ export default function(state = initialState, action) {
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>
          media.id !== action.id)
+         newState.selectedMedia = ''
+         return newState
+    case DESELECT_CANVAS_ELEMENT:
+         newState.slectedText = ''
          newState.selectedMedia = ''
          return newState
      default:

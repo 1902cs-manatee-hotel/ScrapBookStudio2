@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Stage, Layer, Text, Rect} from 'react-konva'
 import Toolbar from './Toolbar'
-import {getPageContentThunk} from '../store/content'
+import {getPageContentThunk, deselectCanvasElement} from '../store/content'
 import {connect, ReactReduxContext, Provider} from 'react-redux'
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
@@ -90,6 +90,11 @@ class Canvas extends Component {
     }
   }
 
+  //clicking on canvas deselects text and media
+  handleOnClickLayer = () => {
+    this.props.deselectCanvasElement()
+  }
+
   render() {
     return (
       <ReactReduxContext.Consumer>
@@ -114,6 +119,7 @@ class Canvas extends Component {
                   width={1300}
                   height={500}
                   onMouseDown={this.handleStageMouseDown}
+                  onClick={this.handleOnClickLayer}
                 >
                   <Provider store={store}>
                     <Layer>
@@ -173,7 +179,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getPageContent: () => dispatch(getPageContentThunk(1)),
-    addPage: () => dispatch(createSinglePageThunk())
+    addPage: () => dispatch(createSinglePageThunk()),
+    deselectCanvasElement: () => dispatch(deselectCanvasElement())
   }
 }
 

@@ -139,7 +139,7 @@ const initialState = {
     scrapbooks: [],
     singleScrapbook: '',
     pages: [],
-    singlePage: '',
+    singlePage: '1',
     allScrapbookMedia: []
 }
 
