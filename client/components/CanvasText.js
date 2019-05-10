@@ -9,7 +9,8 @@ class CanvasText extends Component {
     this.state = {
       isDragging: false,
       x: this.props.x_coord,
-      y: this.props.y_coord
+      y: this.props.y_coord,
+      content: this.props.content
     }
     this.handleOnClick = this.handleOnClick.bind(this)
   }
@@ -22,7 +23,7 @@ class CanvasText extends Component {
     return (
       <Text
         draggable
-        text={this.props.content}
+        text={this.state.content}
         x={this.state.x}
         y={this.state.y}
         fill={this.state.isDragging ? 'green' : 'black'}
@@ -48,9 +49,15 @@ class CanvasText extends Component {
   }
 }
 
-const mapState = state => {
+// const mapState = state => {
+//   return {
+//     selected: state.content.selectedText
+//   }
+// }
+
+const mapState = (state) => {
   return {
-    selected: state.content.selectedText
+    editorText: state.content.editorText
   }
 }
 
