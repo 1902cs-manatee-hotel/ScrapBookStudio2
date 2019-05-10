@@ -84,9 +84,9 @@ import axios from 'axios'
 }
 
 
-export const createSingleTextThunk = () => async dispatch => {
+export const createSingleTextThunk = (pageId, content) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/canvastext')
+      const {data} = await axios.post('/api/canvastext', {pageId, content})
       dispatch(createSingleText(data))
   } catch (err) {console.log(err)}
 }

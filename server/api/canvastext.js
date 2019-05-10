@@ -12,10 +12,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
+        const {pageId, content} = req.body
+        console.log("Page:", pageId, "Content", content)
         const newCanvasText = await CanvasText.create({
-            content: req.params.content,
-            x_corrd: 200,
-            y_corrd: 200
+            content,
+            pageId
         })
         res.send(newCanvasText)
     } catch (error) {
