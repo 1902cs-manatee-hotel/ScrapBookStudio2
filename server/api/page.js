@@ -10,6 +10,7 @@ router.get('/:id', async (req, res, next) => {
                     {model: CanvasText, where: {pageId}}
         ]
        })
+       console.log(page)
             res.status(200).json(page)
     } catch (err) {
         next(err)
@@ -19,7 +20,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const page = await Page.create({
-          scrapbookId: req.user.dataValues.id            
+          scrapbookId: req.user.dataValues.id
         })
         res.status(200).json(page)
     } catch(err) {next(err)}

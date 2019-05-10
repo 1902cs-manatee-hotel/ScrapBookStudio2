@@ -19,6 +19,8 @@ import axios from 'axios'
  const CREATE_SINGLE_MEDIA = 'CREATE_SINGLE_MEDIA'
  const DELETE_SINGLE_MEDIA = 'DELETE_SINGLE_MEDIA'
 
+ const DESELECT_CANVAS_ELEMENT = 'DESELECT_CANVAS_ELEMENT'
+
 /**
  * ACTION CREATORS
  */
@@ -72,6 +74,10 @@ import axios from 'axios'
  export const getEditorText = (content) => ({
       type: GET_EDITOR_TEXT,
       content
+ })
+
+ export const deselectCanvasElement = () => ({
+   type: DESELECT_CANVAS_ELEMENT
  })
 
  //Thunks
@@ -180,6 +186,10 @@ export default function(state = initialState, action) {
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>
          media.id !== action.id)
+         newState.selectedMedia = ''
+         return newState
+    case DESELECT_CANVAS_ELEMENT:
+         newState.slectedText = ''
          newState.selectedMedia = ''
          return newState
      default:
