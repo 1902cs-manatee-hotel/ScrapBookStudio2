@@ -62,7 +62,8 @@ class Canvas extends Component {
     // find clicked rect by its name
     const name = e.target.name()
     const rect = this.state.rectangles.find(r => r.name === name)
-    if (rect) {
+    const images = this.props.allMedia
+    if (rect || images) {
       this.setState({
         selectedShapeName: name
       })
@@ -125,6 +126,7 @@ class Canvas extends Component {
                             height={media.height}
                             tilt={media.tilt}
                             filter={media.filter}
+                            name='rect'
                           />
                         )
                       })}
@@ -132,6 +134,7 @@ class Canvas extends Component {
                         <Rectangle key={i} {...rect} />
                       ))}
                       <MediaResizer selectedShapeName={this.state.selectedShapeName} />
+                      {/* <MediaResizer selectedShapeName={this.props.selectedShapeName} /> */}
                     </Layer>
                   </Provider>
                 </Stage>
@@ -161,7 +164,7 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Canvas)
 
-class Rectangle extends React.Component {
+class Rectangle extends Component {
   render() {
     return (
       <Rect
