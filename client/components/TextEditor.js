@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit'
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
 import {connect} from 'react-redux'
-import { updateSingleTextThunk, getEditorText, createSingleTextThunk } from '../store/content'
+import { updateSingleTextThunk, getEditorText, createSingleTextThunk, deleteSingleTextThunk } from '../store/content'
 import Plain from 'slate-plain-serializer'
 
 // const initialValue = Value.fromJSON({
@@ -52,12 +52,15 @@ class TextEditor extends Component {
       this.setState({ value })
     }
 
-    handleOnClick = () => {
+    handleOnClickCreate = () => {
         const content = Plain.serialize(this.state.value)
-        console.log("Content in create page thunk:", content)
-        console.log("pageId in create page thunk:", this.props.currentPage)
         this.props.createText(this.props.currentPage, content)
+        this.setState({value: initialValue})
     }
+
+    handleOnClickDelete = () => {
+        this.props.deleteText(this.props.selectedText)
+  }
 
     render() {
         return (
@@ -71,7 +74,8 @@ class TextEditor extends Component {
                     </button>
                 </FormatToolbar>
                 <Editor className='box' value={this.state.value} onChange={this.onChange} />
-                <button type="submit" onClick={this.handleOnClick}>Create</button>
+                <button type="submit" onClick={this.handleOnClickCreate}>Create</button>
+                {this.props.selectedText ? <button type="submit" onClick={this.handleOnClickDelete}>Delete</button> : null}
             </Fragment>
         )
     }
@@ -88,7 +92,8 @@ const mapDispatch = dispatch => {
   return {
     updateText: (id, updatedProp) => dispatch(updateSingleTextThunk(id, updatedProp)),
     getEditorText: (content) => dispatch(getEditorText(content)),
-    createText: (pageId, content) => dispatch(createSingleTextThunk(pageId, content))
+    createText: (pageId, content) => dispatch(createSingleTextThunk(pageId, content)),
+    deleteText: (textId) => dispatch(deleteSingleTextThunk(textId))
   }
 }
 
