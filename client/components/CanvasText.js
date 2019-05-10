@@ -26,7 +26,7 @@ class CanvasText extends Component {
         text={this.state.content}
         x={this.state.x}
         y={this.state.y}
-        fill={this.state.isDragging ? 'green' : 'black'}
+        fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
         onDragStart={() => {
           this.setState({
             isDragging: true
@@ -57,7 +57,8 @@ class CanvasText extends Component {
 
 const mapState = (state) => {
   return {
-    editorText: state.content.editorText
+    editorText: state.content.editorText,
+    selected: state.content.selectedText
   }
 }
 
