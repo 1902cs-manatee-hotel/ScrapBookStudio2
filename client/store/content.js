@@ -10,6 +10,7 @@ import axios from 'axios'
  const UPDATE_SINGLE_TEXT = 'UPDATE_SINGLE_TEXT'
  const CREATE_SINGLE_TEXT = 'CREATE_SINGLE_TEXT'
  const DELETE_SINGLE_TEXT = 'DELETE_SINGLE_TEXT'
+ const GET_EDITOR_TEXT = 'GET_EDITOR_TEXT'
 
 
 
@@ -68,6 +69,11 @@ import axios from 'axios'
      id
  })
 
+ export const getEditorText = (content) => ({
+      type: GET_EDITOR_TEXT,
+      content
+ })
+
  //Thunks
  export const getPageContentThunk = (id) => async dispatch => {
   try {
@@ -86,7 +92,6 @@ export const createSingleTextThunk = () => async dispatch => {
 }
 
 export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
-    console.log('our id: ', id)  
     try {
           const {data} = await axios.put(`/api/canvastext/${id}`, updatedProp)
           dispatch(updateSingleText(data))
@@ -128,7 +133,8 @@ const initialState = {
     allText: [],
     selectedText: '',
     allMedia: [],
-    selectedMedia: ''
+    selectedMedia: '',
+    editorText: ''
 }
 
 //Reducer
@@ -143,12 +149,18 @@ export default function(state = initialState, action) {
     case GET_SINGLE_TEXT:
         newState.selectedText = action.id
         return newState
+    case GET_EDITOR_TEXT:
+        console.log('EditorText:', newState.editorText)
+        newState.editorText = action.content
+        return newState
     case CREATE_SINGLE_TEXT:
         newState.allText = [...newState.allText, action.text]
         newState.selectedText = action.text.id
         return newState
     case UPDATE_SINGLE_TEXT:
-    newState.allText = [...newState.allText, action.text]
+    // newState.allText = [...newState.allText, action.text]
+    newState.allText = [...newState.allText.filter(text => text.id !== action.text.id), action.text]
+    console.log('ALL TEXT:', newState.allText)
         return newState
     case DELETE_SINGLE_TEXT:
          newState.allText = newState.allText.filter(text =>
@@ -163,7 +175,7 @@ export default function(state = initialState, action) {
         newState.selectedMedia = action.media.id
         return newState
     case UPDATE_SINGLE_MEDIA:
-        newState.allMedia = [...newState.allMedia, action.media]        
+        newState.allMedia = [...newState.allMedia, action.media]
         return newState
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>

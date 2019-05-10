@@ -17,7 +17,7 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
-    this.props.getPageContent(1) 
+    this.props.getPageContent(1)
     // get from state
   }
 
@@ -27,7 +27,6 @@ class Canvas extends Component {
 
 
   render() {
-    console.log('Inside CANVAS', this.props)
     return (
       <ReactReduxContext.Consumer>
         {({ store }) => (
@@ -48,7 +47,8 @@ class Canvas extends Component {
             <Provider store={store}>
               <Layer>
                 {this.props.allText.map((text) => {
-                  return <CanvasText key={text.id}
+                  return <CanvasText
+                  key={text.id}
                   content={text.content}
                   x_coord={text.x_coord}
                   y_coord={text.y_coord}
@@ -60,7 +60,7 @@ class Canvas extends Component {
                 })}
                 {
                   this.props.allMedia.map((media)=> {
-                    return <CanvasMedia 
+                    return <CanvasMedia
                     key={media.id}
                     src={media.path}
                     x={media.x_coord}
@@ -68,7 +68,7 @@ class Canvas extends Component {
                     width={media.width}
                     height={media.height}
                     tilt={media.tilt}
-                    filter={media.filter}                    
+                    filter={media.filter}
                     />
                   })
                 }
@@ -89,7 +89,8 @@ class Canvas extends Component {
 const mapState = (state) => {
   return {
     allText: state.content.allText,
-    allMedia: state.content.allMedia
+    allMedia: state.content.allMedia,
+    editorText: state.content.editorText
   }
 }
 
