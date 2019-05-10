@@ -62,7 +62,6 @@ class Create extends Component {
 //   });
 
 const mapDispatch = dispatch => ({
- 
     createScrapbook: (setProps) => dispatch(createScrapbookThunk(setProps))
   })
   
