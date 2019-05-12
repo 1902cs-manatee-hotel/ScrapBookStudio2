@@ -46,3 +46,7 @@ form div {
 .toolbar {
   width: 20rem;
 }
+
+.box {
+  border: black;
+}

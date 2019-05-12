@@ -15,6 +15,8 @@ const CREATE_SINGLE_PAGE = 'CREATE_SINGLE_PAGE'
 const DELETE_SINGLE_PAGE = 'DELETE_SINGLE_PAGE'
 const GET_ALL_SCRAPBOOK_MEDIA = 'GET_ALL_SCRAPBOOK_MEDIA'
 
+const SET_NEXT_AND_PREVIOUS = 'SET_NEXT_AND_PREVIOUS'
+
  /**
  * ACTION CREATORS
  */
@@ -69,6 +71,10 @@ const getAllScrapbookMedia = (media) => ({
   media
 })
 
+export const setNextAndPrevious = () => ({
+  type: SET_NEXT_AND_PREVIOUS
+})
+
  /**
  * THUNK CREATORS
  */
@@ -102,14 +108,14 @@ export const deleteScrapbookThunk = id => async dispatch => {
 }
 
 
-// export const getAllPagesThunk = (scrapbookId) => async dispatch => {
-//     try {
-//         console.log('getAllPages')
-//         const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
-//         console.log('THUNKKKKK', data )
-//         dispatch(getAllPages(data))
-//     } catch(err) {console.error(err)}
-// }
+export const getAllPagesThunk = (scrapbookId) => async dispatch => {
+    try {
+        console.log('scrapbook id', scrapbookId)
+        const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
+        console.log('THUNKKKKK', data )
+        dispatch(getAllPages(data))
+    } catch(err) {console.error(err)}
+}
 
 export const createSinglePageThunk = () => async dispatch => {
   try {
@@ -139,8 +145,11 @@ const initialState = {
     scrapbooks: [],
     singleScrapbook: '',
     pages: [],
-    singlePage: '1',
-    allScrapbookMedia: []
+    singlePage: '',
+    allScrapbookMedia: [],
+    currentPageIndex: 0,
+    nextPage: '',
+    previousPage: ''
 }
 
 /**
@@ -170,9 +179,8 @@ const initialState = {
             newState.singleScrapbook = ''
             return newState
         case GET_ALL_PAGES:
-            console.log('NEW STATE', newState.pages)
             newState.pages = action.pages
-            console.log('ACTION', action.pages)
+            newState.singlePage = action.pages[0].id
             return newState
         case GET_SINGLE_PAGE:
             newState.singlePage = action.id
@@ -188,6 +196,13 @@ const initialState = {
              return newState
         case GET_ALL_SCRAPBOOK_MEDIA:
             newState.allScrapbookMedia = action.media
+            return newState
+        case SET_NEXT_AND_PREVIOUS:
+              console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
+            newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+            if(newState.currentPageIndex !== 0){
+              newState.previousPage = newState.pages[newState.currentPageIndex - 1].id
+            }
             return newState
         default:
             return state
