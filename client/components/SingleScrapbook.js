@@ -19,7 +19,7 @@ class SingleScrapbook extends Component {
                 <Link>
                   <button type='submit' >View My Scrapbook</button>
                 </Link>
-                <Link to={`/canvas/${this.props.singlePage}`}>
+                <Link to={`/canvas/${this.props.match.params.id}/${this.props.singlePage}`}>
                   <button type='submit' >Edit My Scrapbook</button>
                 </Link>
                 {/* {

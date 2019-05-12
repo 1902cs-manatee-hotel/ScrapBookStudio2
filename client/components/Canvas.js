@@ -3,9 +3,10 @@ import {Stage, Layer, Text, Rect} from 'react-konva'
 import Toolbar from './Toolbar'
 import {getPageContentThunk, deselectCanvasElement } from '../store/content'
 import {connect, ReactReduxContext, Provider} from 'react-redux'
+import {Link} from 'react-router-dom'
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
-import {createSinglePageThunk, setNextAndPrevious} from '../store/scrapbooks'
+import {createSinglePageThunk, setNextAndPrevious, getAllPagesThunk, increasePageIndex, decreasePageIndex} from '../store/scrapbooks'
 import MediaResizer from './MediaResizer'
 
 class Canvas extends Component {
@@ -33,11 +34,13 @@ class Canvas extends Component {
       ],
       selectedShapeName: ''
     }
+    this.handleOnClickNext = this.handleOnClickNext.bind(this)
+    this.handleOnClickPrevious = this.handleOnClickPrevious.bind(this)
   }
 
-  componentDidMount() {
-    console.log('Our Id', this.props.match.params.id)
-    this.props.getPageContent(this.props.match.params.id)
+  async componentDidMount() {
+    await this.props.getAllPages(this.props.match.params.scrapbookid)
+    await this.props.getPageContent(this.props.match.params.pageid)
     this.props.setNextAndPrevious()
     // get from state
   }
@@ -95,6 +98,20 @@ class Canvas extends Component {
   //clicking on canvas deselects text and media
   handleOnClickLayer = () => {
     this.props.deselectCanvasElement()
+  }
+
+  async handleOnClickNext () {
+    await this.props.getAllPages(this.props.match.params.scrapbookid)
+    await this.props.getPageContent(this.props.nextPage)
+    await this.props.increasePageIndex()
+    this.props.setNextAndPrevious()
+  }
+
+  async handleOnClickPrevious () {
+    await this.props.getAllPages(this.props.match.params.scrapbookid)
+    await this.props.getPageContent(this.props.previousPage)
+    await this.props.decreasePageIndex()
+    this.props.setNextAndPrevious()
   }
 
   render() {
@@ -162,6 +179,10 @@ class Canvas extends Component {
                   </Provider>
                 </Stage>
               </div>
+              <div>
+                <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}>Previous</Link>
+                <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}>Next</Link>
+              </div>
             </div>
           </div>
         )}
@@ -175,7 +196,9 @@ const mapState = state => {
     allText: state.content.allText,
     allMedia: state.content.allMedia,
     editorText: state.content.editorText,
-    singlePage: state.scrapbooks.singlePage
+    singlePage: state.scrapbooks.singlePage,
+    nextPage: state.scrapbooks.nextPage,
+    previousPage: state.scrapbooks.previousPage
   }
 }
 
@@ -184,7 +207,10 @@ const mapDispatch = dispatch => {
     getPageContent: (pageId) => dispatch(getPageContentThunk(pageId)),
     addPage: () => dispatch(createSinglePageThunk()),
     deselectCanvasElement: () => dispatch(deselectCanvasElement()),
-    setNextAndPrevious: () => dispatch(setNextAndPrevious())
+    setNextAndPrevious: () => dispatch(setNextAndPrevious()),
+    getAllPages: (id) => dispatch(getAllPagesThunk(id)),
+    increasePageIndex: () => dispatch(increasePageIndex()),
+    decreasePageIndex: () => dispatch(decreasePageIndex())
   }
 }
 

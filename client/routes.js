@@ -29,7 +29,7 @@ class Routes extends Component {
             <Route path="/library" component={Library} />
             <Route path="/scrapbooksetup" component={ScrapbookSetup} />
             <Route path="/addcontributorform" component={AddContributorForm} />
-            <Route path="/canvas/:id" component={Canvas} />
+            <Route path="/canvas/:scrapbookid/:pageid" component={Canvas} />
             <Route path="/canvastext" component={CanvasText} />
             <Route path="/scrapbooks/:id" component={SingleScrapbook} />
           </Switch>

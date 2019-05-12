@@ -4,13 +4,18 @@ module.exports = router
 
 router.get('/:id', async (req, res, next) => {
     try {
+      console.log('PAGE ID IN BACKEND:', req.params.id)
        const pageId = req.params.id
        const page = await Page.findByPk(pageId, {
            include: [{model: Media, where: {pageId}},
                     {model: CanvasText, where: {pageId}}
         ]
        })
-       console.log('PAGE:', page)
+    //    const page = await Page.findOne({where: {pageId}}, {
+    //     include: [{model: Media, where: {pageId}},
+    //              {model: CanvasText, where: {pageId}}
+    //  ]
+    // })
             res.status(200).json(page)
     } catch (err) {
         next(err)

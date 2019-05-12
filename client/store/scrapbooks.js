@@ -16,6 +16,8 @@ const DELETE_SINGLE_PAGE = 'DELETE_SINGLE_PAGE'
 const GET_ALL_SCRAPBOOK_MEDIA = 'GET_ALL_SCRAPBOOK_MEDIA'
 
 const SET_NEXT_AND_PREVIOUS = 'SET_NEXT_AND_PREVIOUS'
+const INCREASE_PAGE_INDEX = 'INCREASE_PAGE_INDEX'
+const DECREASE_PAGE_INDEX = 'DECREASE_PAGE_INDEX'
 
  /**
  * ACTION CREATORS
@@ -75,6 +77,14 @@ export const setNextAndPrevious = () => ({
   type: SET_NEXT_AND_PREVIOUS
 })
 
+export const increasePageIndex = () => ({
+  type: INCREASE_PAGE_INDEX
+})
+
+export const decreasePageIndex = () => ({
+  type: DECREASE_PAGE_INDEX
+})
+
  /**
  * THUNK CREATORS
  */
@@ -110,9 +120,7 @@ export const deleteScrapbookThunk = id => async dispatch => {
 
 export const getAllPagesThunk = (scrapbookId) => async dispatch => {
     try {
-        console.log('scrapbook id', scrapbookId)
         const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
-        console.log('THUNKKKKK', data )
         dispatch(getAllPages(data))
     } catch(err) {console.error(err)}
 }
@@ -199,9 +207,23 @@ const initialState = {
             return newState
         case SET_NEXT_AND_PREVIOUS:
               console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
-            newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+              if(newState.currentPageIndex < newState.pages.length -1){
+                newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+              }
             if(newState.currentPageIndex !== 0){
               newState.previousPage = newState.pages[newState.currentPageIndex - 1].id
+            }
+            return newState
+        case INCREASE_PAGE_INDEX:
+        console.log('PAGE INDEX BEFORE', newState.currentPageIndex)
+            if(newState.currentPageIndex < newState.pages.length -1){
+              newState.currentPageIndex = newState.currentPageIndex + 1;
+            }
+            console.log('PAGE INDEX AFTER', newState.currentPageIndex)
+            return newState
+        case DECREASE_PAGE_INDEX:
+            if(newState.currentPageIndex !== 0){
+              newState.currentPageIndex = newState.currentPageIndex - 1
             }
             return newState
         default:

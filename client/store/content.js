@@ -83,7 +83,9 @@ import axios from 'axios'
  //Thunks
  export const getPageContentThunk = (id) => async dispatch => {
   try {
+      console.log('PAGE ID:', id)
       const {data} = await axios.get(`/api/pages/${id}`)
+      console.log('OUR DATA:', data)
       const { canvas_texts, media} = data
       dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
@@ -157,7 +159,6 @@ export default function(state = initialState, action) {
         newState.selectedText = action.id
         return newState
     case GET_EDITOR_TEXT:
-        console.log('EditorText:', newState.editorText)
         newState.editorText = action.content
         return newState
     case CREATE_SINGLE_TEXT:
