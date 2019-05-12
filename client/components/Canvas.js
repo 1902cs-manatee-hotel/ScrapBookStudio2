@@ -181,8 +181,8 @@ class Canvas extends Component {
                 </Stage>
               </div>
               <div>
-                <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}>Previous</Link>
-                <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}>Next</Link>
+                {this.props.currentPageIndex !== 0 ? <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}>Previous</Link> : null}
+                {this.props.currentPageIndex < this.props.allPages.length -1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}>Next</Link> : null}
               </div>
             </div>
           </div>
@@ -199,7 +199,9 @@ const mapState = state => {
     editorText: state.content.editorText,
     singlePage: state.scrapbooks.singlePage,
     nextPage: state.scrapbooks.nextPage,
-    previousPage: state.scrapbooks.previousPage
+    previousPage: state.scrapbooks.previousPage,
+    currentPageIndex: state.scrapbooks.currentPageIndex,
+    allPages: state.scrapbooks.pages
   }
 }
 
