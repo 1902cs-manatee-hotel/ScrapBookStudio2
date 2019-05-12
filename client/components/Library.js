@@ -13,7 +13,6 @@ class Library extends Component {
   }
 
   render() {
-    console.log('PROPS:',this.props)
     return (
       <div className='centered-forms title'>
         <h2>{this.props.user.firstName}'s Scrapbooks</h2>
@@ -21,7 +20,7 @@ class Library extends Component {
           this.props.scrapbooks.map(book => {
             return (
               <div key={book.id}>
-                <Link to={`/scrapbooks/${book.id}`}>{book.name}</Link>
+                <Link to={`/scrapbooks/${book.name}/${book.id}`}>{book.name}</Link>
                 <br />
                 <img  width='120px' height="120px" src={book.image}></img>
               </div>

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Create, Library, ScrapbookSetup, AddContributorForm, Canvas, CanvasText, ViewOrEdit, StaticCanvas} from './components'
+import {Login, Signup, UserHome, Create, Library, ScrapbookSetup, AddContributorForm, Canvas, CanvasText, ViewOrEdit, StaticCanvas, UserInvite} from './components'
 import {me} from './store'
 
 /**
@@ -29,10 +29,11 @@ class Routes extends Component {
             <Route path="/library" component={Library} />
             <Route path="/scrapbooksetup" component={ScrapbookSetup} />
             <Route path="/addcontributorform" component={AddContributorForm} />
-            <Route path="/canvas/:scrapbookid/:pageid" component={Canvas} />
-            <Route path="/staticcanvas/:scrapbookid/:pageid" component={StaticCanvas} />
+            <Route path="/canvas/:scrapbookname/:scrapbookid/:pageid" component={Canvas} />
+            <Route path="/staticcanvas/:scrapbookname/:scrapbookid/:pageid" component={StaticCanvas} />
             <Route path="/canvastext" component={CanvasText} />
-            <Route path="/scrapbooks/:id" component={ViewOrEdit} />
+            <Route path="/scrapbooks/:scrapbookname/:id" component={ViewOrEdit} />
+            <Route path="/userinvite/" component={UserInvite} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

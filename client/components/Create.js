@@ -17,7 +17,7 @@ class Create extends Component {
     }
 
     handleSubmit() {
-    //   event.preventDefault(); 
+    //   event.preventDefault();
       this.props.createScrapbook({name: this.state.name,
                                 description: this.state.description
     })
@@ -49,7 +49,7 @@ class Create extends Component {
                         <input className="input" name="description" type="text" placeholder="Enter a description (optional)" onChange={this.handleDescChange} value={this.state.description}/>
                     </div>
                 </div>
-                <Link to="/scrapbooksetup">
+                <Link to="/userinvite">
                     <button className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
                 </Link>
             </div>
@@ -58,13 +58,13 @@ class Create extends Component {
 }
 
 // const mapStateToProps = (state) => ({
-   
+
 //   });
 
 const mapDispatch = dispatch => ({
     createScrapbook: (setProps) => dispatch(createScrapbookThunk(setProps))
   })
-  
-  
+
+
   export default connect(null, mapDispatch)(Create)
 

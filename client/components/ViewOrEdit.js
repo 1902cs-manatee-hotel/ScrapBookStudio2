@@ -16,10 +16,10 @@ class ViewOrEdit extends Component {
                 <h1 className='title'>Hey There</h1>
                 What would you like to do?
                 <br />
-                <Link to={`/staticcanvas/${this.props.match.params.id}/${this.props.singlePage}`}>
+                <Link to={`/staticcanvas/${this.props.match.params.scrapbookname}/${this.props.match.params.id}/${this.props.singlePage}`}>
                   <button type='submit' >View My Scrapbook</button>
                 </Link>
-                <Link to={`/canvas/${this.props.match.params.id}/${this.props.singlePage}`}>
+                <Link to={`/canvas/${this.props.match.params.scrapbookname}/${this.props.match.params.id}/${this.props.singlePage}`}>
                   <button type='submit' >Edit My Scrapbook</button>
                 </Link>
             </div>
