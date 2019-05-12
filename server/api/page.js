@@ -10,6 +10,7 @@ router.get('/:id', async (req, res, next) => {
                     {model: CanvasText, where: {pageId}}
         ]
        })
+       console.log(page)
     //    const page = await Page.findOne({where: {pageId}}, {
     //     include: [{model: Media, where: {pageId}},
     //              {model: CanvasText, where: {pageId}}
@@ -21,12 +22,21 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/newpage/:scrapbookid/:pageid', async (req, res, next) => {
+  try {
+      const { scrapbookid, pageid} = req.params
+      res.redirect(`/canvas/${scrapbookid}/${pageid}`)
+  } catch (err) {
+      next(err)
+  }
+})
+
+router.post('/:id', async (req, res, next) => {
     try {
         const page = await Page.create({
-          scrapbookId: req.user.dataValues.id
+          scrapbookId: req.params.id
         })
-        res.status(200).json(page)
+        res.status(200).send(page)
     } catch(err) {next(err)}
 })
 

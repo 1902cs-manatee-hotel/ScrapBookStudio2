@@ -86,8 +86,18 @@ import axios from 'axios'
       console.log('PAGE ID:', id)
       const {data} = await axios.get(`/api/pages/${id}`)
       console.log('OUR DATA:', data)
-      const { canvas_texts, media} = data
-      dispatch(getPageContent(canvas_texts, media))
+      // if(data){
+      //   const { canvas_texts, media} = data
+      //   dispatch(getPageContent(canvas_texts, media))
+      // }else {
+      //   const canvas_texts = []
+      //   const media = []
+      //   dispatch(getPageContent(canvas_texts, media))
+      // }
+        // const { canvas_texts, media} = data
+        const canvas_texts = data.canvas_texts
+        const media = data.media
+        dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
 }
 

@@ -16,6 +16,9 @@ const UserInvite = () => {
     <Link to="/library">
         <button className="button is-primary" type="submit">Send Invites</button>
     </Link>
+    <Link to="/library">
+        <button className="button is-primary" type="submit">Skip</button>
+    </Link>
 </div>
   )
 }

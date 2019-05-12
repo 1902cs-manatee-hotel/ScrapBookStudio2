@@ -13,7 +13,7 @@ class Toolbar extends Component {
         <button className='button is-primary space' type='submit'>Text</button>
         <br/>
         <button className='button is-primary space' type='submit'>Background</button>
-        <TextEditor />
+        <TextEditor/>
         {/* <Link>Previous</Link> */}
         {/* <Link to={`/canvas/`}>Next</Link> */}
       </div>

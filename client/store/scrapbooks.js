@@ -131,9 +131,10 @@ export const getAllPagesThunk = (scrapbookId) => async dispatch => {
     } catch(err) {console.error(err)}
 }
 
-export const createSinglePageThunk = () => async dispatch => {
+export const createSinglePageThunk = (scrapbookid) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/pages')
+      const {data} = await axios.post(`/api/pages/${scrapbookid}`)
+      axios.get(`/api/pages/newpage/${scrapbookid}/${data.id}`)
       dispatch(createSinglePage(data))
   } catch(err) {console.error(err)}
 }

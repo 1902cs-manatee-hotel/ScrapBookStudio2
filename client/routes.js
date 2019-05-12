@@ -29,8 +29,8 @@ class Routes extends Component {
             <Route path="/library" component={Library} />
             <Route path="/scrapbooksetup" component={ScrapbookSetup} />
             <Route path="/addcontributorform" component={AddContributorForm} />
-            <Route path="/canvas/:scrapbookname/:scrapbookid/:pageid" component={Canvas} />
-            <Route path="/staticcanvas/:scrapbookname/:scrapbookid/:pageid" component={StaticCanvas} />
+            <Route path="/canvas/:scrapbookid/:pageid" component={Canvas} />
+            <Route path="/staticcanvas/:scrapbookid/:pageid" component={StaticCanvas} />
             <Route path="/canvastext" component={CanvasText} />
             <Route path="/scrapbooks/:scrapbookname/:id" component={ViewOrEdit} />
             <Route path="/userinvite/" component={UserInvite} />
