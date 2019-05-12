@@ -181,8 +181,8 @@ class Canvas extends Component {
                 </Stage>
               </div>
               <div>
-                {this.props.currentPageIndex !== 0 ? <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}>Previous</Link> : null}
-                {this.props.currentPageIndex < this.props.allPages.length -1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}>Next</Link> : null}
+                {this.props.currentPageIndex !== 0 ? <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}><button className='button is-primary space' type='submit'>Previous</button></Link> : null}
+                {this.props.currentPageIndex < this.props.allPages.length -1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}><button className='button is-primary space' type='submit'>Next</button></Link> : null}
               </div>
             </div>
           </div>
