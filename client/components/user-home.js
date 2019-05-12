@@ -8,25 +8,12 @@ import {Link} from 'react-router-dom'
  */
 
 class UserHome extends Component {
-  componentDidMount() {
-    this.props.fetchScrapBooks()
-  }
+
 
   render() {
     return (
       <div className='centered-forms title'>
         <h2>Welcome Back {this.props.user.firstName} !</h2>
-        {
-          this.props.scrapbooks.map(book => {
-            return (
-              <div key={book.id}>
-                <Link to={`/scrapbooks/${book.id}`}>{book.name}</Link>
-                <br />
-                <img  width='120px' height="120px" src={book.image}></img>
-              </div>
-            )
-          })
-        }
       </div>
     )
   }
