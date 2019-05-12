@@ -18,6 +18,7 @@ const GET_ALL_SCRAPBOOK_MEDIA = 'GET_ALL_SCRAPBOOK_MEDIA'
 const SET_NEXT_AND_PREVIOUS = 'SET_NEXT_AND_PREVIOUS'
 const INCREASE_PAGE_INDEX = 'INCREASE_PAGE_INDEX'
 const DECREASE_PAGE_INDEX = 'DECREASE_PAGE_INDEX'
+const SET_PAGE_INDEX = 'SET_PAGE_INDEX'
 
  /**
  * ACTION CREATORS
@@ -83,6 +84,11 @@ export const increasePageIndex = () => ({
 
 export const decreasePageIndex = () => ({
   type: DECREASE_PAGE_INDEX
+})
+
+export const setPageIndex = (pageId) => ({
+  type: SET_PAGE_INDEX,
+  pageId
 })
 
  /**
@@ -225,6 +231,10 @@ const initialState = {
             if(newState.currentPageIndex !== 0){
               newState.currentPageIndex = newState.currentPageIndex - 1
             }
+            return newState
+        case SET_PAGE_INDEX:
+            const currentPage = newState.pages.filter(page => page.id == action.pageId)
+            newState.currentPageIndex = newState.pages.indexOf(currentPage[0])
             return newState
         default:
             return state
