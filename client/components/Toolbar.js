@@ -3,7 +3,7 @@ import TextEditor from './TextEditor'
 import MediaUpload from './MediaUpload'
 
 class Toolbar extends Component {
-  
+
   render() {
     return (
       <div className="box toolbar">
@@ -13,6 +13,8 @@ class Toolbar extends Component {
         <br/>
         <button className='button is-primary space' type='submit'>Background</button>
         <TextEditor />
+        {/* <Link>Previous</Link>
+        <Link to={}>Next</Link> */}
       </div>
     )
   }

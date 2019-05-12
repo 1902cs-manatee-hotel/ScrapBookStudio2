@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {Stage, Layer, Text, Rect} from 'react-konva'
 import Toolbar from './Toolbar'
-import {getPageContentThunk, deselectCanvasElement} from '../store/content'
+import {getPageContentThunk, deselectCanvasElement } from '../store/content'
 import {connect, ReactReduxContext, Provider} from 'react-redux'
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
-import {createSinglePageThunk} from '../store/scrapbooks'
+import {createSinglePageThunk, setNextAndPrevious} from '../store/scrapbooks'
 import MediaResizer from './MediaResizer'
 
 class Canvas extends Component {
@@ -36,7 +36,9 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
-    this.props.getPageContent(1)
+    console.log('Our Id', this.props.match.params.id)
+    this.props.getPageContent(this.props.match.params.id)
+    this.props.setNextAndPrevious()
     // get from state
   }
 
@@ -172,15 +174,17 @@ const mapState = state => {
   return {
     allText: state.content.allText,
     allMedia: state.content.allMedia,
-    editorText: state.content.editorText
+    editorText: state.content.editorText,
+    singlePage: state.scrapbooks.singlePage
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getPageContent: () => dispatch(getPageContentThunk(1)),
+    getPageContent: (pageId) => dispatch(getPageContentThunk(pageId)),
     addPage: () => dispatch(createSinglePageThunk()),
-    deselectCanvasElement: () => dispatch(deselectCanvasElement())
+    deselectCanvasElement: () => dispatch(deselectCanvasElement()),
+    setNextAndPrevious: () => dispatch(setNextAndPrevious())
   }
 }
 
