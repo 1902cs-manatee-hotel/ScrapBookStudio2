@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 // import StaticCanvas from './StaticCanvas'
 
-class SingleScrapbook extends Component {
+class ViewOrEdit extends Component {
     componentDidMount() {
         this.props.getAllPages(this.props.match.params.id)
     }
@@ -16,19 +16,12 @@ class SingleScrapbook extends Component {
                 <h1 className='title'>Hey There</h1>
                 What would you like to do?
                 <br />
-                <Link>
+                <Link to={`/staticcanvas/${this.props.match.params.id}/${this.props.singlePage}`}>
                   <button type='submit' >View My Scrapbook</button>
                 </Link>
                 <Link to={`/canvas/${this.props.match.params.id}/${this.props.singlePage}`}>
                   <button type='submit' >Edit My Scrapbook</button>
                 </Link>
-                {/* {
-                  this.props.pages.map(page => {
-                    return (
-                        <StaticCanvas key={page.id} page={page} />
-                      )
-                  })
-                } */}
             </div>
         )
     }
@@ -46,4 +39,4 @@ const mapDispatchToProps =  dispatch => ({
     getAllPages: (id) => dispatch(getAllPagesThunk(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleScrapbook)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewOrEdit)

@@ -16,7 +16,6 @@ router.get('/:id/media', async (req, res, next) => {
 
 router.get('/:id/pages', async (req, res, next) => {
     try {
-        console.log('REQ', req.user)
       const id = req.params.id
       const pages = await Page.findAll({
           where: {scrapbookId: id }

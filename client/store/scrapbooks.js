@@ -212,7 +212,6 @@ const initialState = {
             newState.allScrapbookMedia = action.media
             return newState
         case SET_NEXT_AND_PREVIOUS:
-              console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
               if(newState.currentPageIndex < newState.pages.length -1){
                 newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
               }
@@ -221,11 +220,9 @@ const initialState = {
             }
             return newState
         case INCREASE_PAGE_INDEX:
-        console.log('PAGE INDEX BEFORE', newState.currentPageIndex)
             if(newState.currentPageIndex < newState.pages.length -1){
               newState.currentPageIndex = newState.currentPageIndex + 1;
             }
-            console.log('PAGE INDEX AFTER', newState.currentPageIndex)
             return newState
         case DECREASE_PAGE_INDEX:
             if(newState.currentPageIndex !== 0){
