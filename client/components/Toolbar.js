@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import TextEditor from './TextEditor'
 import MediaUpload from './MediaUpload'
+import MediaPool from './MediaPool'
 
 class Toolbar extends Component {
 
@@ -13,6 +14,9 @@ class Toolbar extends Component {
         <br/>
         <button className='button is-primary space' type='submit'>Background</button>
         <TextEditor />
+        <br />
+        <br />
+        <MediaPool scrapbookId={this.props.scrapbookId}/>
         {/* <Link>Previous</Link>
         <Link to={}>Next</Link> */}
       </div>

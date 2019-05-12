@@ -7,7 +7,8 @@ router.get('/:id/media', async (req, res, next) => {
      const id = req.params.id
      const media = await Media.findAll({
          where: {scrapbookId: id }
-       })
+        })
+        console.log('SEVER *************',media)
      res.status(200).json(media)
    } catch (err) {
        next(err)

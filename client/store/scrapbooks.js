@@ -134,6 +134,8 @@ export const deleteSinglePageThunk = (id) => async dispatch => {
 export const getAllScrapbookMediaThunk = (scrapbookId) => async dispatch => {
   try {
       const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/media`)
+    // const {data} = await axios.get(`/api/media/${scrapbookId}`)
+      console.log('***************MEDIA POOL DATA ***', data)
       dispatch(getAllScrapbookMedia(data))
   } catch(err) {console.error(err)}
 }
@@ -197,13 +199,13 @@ const initialState = {
         case GET_ALL_SCRAPBOOK_MEDIA:
             newState.allScrapbookMedia = action.media
             return newState
-        case SET_NEXT_AND_PREVIOUS:
-              console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
-            newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
-            if(newState.currentPageIndex !== 0){
-              newState.previousPage = newState.pages[newState.currentPageIndex - 1].id
-            }
-            return newState
+        // case SET_NEXT_AND_PREVIOUS:
+        //       console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
+        //     newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+        //     if(newState.currentPageIndex !== 0){
+        //       newState.previousPage = newState.pages[newState.currentPageIndex - 1].id
+        //     }
+        //     return newState
         default:
             return state
      }
