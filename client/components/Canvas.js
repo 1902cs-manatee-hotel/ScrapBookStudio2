@@ -66,22 +66,6 @@ class Canvas extends Component {
       return
     }
 
-    // refactoring code to select image by id
-    // find image by id
-    const id = e.target.id()
-    const image = this.props.allMedia.find(i => i.id === id)
-    if(image) {
-      if (image) {
-        this.setState({
-          selectedShapeName: id
-        })
-      } else {
-        this.setState({
-          selectedShapeName: ''
-        })
-      }
-    }
-
     // find clicked rect by its name
     const name = e.target.name()
     const rect = this.state.rectangles.find(r => r.name === name)
@@ -160,7 +144,7 @@ class Canvas extends Component {
                             height={media.height}
                             tilt={media.tilt}
                             filter={media.filter}
-                            name='rect'
+                            name={`${media.id}`}
                           />
                         )
                       })}
