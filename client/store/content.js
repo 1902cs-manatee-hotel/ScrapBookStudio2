@@ -83,9 +83,11 @@ import axios from 'axios'
  //Thunks
  export const getPageContentThunk = (id) => async dispatch => {
   try {
+      console.log('PAGE ID:', id)
       const {data} = await axios.get(`/api/pages/${id}`)
-      const { canvas_texts, media} = data
-      dispatch(getPageContent(canvas_texts, media))
+        const canvas_texts = data.text
+        const media = data.media
+        dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
 }
 
@@ -106,7 +108,7 @@ export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
 
 export const deleteSingleTextThunk = id => async dispatch => {
   try {
-    await axios.delete(`api/canvastext/${id}`)
+    await axios.delete(`/api/canvastext/${id}`)
     dispatch(deleteSingleText(id))
 } catch (err) {console.error(err)}
 }
@@ -157,7 +159,6 @@ export default function(state = initialState, action) {
         newState.selectedText = action.id
         return newState
     case GET_EDITOR_TEXT:
-        console.log('EditorText:', newState.editorText)
         newState.editorText = action.content
         return newState
     case CREATE_SINGLE_TEXT:
@@ -165,7 +166,6 @@ export default function(state = initialState, action) {
         newState.selectedText = action.text.id
         return newState
     case UPDATE_SINGLE_TEXT:
-    // newState.allText = [...newState.allText, action.text]
     newState.allText = [...newState.allText.filter(text => text.id !== action.text.id), action.text]
         return newState
     case DELETE_SINGLE_TEXT:

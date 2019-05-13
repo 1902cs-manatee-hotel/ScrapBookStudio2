@@ -16,6 +16,9 @@ const DELETE_SINGLE_PAGE = 'DELETE_SINGLE_PAGE'
 const GET_ALL_SCRAPBOOK_MEDIA = 'GET_ALL_SCRAPBOOK_MEDIA'
 
 const SET_NEXT_AND_PREVIOUS = 'SET_NEXT_AND_PREVIOUS'
+const INCREASE_PAGE_INDEX = 'INCREASE_PAGE_INDEX'
+const DECREASE_PAGE_INDEX = 'DECREASE_PAGE_INDEX'
+const SET_PAGE_INDEX = 'SET_PAGE_INDEX'
 
  /**
  * ACTION CREATORS
@@ -75,6 +78,19 @@ export const setNextAndPrevious = () => ({
   type: SET_NEXT_AND_PREVIOUS
 })
 
+export const increasePageIndex = () => ({
+  type: INCREASE_PAGE_INDEX
+})
+
+export const decreasePageIndex = () => ({
+  type: DECREASE_PAGE_INDEX
+})
+
+export const setPageIndex = (pageId) => ({
+  type: SET_PAGE_INDEX,
+  pageId
+})
+
  /**
  * THUNK CREATORS
  */
@@ -110,16 +126,15 @@ export const deleteScrapbookThunk = id => async dispatch => {
 
 export const getAllPagesThunk = (scrapbookId) => async dispatch => {
     try {
-        console.log('scrapbook id', scrapbookId)
         const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
-        console.log('THUNKKKKK', data )
         dispatch(getAllPages(data))
     } catch(err) {console.error(err)}
 }
 
-export const createSinglePageThunk = () => async dispatch => {
+export const createSinglePageThunk = (scrapbookid) => async dispatch => {
   try {
-      const {data} = await axios.post('/api/pages')
+      const {data} = await axios.post(`/api/pages/${scrapbookid}`)
+      axios.get(`/api/pages/newpage/${scrapbookid}/${data.id}`)
       dispatch(createSinglePage(data))
   } catch(err) {console.error(err)}
 }
@@ -198,11 +213,26 @@ const initialState = {
             newState.allScrapbookMedia = action.media
             return newState
         case SET_NEXT_AND_PREVIOUS:
-              console.log('NEXT PAGE',newState.pages[newState.currentPageIndex])
-            newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+              if(newState.currentPageIndex < newState.pages.length -1){
+                newState.nextPage = newState.pages[newState.currentPageIndex + 1].id
+              }
             if(newState.currentPageIndex !== 0){
               newState.previousPage = newState.pages[newState.currentPageIndex - 1].id
             }
+            return newState
+        case INCREASE_PAGE_INDEX:
+            if(newState.currentPageIndex < newState.pages.length -1){
+              newState.currentPageIndex = newState.currentPageIndex + 1;
+            }
+            return newState
+        case DECREASE_PAGE_INDEX:
+            if(newState.currentPageIndex !== 0){
+              newState.currentPageIndex = newState.currentPageIndex - 1
+            }
+            return newState
+        case SET_PAGE_INDEX:
+            const currentPage = newState.pages.filter(page => page.id == action.pageId)
+            newState.currentPageIndex = newState.pages.indexOf(currentPage[0])
             return newState
         default:
             return state

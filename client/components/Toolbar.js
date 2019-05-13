@@ -5,6 +5,7 @@ import MediaUpload from './MediaUpload'
 class Toolbar extends Component {
 
   render() {
+    // console.log('TOOLBAR SCRAPBOOK ID:', this.props.match.params.scrapbookid)
     return (
       <div className="box toolbar">
         <h1 className="title">Toolbar</h1>
@@ -12,9 +13,9 @@ class Toolbar extends Component {
         <button className='button is-primary space' type='submit'>Text</button>
         <br/>
         <button className='button is-primary space' type='submit'>Background</button>
-        <TextEditor />
-        {/* <Link>Previous</Link>
-        <Link to={}>Next</Link> */}
+        <TextEditor/>
+        {/* <Link>Previous</Link> */}
+        {/* <Link to={`/canvas/`}>Next</Link> */}
       </div>
     )
   }

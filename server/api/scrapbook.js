@@ -15,16 +15,15 @@ router.get('/:id/media', async (req, res, next) => {
 })
 
 router.get('/:id/pages', async (req, res, next) => {
-   try {
-       console.log('REQ', req.user)
-     const id = req.params.id
-     const pages = await Page.findAll({
-         where: {scrapbookId: id }
-     })
-     res.status(200).json(pages)
-   } catch (err) {
-       next(err)
-   }
+    try {
+      const id = req.params.id
+      const pages = await Page.findAll({
+          where: {scrapbookId: id }
+      })
+      res.status(200).json(pages)
+    } catch (err) {
+        next(err)
+    }
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -40,14 +39,17 @@ router.get('/:id', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
- try {
-     const scrapbook = await Scrapbook.create({
-         name: req.body.name,
-         description: req.body.description,
-         userId: req.user.dataValues.id
-     })
-     res.status(200).json(scrapbook)
- } catch(err) {next(err)}
+  try {
+      const scrapbook = await Scrapbook.create({
+          name: req.body.name,
+          description: req.body.description,
+          userId: req.user.dataValues.id
+      })
+      await Page.create({
+        scrapbookId: scrapbook.id
+      })
+      res.status(200).json(scrapbook)
+  } catch(err) {next(err)}
 })
 
 router.put('/:id', async (req, res, next) => {
