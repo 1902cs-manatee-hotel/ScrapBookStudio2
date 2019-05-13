@@ -4,6 +4,18 @@ import MediaUpload from './MediaUpload'
 import MediaPool from './MediaPool'
 
 class Toolbar extends Component {
+  constructor() {
+    super()
+    this.state = {
+      revealMediaPool: false
+    }
+  }
+
+  handleClick = () => {
+    return this.setState({
+      revealMediaPool: !this.state.revealMediaPool
+    })
+  }
 
   render() {
     // console.log('TOOLBAR SCRAPBOOK ID:', this.props.match.params.scrapbookid)
@@ -17,7 +29,8 @@ class Toolbar extends Component {
         <TextEditor />
         <br />
         <br />
-        <MediaPool scrapbookId={this.props.scrapbookId}/>
+        <button onClick={this.handleClick}>Media Pool</button>
+        {this.state.revealMediaPool ? <MediaPool scrapbookId={this.props.scrapbookId}/> : null}
         {/* <Link>Previous</Link>
         <Link to={}>Next</Link> */}
       </div>

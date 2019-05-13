@@ -114,9 +114,11 @@ export const deleteSingleTextThunk = id => async dispatch => {
 }
 
 
-export const createSingleMediaThunk = (path) => async dispatch => {
-  try {
-      const {data} = await axios.post('/api/media', path)
+export const createSingleMediaThunk = (obj) => async dispatch => {
+    console.log('obj from content.js', obj)
+    try {
+      const {data} = await axios.post('/api/media', obj)
+      console.log('D*****ATA', data)
       dispatch(createSingleMedia(data))
   } catch (err) {console.log(err)}
 }
