@@ -10,7 +10,10 @@ class CanvasText extends Component {
       isDragging: false,
       x: this.props.x_coord,
       y: this.props.y_coord,
-      content: this.props.content
+      content: this.props.content,
+      rotation: this.props.rotation,
+      width: this.props.width,
+      height: this.props.height
     }
     this.handleOnClick = this.handleOnClick.bind(this)
   }
@@ -26,9 +29,9 @@ class CanvasText extends Component {
         text={this.state.content}
         x={this.state.x}
         y={this.state.y}
-        // scaleX={this.state.width}
-        // scaleY={this.state.height}
-        // rotation={this.state.rotation}
+        scaleX={this.state.width}
+        scaleY={this.state.height}
+        rotation={this.state.rotation}
         fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
         onDragStart={() => {
           this.setState({
