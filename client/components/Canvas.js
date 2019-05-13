@@ -14,24 +14,6 @@ class Canvas extends Component {
     super()
     this.handlePageSubmit = this.handlePageSubmit.bind(this)
     this.state = {
-      rectangles: [
-        {
-          x: 10,
-          y: 10,
-          width: 100,
-          height: 100,
-          fill: 'red',
-          name: 'rect1'
-        },
-        {
-          x: 150,
-          y: 150,
-          width: 100,
-          height: 100,
-          fill: 'green',
-          name: 'rect2'
-        }
-      ],
       selectedShapeName: ''
     }
     this.handleOnClickNext = this.handleOnClickNext.bind(this)
@@ -68,10 +50,10 @@ class Canvas extends Component {
 
     // find clicked rect by its name
     const name = e.target.name()
-    const rect = this.state.rectangles.find(r => r.name === name)
+    // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
     // const textRotate = this.props.allText
-    if (rect || images) {
+    if (images) {
       this.setState({
         selectedShapeName: name
       })
@@ -151,9 +133,9 @@ class Canvas extends Component {
                           />
                         )
                       })}
-                      {this.state.rectangles.map((rect, i) => (
+                      {/* {this.state.rectangles.map((rect, i) => (
                         <Rectangle key={i} {...rect} />
-                      ))}
+                      ))} */}
                       <MediaResizer selectedShapeName={this.state.selectedShapeName} />
                     </Layer>
                   </Provider>
@@ -211,19 +193,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Canvas)
-
-class Rectangle extends Component {
-  render() {
-    return (
-      <Rect
-        x={this.props.x}
-        y={this.props.y}
-        width={this.props.width}
-        height={this.props.height}
-        fill={this.props.fill}
-        name={this.props.name}
-        draggable
-      />
-    );
-  }
-}
