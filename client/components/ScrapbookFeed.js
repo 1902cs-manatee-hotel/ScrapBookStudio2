@@ -7,7 +7,7 @@ import { deleteScrapbookThunk } from '../store/scrapbooks'
  */
 
 
-class ScrapBook extends Component {
+class ScrapBookFeed extends Component {
   componentDidMount() {
     
   }
@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
   
 })
 
-export default connect(mapState, mapDispatchToProps)(ScrapBook)
+export default connect(mapState, mapDispatchToProps)(ScrapBookFeed)
 
 
 

@@ -4,6 +4,7 @@ module.exports = router
 
 router.get('/:id', async (req, res, next) => {
   try {
+      console.log('**************REQ.PARMAS',  req.params)
     const { id } = req.params;
     const media = await Media.findByPk(id);
     res.status(200).json(media)

@@ -11,6 +11,11 @@ export {default as ScrapbookSetup} from './ScrapbookSetup'
 export {default as AddContributorForm} from './AddContributorForm'
 export {default as Library} from './Library'
 export {default as Canvas} from './Canvas'
-export {default as SingleScrapbook} from './SingleScrapbook'
-export {default as CanvasText} from './CanvasText'
+
 export {default as LaunchPage} from './LaunchPage'
+
+export {default as ViewOrEdit} from './ViewOrEdit'
+export {default as CanvasText} from './CanvasText'
+export {default as StaticCanvas} from './StaticCanvas'
+export {default as UserInvite} from './UserInvite'
+

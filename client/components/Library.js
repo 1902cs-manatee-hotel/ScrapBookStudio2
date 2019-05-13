@@ -1,34 +1,54 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { getAllScrapbooksThunk } from '../store/scrapbooks';
+import { getAllScrapbooksThunk, getAllPagesThunk } from '../store/scrapbooks'
+import {Link} from 'react-router-dom'
+
+/**
+ * COMPONENT
+ */
 
 class Library extends Component {
-    render() {
-        return (
-        <div className="box">
-            <h1 className="title has-text-centered">My Scrapbooks</h1>
-            {/* {
-                this.props.library.map(
-                    (oneLibrary) => {
-                        return <SingleScrapbook />
-                    }
-                )
-            } */}
+  componentDidMount() {
+    this.props.fetchScrapBooks(this.props.user.id)
+  }
+
+  render() {
+    return (
+
+      <div className="box form centered-forms" id="library-outer-container">
+        <h2>{this.props.user.firstName}'s Scrapbooks</h2>
+        <div id="library-container">
+        {
+          this.props.scrapbooks.map(book => {
+            return (
+              <div key={book.id}>
+               <button className='button is-primary space' type='submit'> <Link to={`/scrapbooks/${book.name}/${book.id}`}>{book.name}</Link></button>
+                <br />
+                <img  width='120px' height="120px" src={book.image}></img>
+              </div>
+            )
+          })
+        }
         </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        library: state.scrapbooks
-    }
+/**
+ * CONTAINER
+ */
+const mapStateToProps = state => {
+  return {
+    scrapbooks: state.scrapbooks.scrapbooks,
+    user: state.user
+  }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getLibrary: (userId) => {dispatch(getAllScrapbooksThunk(userId))}
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  fetchScrapBooks: (userId) => {
+    dispatch(getAllScrapbooksThunk(userId))
+  },
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Library)

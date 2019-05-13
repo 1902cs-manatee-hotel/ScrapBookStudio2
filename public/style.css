@@ -74,9 +74,23 @@ form div {
   width: 20rem;
 }
 
+
 @media only screen and (max-height: 1200px) {
   .login-form {
     opacity: 0.9;
     margin-top: -1%;
   }
 }
+
+
+#library-outer-container {
+  width: 750px
+}
+
+#library-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
