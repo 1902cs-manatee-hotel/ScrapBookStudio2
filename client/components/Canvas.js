@@ -110,6 +110,8 @@ class Canvas extends Component {
                             x_coord={text.x_coord}
                             y_coord={text.y_coord}
                             rotation={text.rotation}
+                            width={text.width}
+                            height={text.height}
                             color={text.color}
                             size={text.size}
                             id={text.id}
