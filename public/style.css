@@ -50,3 +50,14 @@ form div {
 .box {
   border: black;
 }
+
+#library-outer-container {
+  width: 750px
+}
+
+#library-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
