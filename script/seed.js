@@ -18,7 +18,7 @@ async function seed() {
     User.create({ firstName: 'Cody', lastName: 'Jones', email: 'cody@email.com', password: '123' }),
     User.create({ firstName: 'Murphy', lastName: 'Smith', email: 'murphy@email.com', password: '321' }),
     Scrapbook.create({name: 'EuroTrip', description: 'Good times!', image: 'https://i.ytimg.com/vi/VyaTwRK4qsU/maxresdefault.jpg',  password: '123'}),
-    Scrapbook.create({name: 'Birthday', description: 'My Bday Party', image:'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/749363', password: '123'}),
+    Scrapbook.create({name: 'Birthday', description: 'My Bday Party', image:'https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_10x10_$&$product=PartyCity/749363', password: '123'}),
     Scrapbook.create({name: 'Bootcamp', description: 'Good times, right ?', image:'https://www.builtinnyc.com/sites/www.builtinnyc.com/files/fullstack_oct_21_2015-48.jpg', password: '123'}),
     Scrapbook.create({name: 'Testing!', description: 'Good times, right ?', image:'https://www.builtinnyc.com/sites/www.builtinnyc.com/files/fullstack_oct_21_2015-48.jpg', password: '123'}),
     Page.create({scrapbookId: 1}),
@@ -30,17 +30,17 @@ async function seed() {
     Page.create({scrapbookId: 4}),
     Contributor.create({ firstName: 'Tod', lastName: 'Brown', email: 'email1@email.com', scrapbookId: 1}),
     Contributor.create({ firstName: 'Samantha', lastName: 'Grey', email: 'email@email2.com', scrapbookId: 2}),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
-    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 70, y_coord: 70, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
-    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 75, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 2 }),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 75, y_coord: 60, tilt: 0, width: 100, height: 100, filter: 2, pageId: 2 }),
-    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
-    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 1 }),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, tilt: 0, width: 100, height: 100, filter: 2, pageId: 7 }),
-    CanvasText.create({ content: 'Great Time!', x_coord: 50, y_coord: 50, tilt: 0, color: 'blue', size: 10, pageId: 1 }),
-    CanvasText.create({ content: 'LOL', x_coord: 50, y_coord: 50, tilt: 0, color: 'red', size: 20, pageId: 1 }),
-    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, tilt: 0, color: 'red', size: 20, pageId: 2 }),
-    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, tilt: 0, color: 'red', size: 20, pageId: 4 })
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 70, y_coord: 70, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 75, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2 }),
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 75, y_coord: 60, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1 }),
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 1, height: 1, filter: 2, pageId: 7 }),
+    CanvasText.create({ content: 'Great Time!', x_coord: 50, y_coord: 50, rotation: 0, color: 'blue', size: 10, pageId: 1 }),
+    CanvasText.create({ content: 'LOL', x_coord: 50, y_coord: 50, rotation: 0, color: 'red', size: 20, pageId: 1 }),
+    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, rotation: 0, color: 'red', size: 20, pageId: 2 }),
+    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, rotation: 0, color: 'red', size: 20, pageId: 4 })
 ])
 
 // console.log(`seeded ${users.length} users`)

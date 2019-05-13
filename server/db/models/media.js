@@ -20,18 +20,18 @@ const Media = db.define('media', {
         // allowNull: false,
         defaultValue: 50
     },
-    tilt: {
+    rotation: {
         type: Sequelize.INTEGER,
         // allowNull: false,
         defaultValue: 0
     },
     width: {
-        type: Sequelize.INTEGER,
-        defaultValue: 100
+        type: Sequelize.FLOAT,
+        defaultValue: 1
     },
     height: {
-        type: Sequelize.INTEGER,
-        defaultValue: 100
+        type: Sequelize.FLOAT,
+        defaultValue: 1
     },
     filter: {
         type: Sequelize.STRING

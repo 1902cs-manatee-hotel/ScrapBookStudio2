@@ -17,7 +17,7 @@ const CanvasText = db.define('canvas_text', {
         allowNull: false,
         defaultValue: 50
     },
-    tilt: {
+    rotation: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
