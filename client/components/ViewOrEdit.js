@@ -10,7 +10,6 @@ class ViewOrEdit extends Component {
     }
 
     render() {
-        console.log('SSSSSSS', this.props.match.params.id)
         return (
             <div>
                 <h1 className='title'>Hey There</h1>
@@ -24,7 +23,7 @@ class ViewOrEdit extends Component {
                 </Link>
             </div>
         )
-    }
+      }
 }
 
 const mapStateToProps = state => {

@@ -106,7 +106,7 @@ class Canvas extends Component {
         {({store}) => (
           <div className="tile is-ancestor canvas">
             <div className="tile">
-              <Toolbar />
+              <Toolbar scrapbookId={this.props.match.params.id} />
             </div>
             <div className="tile is-parent is-vertical">
               <div className="tile is-child">
