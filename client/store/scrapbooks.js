@@ -149,6 +149,8 @@ export const deleteSinglePageThunk = (id) => async dispatch => {
 export const getAllScrapbookMediaThunk = (scrapbookId) => async dispatch => {
   try {
       const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/media`)
+    // const {data} = await axios.get(`/api/media/${scrapbookId}`)
+      console.log('***************MEDIA POOL DATA ***', data)
       dispatch(getAllScrapbookMedia(data))
   } catch(err) {console.error(err)}
 }
