@@ -6,7 +6,7 @@ import {connect, ReactReduxContext, Provider} from 'react-redux'
 import {Link} from 'react-router-dom'
 import CanvasMedia from './CanvasMedia'
 import CanvasText from './CanvasText'
-import {createSinglePageThunk, setNextAndPrevious, getAllPagesThunk, increasePageIndex, decreasePageIndex, setPageIndex, getSinglePage} from '../store/scrapbooks'
+import {createSinglePageThunk, setNextAndPrevious, getAllPagesThunk, increasePageIndex, decreasePageIndex, setPageIndex, getSinglePage, getSingleScrapbook} from '../store/scrapbooks'
 import MediaResizer from './MediaResizer'
 
 class Canvas extends Component {
@@ -24,6 +24,7 @@ class Canvas extends Component {
     await this.props.getAllPages(this.props.match.params.scrapbookid)
     await this.props.getPageContent(this.props.match.params.pageid)
     await this.props.setPageIndex(this.props.match.params.pageid)
+    await this.props.setSingleScrapbook(this.props.match.params.scrapbookid)
     this.props.setSinglePage(this.props.match.params.pageid)
     this.props.setNextAndPrevious()
     // get from state
@@ -94,6 +95,7 @@ class Canvas extends Component {
             <div className="tile is-parent is-vertical">
               <div className="tile is-child">
                 <Stage
+                  style={{backgroundImage: 'url(http://mikekurtzplumbing.com/wp-content/uploads/parser/hd-nature-wallpaper-1.jpg)'}}
                   className="box"
                   width={1300}
                   height={500}
@@ -188,7 +190,8 @@ const mapDispatch = dispatch => {
     increasePageIndex: () => dispatch(increasePageIndex()),
     decreasePageIndex: () => dispatch(decreasePageIndex()),
     setPageIndex: (pageId) => dispatch(setPageIndex(pageId)),
-    setSinglePage: (pageId) => dispatch(getSinglePage(pageId))
+    setSinglePage: (pageId) => dispatch(getSinglePage(pageId)),
+    setSingleScrapbook: (scrapbookId) => dispatch(getSingleScrapbook(scrapbookId))
   }
 }
 

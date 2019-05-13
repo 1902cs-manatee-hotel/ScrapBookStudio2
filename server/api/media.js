@@ -12,9 +12,12 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+    console.log('mediaAPI', req.body)
     try {
-      const arr = Object.keys(req.body)
-      const media = await Media.create({path: arr[0]})
+    //   const arr = Object.keys(req.body)
+      const media = await Media.create(req.body)
+      console.log('mediaAPI - media', media)
+
       res.status(200).json(media)
     } catch(err) {next(err)}
 })
