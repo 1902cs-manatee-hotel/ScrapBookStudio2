@@ -137,7 +137,6 @@ export const getSingleMediaThunk = (id) => async dispatch => {
     } catch (err) {console.log(err)}
   }
 
-
 export const deleteSingleMediaThunk = id => async dispatch => {
   try {
       await axios.delete(`api/media/${id}`)
