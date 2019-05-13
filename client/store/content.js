@@ -126,6 +126,14 @@ export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       } catch (err) {console.log(err)}
 }
 
+export const getSingleMediaThunk = (id) => async dispatch => {
+    try {
+        const {data} = await axios.post(`/api/media/${id}`)
+        dispatch(getSingleMedia(data))
+    } catch (err) {console.log(err)}
+  }
+
+
 export const deleteSingleMediaThunk = id => async dispatch => {
   try {
       await axios.delete(`api/media/${id}`)
@@ -175,6 +183,7 @@ export default function(state = initialState, action) {
          return newState
     case GET_SINGLE_MEDIA:
         newState.selectedMedia = action.id
+        newState.allMedia = [...newState.allMedia, action.text]
         return newState
     case CREATE_SINGLE_MEDIA:
         newState.allMedia = [...newState.allMedia, action.media]
