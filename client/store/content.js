@@ -85,17 +85,7 @@ import axios from 'axios'
   try {
       console.log('PAGE ID:', id)
       const {data} = await axios.get(`/api/pages/${id}`)
-      console.log('OUR DATA:', data)
-      // if(data){
-      //   const { canvas_texts, media} = data
-      //   dispatch(getPageContent(canvas_texts, media))
-      // }else {
-      //   const canvas_texts = []
-      //   const media = []
-      //   dispatch(getPageContent(canvas_texts, media))
-      // }
-        // const { canvas_texts, media} = data
-        const canvas_texts = data.canvas_texts
+        const canvas_texts = data.text
         const media = data.media
         dispatch(getPageContent(canvas_texts, media))
   } catch(err) {console.error(err)}
@@ -118,7 +108,7 @@ export const updateSingleTextThunk = (id, updatedProp) => async dispatch => {
 
 export const deleteSingleTextThunk = id => async dispatch => {
   try {
-    await axios.delete(`api/canvastext/${id}`)
+    await axios.delete(`/api/canvastext/${id}`)
     dispatch(deleteSingleText(id))
 } catch (err) {console.error(err)}
 }
@@ -176,7 +166,6 @@ export default function(state = initialState, action) {
         newState.selectedText = action.text.id
         return newState
     case UPDATE_SINGLE_TEXT:
-    // newState.allText = [...newState.allText, action.text]
     newState.allText = [...newState.allText.filter(text => text.id !== action.text.id), action.text]
         return newState
     case DELETE_SINGLE_TEXT:

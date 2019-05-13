@@ -14,19 +14,22 @@ class Library extends Component {
 
   render() {
     return (
-      <div className='centered-forms title'>
+
+      <div className="box form centered-forms" id="library-outer-container">
         <h2>{this.props.user.firstName}'s Scrapbooks</h2>
+        <div id="library-container">
         {
           this.props.scrapbooks.map(book => {
             return (
               <div key={book.id}>
-                <Link to={`/scrapbooks/${book.name}/${book.id}`}>{book.name}</Link>
+               <button className='button is-primary space' type='submit'> <Link to={`/scrapbooks/${book.name}/${book.id}`}>{book.name}</Link></button>
                 <br />
                 <img  width='120px' height="120px" src={book.image}></img>
               </div>
             )
           })
         }
+        </div>
       </div>
     )
   }
