@@ -123,7 +123,9 @@ export const createSingleMediaThunk = (path) => async dispatch => {
 
 export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
+          console.log('id', id, updatedProp)
           const {data} = await axios.put(`/api/media/${id}`, updatedProp)
+          console.log('thunk', data)
           dispatch(updateSingleMedia(data))
       } catch (err) {console.log(err)}
 }
