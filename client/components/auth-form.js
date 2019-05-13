@@ -10,8 +10,53 @@ import {Link} from 'react-router-dom'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  if (name === 'signup') {
+
   return (
     <div className="login-background">
+      <form className="box centered-forms login-form" onSubmit={handleSubmit} name={name}>
+        <div className="field">
+          <label className="label" htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input className="input" name="email" type="text" />
+        </div>
+        <br />
+        <div className="field">
+          <label className="label" htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input className="input" name="password" type="password" />
+        </div>
+        <br />
+        <div>
+        <div className="field">
+          <label className="label" htmlFor="firstName">
+            <small>First Name</small>
+          </label>
+          <input className="input" name="firstName" type="text" />
+        </div>
+        <div className="field">
+          <label className="label" htmlFor="lastName">
+            <small>Last Name</small>
+          </label>
+          <input className="input" name="lastName" type="text" />
+        </div>
+          <button className="button is-success" type="submit">{displayName}</button>
+        </div>
+        <br />
+        <div>
+        <Link to="/signup">Sign Up</Link>
+        </div>
+        {error && error.response && <div> {error.response.data} </div>}
+        <br />
+      <a href="/auth/google">{displayName} with Google</a>
+      </form>
+    </div>
+  )
+  } else {
+    return (
+      <div className="login-background">
       <form className="box centered-forms login-form" onSubmit={handleSubmit} name={name}>
         <div className="field">
           <label className="label" htmlFor="email">
@@ -39,7 +84,9 @@ const AuthForm = props => {
       <a href="/auth/google">{displayName} with Google</a>
       </form>
     </div>
-  )
+    )
+
+  }
 }
 
 /**
