@@ -192,7 +192,7 @@ export default function(state = initialState, action) {
         newState.selectedMedia = action.media.id
         return newState
     case UPDATE_SINGLE_MEDIA:
-        newState.allMedia = [...newState.allMedia, action.media]
+        newState.allMedia = [...newState.allMedia.filter(media => media.id !== action.media.id), action.media]
         return newState
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>
