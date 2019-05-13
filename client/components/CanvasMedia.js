@@ -2,11 +2,20 @@ import React, {Component} from 'react'
 import {Image} from 'react-konva'
 import useImage from 'use-image'
 import {connect} from 'react-redux'
+import { updateSingleMediaThunk } from '../store/content';
 
 class CanvasMedia extends Component {
-    state = {
-        image: null
+  constructor(props) {
+    super(props)
+    this.state = {
+        image: null,
+        x: this.props.x,
+        y: this.props.y,
+        width: this.props.width,
+        height: this.props.height,
+        rotation: this.props.rotation,
       };
+  }
       componentDidMount() {
         this.loadImage();
       }
@@ -37,20 +46,47 @@ class CanvasMedia extends Component {
       render() {
         return (
           <Image
-            x={this.props.x}
-            y={this.props.y}
-            width={this.props.width}
-            height={this.props.height}
+            x={this.state.x}
+            y={this.state.y}
+            scaleX={this.state.width}
+            scaleY={this.state.height}
+            rotation={this.state.rotation}
             image={this.state.image}
             ref={node => {
               this.imageNode = node;
             }}
             name={this.props.name}
             draggable
+            onDragStart={() => {
+              this.setState({
+              })
+            }}
+            onDragEnd={(event) => {
+              this.setState({
+                x: event.target.x(),
+                y: event.target.y(),
+                width: event.target.scaleX(),
+                height: event.target.scaleY(),
+                rotation: event.target.rotation(),
+              })
+              this.props.updateMedia(this.props.id, {
+                  x_coord: this.state.x,
+                  y_coord: this.state.y,
+                  width: this.state.width,
+                  height: this.state.height,
+                  rotation: this.state.rotation
+              })
+            }}
           />
         );
       }
 }
 
-// export default connect(null, null)(CanvasMedia)
-export default CanvasMedia
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateMedia: (id, updatedProp) => dispatch(updateSingleMediaThunk(id, updatedProp))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CanvasMedia)
+// export default CanvasMedia

@@ -139,7 +139,7 @@ class Canvas extends Component {
                             content={text.content}
                             x_coord={text.x_coord}
                             y_coord={text.y_coord}
-                            tilt={text.tilt}
+                            rotation={text.rotation}
                             color={text.color}
                             size={text.size}
                             id={text.id}
@@ -155,7 +155,7 @@ class Canvas extends Component {
                             y={media.y_coord}
                             width={media.width}
                             height={media.height}
-                            tilt={media.tilt}
+                            rotation={media.rotation}
                             filter={media.filter}
                             name='rect'
                           />

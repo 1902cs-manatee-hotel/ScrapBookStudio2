@@ -11,27 +11,27 @@ const Media = db.define('media', {
         }
     },
     x_coord: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         // allowNull: false,
         defaultValue: 50
     },
     y_coord: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         // allowNull: false,
         defaultValue: 50
     },
-    tilt: {
-        type: Sequelize.INTEGER,
+    rotation: {
+        type: Sequelize.FLOAT,
         // allowNull: false,
         defaultValue: 0
     },
     width: {
-        type: Sequelize.INTEGER,
-        defaultValue: 100
+        type: Sequelize.FLOAT,
+        defaultValue: 1
     },
     height: {
-        type: Sequelize.INTEGER,
-        defaultValue: 100
+        type: Sequelize.FLOAT,
+        defaultValue: 1
     },
     filter: {
         type: Sequelize.STRING
