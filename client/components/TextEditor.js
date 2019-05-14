@@ -64,7 +64,7 @@ class TextEditor extends Component {
   }
 
   handleOnClickIncrease = () => {
-    
+    // this.props.updateText(this.props.selectedText, {size: })
   }
 
   handleOnClickIDecrease = () => {
