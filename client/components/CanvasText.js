@@ -22,6 +22,8 @@ class CanvasText extends Component {
     this.props.selectText(this.props.id)
   }
 
+
+
   render() {
     return (
       <Text
