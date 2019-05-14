@@ -1,4 +1,5 @@
 import axios from 'axios'
+import socket from '../socket'
 
 /**
  * ACTION TYPES
@@ -56,7 +57,7 @@ import axios from 'axios'
      id
  })
 
- const updateSingleMedia = (media) => ({
+ export const updateSingleMedia = (media) => ({
      type: UPDATE_SINGLE_MEDIA,
      media
  })
@@ -125,10 +126,9 @@ export const createSingleMediaThunk = (obj) => async dispatch => {
 
 export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
-          console.log('id', id, updatedProp)
           const {data} = await axios.put(`/api/media/${id}`, updatedProp)
-          console.log('thunk', data)
           dispatch(updateSingleMedia(data))
+          socket.emit('mediaUpdate', data)
       } catch (err) {console.log(err)}
 }
 

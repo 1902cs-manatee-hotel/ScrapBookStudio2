@@ -13,7 +13,7 @@ class CanvasMedia extends Component {
         y: this.props.y,
         width: this.props.width,
         height: this.props.height,
-        rotation: this.props.rotation,
+        rotation: this.props.rotation
       };
   }
       componentDidMount() {
@@ -57,10 +57,6 @@ class CanvasMedia extends Component {
             }}
             name={this.props.name}
             draggable
-            onDragStart={() => {
-              this.setState({
-              })
-            }}
             onDragEnd={(event) => {
               this.setState({
                 x: event.target.x(),
