@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {cloud_name, api_key, upload_preset} from './config/cloudinary.js'
+import {cloud_name, api_key, upload_preset} from './config/cloudinary'
 import {createSingleMediaThunk} from '../store/content'
 
 class MediaUpload extends Component {
