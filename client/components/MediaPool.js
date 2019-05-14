@@ -18,7 +18,7 @@ class MediaPool extends Component {
   // }
 
   render() {
-      console.log('PROPS from MediaPool*****', this.props)
+      // console.log('PROPS from MediaPool*****', this.props)
 
     return (
       <div className="box"  >

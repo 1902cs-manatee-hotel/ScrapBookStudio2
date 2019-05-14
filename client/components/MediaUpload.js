@@ -28,7 +28,7 @@ class MediaUpload extends Component {
     render() {
         return (
             <div>
-                <button className='button is-warning space' type='submit' onClick={this.uploadMedia}>Image</button>
+                <button className='button is-primary space' type='submit' onClick={this.uploadMedia}>Image</button>
             </div>
         )
     }

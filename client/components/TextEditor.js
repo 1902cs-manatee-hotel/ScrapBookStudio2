@@ -75,21 +75,21 @@ class TextEditor extends Component {
         return (
             <Fragment>
                 <FormatToolbar>
-                    <button type="submit">
+                    <button className='button is-primary space space-button' type="submit">
                         <Icon icon={bold} />
                     </button>
-                    <button type="submit">
+                    <button className='button is-primary space space-button' type="submit">
                         <Icon icon={italic} />
                     </button>
                 </FormatToolbar>
                 <Editor className='box' value={this.state.value} onChange={this.onChange} />
-                <button type="submit" onClick={this.handleOnClickCreate}>Create</button>
+                <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickCreate}>Create</button>
                 {this.props.selectedText ? 
                 <div>
-                  <button type="submit" onClick={this.handleOnClickDelete}>Delete</button>
+                  <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickDelete}>Delete</button>
                   <br />
-                  <button type="submit" onClick={this.handleOnClickIncrease}>Increase</button>
-                  <button type="submit" onClick={this.handleOnClickDecrease}>Decrease</button>
+                  <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickIncrease}>Increase</button>
+                  <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickDecrease}>Decrease</button>
                 </div>
                 : null}
             </Fragment>
