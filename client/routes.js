@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Create, Library, ScrapbookSetup, AddContributorForm, Canvas, CanvasText, ViewOrEdit, StaticCanvas, UserInvite,} from './components'
+import {Login, Signup, Create, Library, ScrapbookSetup, AddContributorForm, Canvas, CanvasText, ViewOrEdit, StaticCanvas, UserInvite,} from './components'
 import {me} from './store'
 
 /**
