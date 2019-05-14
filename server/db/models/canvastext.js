@@ -17,6 +17,14 @@ const CanvasText = db.define('canvas_text', {
         allowNull: false,
         defaultValue: 50
     },
+    width: {
+      type: Sequelize.FLOAT,
+      defaultValue: 1
+    },
+    height: {
+      type: Sequelize.FLOAT,
+      defaultValue: 1
+    },
     rotation: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,7 +39,7 @@ const CanvasText = db.define('canvas_text', {
         validate: {
             min: 5
         },
-        defaultValue: 12
+        defaultValue: 50
     }
 })
 

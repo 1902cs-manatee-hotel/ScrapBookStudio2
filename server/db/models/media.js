@@ -27,14 +27,22 @@ const Media = db.define('media', {
     },
     width: {
         type: Sequelize.FLOAT,
-        defaultValue: 1
+        defaultValue: .1
     },
     height: {
         type: Sequelize.FLOAT,
-        defaultValue: 1
+        defaultValue: .1
     },
     filter: {
         type: Sequelize.STRING
+    },
+    scrapbookId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+    },
+    pageId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
     }
 })
 

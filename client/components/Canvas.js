@@ -42,6 +42,7 @@ class Canvas extends Component {
       })
       return
     }
+
     // clicked on transformer - do nothing
     const clickedOnTransformer =
       e.target.getParent().className === 'Transformer'
@@ -49,12 +50,12 @@ class Canvas extends Component {
       return
     }
 
-    // find clicked rect by its name
+    // find clicked image by its name
     const name = e.target.name()
     // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
-    // const textRotate = this.props.allText
-    if (images) {
+    const text = this.props.allText.find(t => `${t.id}` === name)
+    if (images || text) {
       this.setState({
         selectedShapeName: name
       })
@@ -112,10 +113,12 @@ class Canvas extends Component {
                             x_coord={text.x_coord}
                             y_coord={text.y_coord}
                             rotation={text.rotation}
+                            width={text.width}
+                            height={text.height}
                             color={text.color}
                             size={text.size}
                             id={text.id}
-                            // name={`${text.id}`}
+                            name={`${text.id}`}
                           />
                         )
                       })}

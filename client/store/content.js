@@ -120,6 +120,7 @@ export const createSingleMediaThunk = (obj) => async dispatch => {
     try {
       const {data} = await axios.post('/api/media', obj)
       console.log('D*****ATA', data)
+      console.log('HELLO FROM THUNK')
       dispatch(createSingleMedia(data))
   } catch (err) {console.log(err)}
 }
@@ -144,6 +145,22 @@ export const deleteSingleMediaThunk = id => async dispatch => {
       await axios.delete(`api/media/${id}`)
       dispatch(deleteSingleMedia(id))
   } catch (err) {console.error(err)}
+}
+
+export const increaseFontSizeThunk = id => async dispatch => {
+    try {
+        console.log('from thunk', id);
+        const {data} = await axios.put(`api/canvastext/increase/${id}`)
+        console.log('data from thunk', data);
+        dispatch(updateSingleText(data))
+    } catch(err) {console.error(err)}
+}
+
+export const decreaseFontSizeThunk = id => async dispatch => {
+    try {
+        const {data} = await axios.put(`api/canvastext/decrease/${id}`)
+        dispatch(updateSingleText(data))
+    } catch(err) {console.error(err)}
 }
 
   /**

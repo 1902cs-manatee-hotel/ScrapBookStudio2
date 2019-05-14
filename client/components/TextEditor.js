@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit'
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
 import {connect} from 'react-redux'
-import { updateSingleTextThunk, getEditorText, createSingleTextThunk, deleteSingleTextThunk } from '../store/content'
+import { updateSingleTextThunk, getEditorText, createSingleTextThunk, deleteSingleTextThunk, increaseFontSizeThunk, decreaseFontSizeThunk } from '../store/content'
 import Plain from 'slate-plain-serializer'
 
 // const initialValue = Value.fromJSON({
@@ -63,6 +63,14 @@ class TextEditor extends Component {
         this.props.deleteText(this.props.selectedText)
   }
 
+  handleOnClickIncrease = () => {
+    this.props.increaseFontSize(this.props.selectedText)
+  }
+  
+  handleOnClickIDecrease = () => {
+    this.props.decreaseFontSize(this.props.selectedText)
+  }
+
     render() {
         return (
             <Fragment>
@@ -76,7 +84,14 @@ class TextEditor extends Component {
                 </FormatToolbar>
                 <Editor className='box' value={this.state.value} onChange={this.onChange} />
                 <button type="submit" onClick={this.handleOnClickCreate}>Create</button>
-                {this.props.selectedText ? <button type="submit" onClick={this.handleOnClickDelete}>Delete</button> : null}
+                {this.props.selectedText ? 
+                <div>
+                  <button type="submit" onClick={this.handleOnClickDelete}>Delete</button>
+                  <br />
+                  <button type="submit" onClick={this.handleOnClickIncrease}>Increase</button>
+                  <button type="submit" onClick={this.handleOnClickDecrease}>Decrease</button>
+                </div>
+                : null}
             </Fragment>
         )
     }
@@ -94,7 +109,9 @@ const mapDispatch = dispatch => {
     updateText: (id, updatedProp) => dispatch(updateSingleTextThunk(id, updatedProp)),
     getEditorText: (content) => dispatch(getEditorText(content)),
     createText: (pageId, content) => dispatch(createSingleTextThunk(pageId, content)),
-    deleteText: (textId) => dispatch(deleteSingleTextThunk(textId))
+    deleteText: (textId) => dispatch(deleteSingleTextThunk(textId)),
+    increaseFontSize: (id) => dispatch(increaseFontSizeThunk(id)),
+    decreaseFontSize: (id) => dispatch(decreaseFontSizeThunk(id)),
   }
 }
 
