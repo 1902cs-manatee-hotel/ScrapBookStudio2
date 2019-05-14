@@ -67,7 +67,7 @@ class TextEditor extends Component {
     this.props.increaseFontSize(this.props.selectedText)
   }
   
-  handleOnClickIDecrease = () => {
+  handleOnClickDecrease = () => {
     this.props.decreaseFontSize(this.props.selectedText)
   }
 
