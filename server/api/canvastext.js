@@ -35,7 +35,9 @@ router.put('/:id', async (req, res, next) => {
 
 router.put('/increase/:id', async (req, res, next) => {
     try {
+        console.log('req from route', req.params);
         const canvasText = await CanvasText.findByPk(req.params.id)
+        console.log('ct from route', canvasText);
         const newSize = canvasText.size + 1
         console.log('increase', newSize);
         const updatedCanvasText = await canvasText.update({size: newSize})
