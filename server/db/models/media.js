@@ -35,6 +35,14 @@ const Media = db.define('media', {
     },
     filter: {
         type: Sequelize.STRING
+    },
+    scrapbookId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+    },
+    pageId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
     }
 })
 
