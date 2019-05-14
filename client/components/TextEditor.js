@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit'
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
 import {connect} from 'react-redux'
-import { updateSingleTextThunk, getEditorText, createSingleTextThunk, deleteSingleTextThunk } from '../store/content'
+import { updateSingleTextThunk, getEditorText, createSingleTextThunk, deleteSingleTextThunk, increaseFontSizeThunk, decreaseFontSizeThunk } from '../store/content'
 import Plain from 'slate-plain-serializer'
 
 // const initialValue = Value.fromJSON({
@@ -64,11 +64,11 @@ class TextEditor extends Component {
   }
 
   handleOnClickIncrease = () => {
-    // this.props.updateText(this.props.selectedText, {size: })
+    this.props.increaseFontSize(this.props.selectedText)
   }
-
+  
   handleOnClickIDecrease = () => {
-
+    this.props.decreaseFontSize(this.props.selectedText)
   }
 
     render() {
@@ -109,7 +109,9 @@ const mapDispatch = dispatch => {
     updateText: (id, updatedProp) => dispatch(updateSingleTextThunk(id, updatedProp)),
     getEditorText: (content) => dispatch(getEditorText(content)),
     createText: (pageId, content) => dispatch(createSingleTextThunk(pageId, content)),
-    deleteText: (textId) => dispatch(deleteSingleTextThunk(textId))
+    deleteText: (textId) => dispatch(deleteSingleTextThunk(textId)),
+    increaseFontSize: (id) => dispatch(increaseFontSizeThunk(id)),
+    decreaseFontSize: (id) => dispatch(decreaseFontSizeThunk(id)),
   }
 }
 
