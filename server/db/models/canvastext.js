@@ -39,7 +39,7 @@ const CanvasText = db.define('canvas_text', {
         validate: {
             min: 5
         },
-        defaultValue: 12
+        defaultValue: 50
     }
 })
 
