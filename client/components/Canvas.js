@@ -53,7 +53,7 @@ class Canvas extends Component {
     const name = e.target.name()
     // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
-    // const textRotate = this.props.allText
+    // const text = this.props.allText
     if (images) {
       this.setState({
         selectedShapeName: name
@@ -112,6 +112,8 @@ class Canvas extends Component {
                             x_coord={text.x_coord}
                             y_coord={text.y_coord}
                             rotation={text.rotation}
+                            width={text.width}
+                            height={text.height}
                             color={text.color}
                             size={text.size}
                             id={text.id}
