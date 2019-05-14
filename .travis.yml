@@ -14,16 +14,16 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "scrapbookstudio-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
   - npm test             # test the code
   - npm run build-client # make the bundle
 
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: scrapbook-studio # see README
+  api_key:
+    secure: "O5OGSSriOROAmkTmQWRk9I0E17jDHRgtRGVCdOYu5kIiLaJHf4KOAe9EcZshnKeqFEsUVq+rtUdw3irgDFaiJBfSybnOlF0rvqUH2JMUOVc21UTYJa/HRoqwITDJJcMisTPxOmdtkNlnARmgG5tLyBDPH7Aen3xe5NHWno3z4LP25TqRIMtDTB94Pz6DjKY/IZvf3OhxD3pCHD/HkfrMRBQUbgsMlQwHcFyZImEd0XBO4Gxjw4e4VTKDw383wKnq5qbjX8Szj9lP8ZbR2lFwtLHmxVLwXdgWUxJOI2BzYSXdSktjQjA7GXQ2YFXrwiwHYcqWvwihEbkMue18cQ99e85rvlsNQRTKzuNoRFvqNEmJ2lDnCIXEZLB6SaTW2SMTQmQZt/dSmeGMYji9JRf8pQgwsh0nvzYz+zXFHIsT3wrBU28BY/uW8beRR1728u159otdMf0zqzib8w1MbdDMOIgPz6NO7uch3dDiwAfbgcEir7YgNsYI3+74RYRpWGo4lkR2YpqUy3vda+EhjnQr4KU7JA/2J3fITjCpF1YzXZIrLMcsGvv3o3BdkXNuExdXa8vuizID0dPI0McXJRJDp2bibRdrSuLi0fND/igBN9yso2xF+BrulZW02ykmeXJbCuGf0jnze1fsQUQHZWbpiHB1eVO5hk0jO9oeqSC4YVY=" # see README
