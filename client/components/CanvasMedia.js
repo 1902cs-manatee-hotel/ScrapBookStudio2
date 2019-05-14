@@ -16,14 +16,20 @@ class CanvasMedia extends Component {
         rotation: this.props.rotation
       };
   }
+      static getDerivedStateFromProps(nextProps, prevState){
+
+        console.log(nextProps)
+        return null
+      }
+
       componentDidMount() {
         this.loadImage();
       }
-      componentDidUpdate(oldProps) {
-        if (oldProps.src !== this.props.src) {
-          this.loadImage();
-        }
-      }
+      // componentDidUpdate(oldProps) {
+        // if (oldProps.src !== this.props.src) {
+          // this.loadImage();
+        // }
+      // }
       componentWillUnmount() {
         this.image.removeEventListener('load', this.handleLoad);
       }
