@@ -82,7 +82,7 @@ export const deselectCanvasElement = () => ({
 //Thunks
 export const getPageContentThunk = id => async dispatch => {
   try {
-    console.log('PAGE ID:', id)
+    // console.log('PAGE ID:', id)
     const {data} = await axios.get(`/api/pages/${id}`)
     const canvas_texts = data.text
     const media = data.media
@@ -120,11 +120,11 @@ export const deleteSingleTextThunk = id => async dispatch => {
 }
 
 export const createSingleMediaThunk = obj => async dispatch => {
-  console.log('obj from content.js', obj)
+  // console.log('obj from content.js', obj)
   try {
     const {data} = await axios.post('/api/media', obj)
-    console.log('D*****ATA', data)
-    console.log('HELLO FROM THUNK')
+    // console.log('D*****ATA', data)
+    // console.log('HELLO FROM THUNK')
     dispatch(createSingleMedia(data))
   } catch (err) {
     console.log(err)
@@ -161,9 +161,9 @@ export const deleteSingleMediaThunk = id => async dispatch => {
 
 export const increaseFontSizeThunk = id => async dispatch => {
   try {
-    console.log('from thunk', id)
+    // console.log('from thunk', id)
     const {data} = await axios.put(`api/canvastext/increase/${id}`)
-    console.log('data from thunk', data)
+    // console.log('data from thunk', data)
     dispatch(updateSingleText(data))
   } catch (err) {
     console.error(err)
