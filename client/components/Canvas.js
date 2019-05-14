@@ -42,6 +42,7 @@ class Canvas extends Component {
       })
       return
     }
+
     // clicked on transformer - do nothing
     const clickedOnTransformer =
       e.target.getParent().className === 'Transformer'
