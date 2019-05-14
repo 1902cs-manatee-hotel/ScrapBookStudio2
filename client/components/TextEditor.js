@@ -54,7 +54,7 @@ class TextEditor extends Component {
 
     handleOnClickCreate = () => {
         const content = Plain.serialize(this.state.value)
-        console.log('EDITOR PAGE ID:', this.props.pageId)
+        // console.log('EDITOR PAGE ID:', this.props.pageId)
         this.props.createText(this.props.currentPage, content)
         this.setState({value: initialValue})
     }
