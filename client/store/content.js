@@ -149,7 +149,9 @@ export const deleteSingleMediaThunk = id => async dispatch => {
 
 export const increaseFontSizeThunk = id => async dispatch => {
     try {
+        console.log('from thunk', id);
         const {data} = await axios.put(`api/canvastext/increase/${id}`)
+        console.log('data from thunk', data);
         dispatch(updateSingleMedia(data))
     } catch(err) {console.error(err)}
 }

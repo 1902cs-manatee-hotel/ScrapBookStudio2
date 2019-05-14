@@ -36,7 +36,10 @@ router.put('/:id', async (req, res, next) => {
 router.put('/increase/:id', async (req, res, next) => {
     try {
         const canvasText = await CanvasText.findByPk(req.params.id)
-        const updatedCanvasText = await canvasText.update({size: canvasText.size++})
+        const newSize = canvasText.size + 1
+        console.log('increase', newSize);
+        const updatedCanvasText = await canvasText.update({size: newSize})
+        console.log('from route', updatedCanvasText);
         res.status(200).json(updatedCanvasText)
     } catch (error) {
         next(error)
@@ -46,7 +49,9 @@ router.put('/increase/:id', async (req, res, next) => {
 router.put('/decrease/:id', async (req, res, next) => {
     try {
         const canvasText = await CanvasText.findByPk(req.params.id)
-        const updatedCanvasText = await canvasText.update({size: canvasText.size--})
+        const newSize = canvasText.size - 1
+        console.log('decease', newSize);
+        const updatedCanvasText = await canvasText.update({size: newSize})
         res.status(200).json(updatedCanvasText)
     } catch (error) {
         next(error)
