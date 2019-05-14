@@ -11,7 +11,7 @@ class ViewOrEdit extends Component {
 
   render() {
     return (
-      <div className='has-text-centered centered-forms'>
+      <div className='has-text-centered centered-forms box'>
         <h1 className="title">Hey There!</h1>
         <h2 className="subtitle">What would you like to do?</h2>
         <br />
