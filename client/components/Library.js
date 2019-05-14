@@ -15,8 +15,8 @@ class Library extends Component {
   render() {
     return (
 
-      <div className="box form centered-forms" id="library-outer-container">
-        <h2>{this.props.user.firstName}'s Scrapbooks</h2>
+      <div className="box form centered-forms has-text-centered" id="library-outer-container">
+        <h2 className='title'>{this.props.user.firstName}'s Scrapbooks</h2>
         <div id="library-container">
         {
           this.props.scrapbooks.map(book => {
