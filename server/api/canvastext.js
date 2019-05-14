@@ -43,7 +43,7 @@ router.put('/decrease/:id', async (req, res, next) => {
     try {
         const canvasText = await CanvasText.findByPk(req.params.id)
         const newSize = canvasText.size - 1
-        console.log('decease', newSize);
+        console.log('decrease', newSize);
         const updatedCanvasText = await canvasText.update({size: newSize})
         res.status(200).json(updatedCanvasText)
     } catch (error) {
