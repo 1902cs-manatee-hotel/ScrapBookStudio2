@@ -53,7 +53,7 @@ class Canvas extends Component {
     const name = e.target.name()
     // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
-    // const textRotate = this.props.allText
+    // const text = this.props.allText
     if (images) {
       this.setState({
         selectedShapeName: name
