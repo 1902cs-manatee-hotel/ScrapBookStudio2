@@ -49,7 +49,7 @@ class Canvas extends Component {
       return
     }
 
-    // find clicked rect by its name
+    // find clicked image by its name
     const name = e.target.name()
     // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
