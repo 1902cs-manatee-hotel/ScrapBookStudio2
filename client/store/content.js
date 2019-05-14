@@ -120,6 +120,7 @@ export const createSingleMediaThunk = (obj) => async dispatch => {
     try {
       const {data} = await axios.post('/api/media', obj)
       console.log('D*****ATA', data)
+      console.log('HELLO FROM THUNK')
       dispatch(createSingleMedia(data))
   } catch (err) {console.log(err)}
 }
