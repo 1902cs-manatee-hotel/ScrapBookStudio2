@@ -53,8 +53,8 @@ class Canvas extends Component {
     const name = e.target.name()
     // const rect = this.state.rectangles.find(r => r.name === name)
     const images = this.props.allMedia
-    // const text = this.props.allText
-    if (images) {
+    const text = this.props.allText.find(t => `${t.id}` === name)
+    if (images || text) {
       this.setState({
         selectedShapeName: name
       })
@@ -117,7 +117,7 @@ class Canvas extends Component {
                             color={text.color}
                             size={text.size}
                             id={text.id}
-                            // name={`${text.id}`}
+                            name={`${text.id}`}
                           />
                         )
                       })}
