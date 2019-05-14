@@ -29,7 +29,7 @@ class Toolbar extends Component {
         <TextEditor />
         <br />
         <br />
-        <button onClick={this.handleClick}>Media Pool</button>
+        <button className='button is-primary space space-button' onClick={this.handleClick}>Media Pool</button>
         {this.state.revealMediaPool ? <MediaPool scrapbookId={this.props.scrapbookId}/> : null}
         {/* <Link>Previous</Link>
         <Link to={}>Next</Link> */}

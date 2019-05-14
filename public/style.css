@@ -59,6 +59,10 @@ form div {
   margin-bottom: 15px;
 }
 
+.space-button {
+  margin-right: 15px;
+}
+
 .canvas {
   margin-left: 100px;
   margin-right: 100px;

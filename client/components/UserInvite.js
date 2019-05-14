@@ -14,10 +14,10 @@ const UserInvite = () => {
         </div>
     </div>
     <Link to="/library">
-        <button className="button is-primary" type="submit">Send Invites</button>
+        <button className="button is-primary space-button" type="submit">Send Invites</button>
     </Link>
     <Link to="/library">
-        <button className="button is-primary" type="submit">Skip</button>
+        <button className="button is-primary space-button" type="submit">Skip</button>
     </Link>
 </div>
   )
