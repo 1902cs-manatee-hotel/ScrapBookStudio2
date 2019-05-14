@@ -46,6 +46,7 @@
     "immutable": "^4.0.0-rc.12",
     "konva": "^3.2.5",
     "morgan": "^1.9.1",
+    "nodemon": "^1.19.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.9.0",
