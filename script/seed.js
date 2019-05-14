@@ -36,7 +36,7 @@ async function seed() {
     Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 75, y_coord: 60, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2, scrapbookId: 1 }),
     // Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
     // Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 1, height: 1, filter: 2, pageId: 7, scrapbookId: 1 }),
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 7, scrapbookId: 1 }),
     CanvasText.create({ content: 'Great Time!', x_coord: 50, y_coord: 50, rotation: 0, color: 'blue', size: 50, pageId: 1 }),
     CanvasText.create({ content: 'LOL', x_coord: 50, y_coord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 1 }),
     CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 2 }),
