@@ -63,6 +63,14 @@ class TextEditor extends Component {
         this.props.deleteText(this.props.selectedText)
   }
 
+  handleOnClickIncrease = () => {
+    
+  }
+
+  handleOnClickIDecrease = () => {
+
+  }
+
     render() {
         return (
             <Fragment>
@@ -76,7 +84,14 @@ class TextEditor extends Component {
                 </FormatToolbar>
                 <Editor className='box' value={this.state.value} onChange={this.onChange} />
                 <button type="submit" onClick={this.handleOnClickCreate}>Create</button>
-                {this.props.selectedText ? <button type="submit" onClick={this.handleOnClickDelete}>Delete</button> : null}
+                {this.props.selectedText ? 
+                <div>
+                  <button type="submit" onClick={this.handleOnClickDelete}>Delete</button>
+                  <br />
+                  <button type="submit" onClick={this.handleOnClickIncrease}>Increase</button>
+                  <button type="submit" onClick={this.handleOnClickDecrease}>Decrease</button>
+                </div>
+                : null}
             </Fragment>
         )
     }
