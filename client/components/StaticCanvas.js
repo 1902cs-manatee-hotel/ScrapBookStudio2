@@ -18,12 +18,31 @@ import {
 import MediaResizer from './MediaResizer'
 
 class Canvas extends Component {
+  constructor() {
+    super()
+    this.handleOnClickNext = this.handleOnClickNext.bind(this)
+    this.handleOnClickPrevious = this.handleOnClickPrevious.bind(this)
+  }
   async componentDidMount() {
     await this.props.getAllPages(this.props.match.params.scrapbookid)
     await this.props.getPageContent(this.props.match.params.pageid)
     await this.props.setPageIndex(this.props.match.params.pageid)
     await this.props.setSingleScrapbook(this.props.match.params.scrapbookid)
     this.props.setSinglePage(this.props.match.params.pageid)
+    this.props.setNextAndPrevious()
+  }
+
+  async handleOnClickNext () {
+    await this.props.getAllPages(this.props.match.params.scrapbookid)
+    await this.props.getPageContent(this.props.nextPage)
+    await this.props.increasePageIndex()
+    this.props.setNextAndPrevious()
+  }
+
+  async handleOnClickPrevious () {
+    await this.props.getAllPages(this.props.match.params.scrapbookid)
+    await this.props.getPageContent(this.props.previousPage)
+    await this.props.decreasePageIndex()
     this.props.setNextAndPrevious()
   }
 
@@ -87,7 +106,7 @@ class Canvas extends Component {
                 {this.props.currentPageIndex !== 0 ? (
                   <Link
                     onClick={this.handleOnClickPrevious}
-                    to={`/canvas/${this.props.match.params.scrapbookid}/${
+                    to={`/staticcanvas/${this.props.match.params.scrapbookid}/${
                       this.props.previousPage
                     }`}
                   >
@@ -103,7 +122,7 @@ class Canvas extends Component {
                 this.props.allPages.length - 1 ? (
                   <Link
                     onClick={this.handleOnClickNext}
-                    to={`/canvas/${this.props.match.params.scrapbookid}/${
+                    to={`/staticcanvas/${this.props.match.params.scrapbookid}/${
                       this.props.nextPage
                     }`}
                   >

@@ -1774,9 +1774,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1798,9 +1798,14 @@ function (_Component) {
   _inherits(Canvas, _Component);
 
   function Canvas() {
+    var _this;
+
     _classCallCheck(this, Canvas);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Canvas).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Canvas).call(this));
+    _this.handleOnClickNext = _this.handleOnClickNext.bind(_assertThisInitialized(_this));
+    _this.handleOnClickPrevious = _this.handleOnClickPrevious.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Canvas, [{
@@ -1847,9 +1852,85 @@ function (_Component) {
       return componentDidMount;
     }()
   }, {
+    key: "handleOnClickNext",
+    value: function () {
+      var _handleOnClickNext = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.props.getAllPages(this.props.match.params.scrapbookid);
+
+              case 2:
+                _context2.next = 4;
+                return this.props.getPageContent(this.props.nextPage);
+
+              case 4:
+                _context2.next = 6;
+                return this.props.increasePageIndex();
+
+              case 6:
+                this.props.setNextAndPrevious();
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleOnClickNext() {
+        return _handleOnClickNext.apply(this, arguments);
+      }
+
+      return handleOnClickNext;
+    }()
+  }, {
+    key: "handleOnClickPrevious",
+    value: function () {
+      var _handleOnClickPrevious = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return this.props.getAllPages(this.props.match.params.scrapbookid);
+
+              case 2:
+                _context3.next = 4;
+                return this.props.getPageContent(this.props.previousPage);
+
+              case 4:
+                _context3.next = 6;
+                return this.props.decreasePageIndex();
+
+              case 6:
+                this.props.setNextAndPrevious();
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function handleOnClickPrevious() {
+        return _handleOnClickPrevious.apply(this, arguments);
+      }
+
+      return handleOnClickPrevious;
+    }()
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["ReactReduxContext"].Consumer, null, function (_ref) {
         var store = _ref.store;
@@ -1866,10 +1947,10 @@ function (_Component) {
           className: "box",
           width: 1300,
           height: 500,
-          onMouseDown: _this.handleStageMouseDown
+          onMouseDown: _this2.handleStageMouseDown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
           store: store
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this.props.allText.map(function (text) {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this2.props.allText.map(function (text) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasText__WEBPACK_IMPORTED_MODULE_6__["default"], {
             key: text.id,
             content: text.content,
@@ -1883,7 +1964,7 @@ function (_Component) {
             id: text.id,
             name: "".concat(text.id)
           });
-        }), _this.props.allMedia.map(function (media) {
+        }), _this2.props.allMedia.map(function (media) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasMedia__WEBPACK_IMPORTED_MODULE_5__["default"], {
             key: media.id,
             src: media.path,
@@ -1896,15 +1977,15 @@ function (_Component) {
             name: "".concat(media.id),
             id: media.id
           });
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _this.props.currentPageIndex !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-          onClick: _this.handleOnClickPrevious,
-          to: "/canvas/".concat(_this.props.match.params.scrapbookid, "/").concat(_this.props.previousPage)
+        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _this2.props.currentPageIndex !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+          onClick: _this2.handleOnClickPrevious,
+          to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.previousPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "button is-primary space space-button",
           type: "submit"
-        }, "Previous")) : null, _this.props.currentPageIndex < _this.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-          onClick: _this.handleOnClickNext,
-          to: "/canvas/".concat(_this.props.match.params.scrapbookid, "/").concat(_this.props.nextPage)
+        }, "Previous")) : null, _this2.props.currentPageIndex < _this2.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+          onClick: _this2.handleOnClickNext,
+          to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.nextPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "button is-primary space space-button",
           type: "submit"
