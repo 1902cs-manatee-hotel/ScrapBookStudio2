@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 const LaunchPage = ({isLoggedIn}) => (
   <div>
     {isLoggedIn ? (
-      <div>{/* Background image & site info for login page will not show when logged in */}</div>
+      <div style={{backgroundImage: 'none'}}>{/* Background image & site info for login page will not show when logged in */}</div>
     ) : (
       <div className="launch-page">
         <h1 className="login-header">Scrapbook Studio</h1>

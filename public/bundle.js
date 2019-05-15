@@ -453,7 +453,7 @@ function (_Component) {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
           style: {
-            backgroundImage: 'url(https://utemplates.net/wp-content/uploads/2017/07/White-Textured-Background.jpg)'
+            backgroundImage: 'url(https://lh3.googleusercontent.com/5TKardQ98-xU73PKBQe6fv86GuLWFwsz44psEyyW6ioU2Zo-qCy-gGN5R72-48vT-BOQaJtgBGAKyQviBO2NNSo-gO3fYCs9b05OkXhZ6AJQdoLvisQx9tS_D4NXwz4rIIp0t2hoSS-un1mcDOAfZcWw6HRlwRCea2x8gpF5-Idn58NEbGiAlg8cg6V_AdWK4PpDXfekc7hC6U7gjRTM86DxpfLjYhYA9qRv-zhYkqpvoshlB_p_b1rjzBKY_2NsTAZsb6L2jJO-OGdTISy8HsRMhUfwFTIA15xxRbbXEO28dEaTUhep-C5-JMjG6ZiK2DH3kFr3r8nZlcYY-pXAIl2SfHgo027YsQmtKUlsiU3AUKn0WkOxlU-_lP_16SyP3sCMEB5gqtub4uSizCTC6LYhInWMGHubmVINhzqkOu8PtVEtbPQeR_s_z9U9GCuv-emY5TfBvY8QvaB-BJrGWh5NabDjn2VCGD9CrwGj-Kmdx4HYR1D3CMX6ZCOui2YcmkvgdWGitPngBjA7ammXgwy7ntpYImNxF6wuunvpvw3qj9LEYPEYWLXXd-yLa9n2Z2S_2ysz8eAOmZeJhWCF6nEsCrw9Czcrwx385KqyMHz_MWv772z5J9fkXxWtfnANIYiQ1pdM1ivGlk9QuwK4Co8Szkx3APs=w1024-h800-no)'
           },
           className: "box",
           width: 1300,
@@ -851,6 +851,7 @@ function (_Component) {
         x: this.props.xCoord,
         y: this.props.yCoord,
         fontSize: this.props.size,
+        fontFamily: "Dekko, cursive",
         fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
         onDragStart: function onDragStart() {
           _this2.setState({
@@ -1071,7 +1072,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var LaunchPage = function LaunchPage(_ref) {
   var isLoggedIn = _ref.isLoggedIn;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: 'none'
+    }
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "launch-page"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "login-header"
@@ -2029,6 +2034,9 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
+          style: {
+            backgroundImage: 'url(https://lh3.googleusercontent.com/5TKardQ98-xU73PKBQe6fv86GuLWFwsz44psEyyW6ioU2Zo-qCy-gGN5R72-48vT-BOQaJtgBGAKyQviBO2NNSo-gO3fYCs9b05OkXhZ6AJQdoLvisQx9tS_D4NXwz4rIIp0t2hoSS-un1mcDOAfZcWw6HRlwRCea2x8gpF5-Idn58NEbGiAlg8cg6V_AdWK4PpDXfekc7hC6U7gjRTM86DxpfLjYhYA9qRv-zhYkqpvoshlB_p_b1rjzBKY_2NsTAZsb6L2jJO-OGdTISy8HsRMhUfwFTIA15xxRbbXEO28dEaTUhep-C5-JMjG6ZiK2DH3kFr3r8nZlcYY-pXAIl2SfHgo027YsQmtKUlsiU3AUKn0WkOxlU-_lP_16SyP3sCMEB5gqtub4uSizCTC6LYhInWMGHubmVINhzqkOu8PtVEtbPQeR_s_z9U9GCuv-emY5TfBvY8QvaB-BJrGWh5NabDjn2VCGD9CrwGj-Kmdx4HYR1D3CMX6ZCOui2YcmkvgdWGitPngBjA7ammXgwy7ntpYImNxF6wuunvpvw3qj9LEYPEYWLXXd-yLa9n2Z2S_2ysz8eAOmZeJhWCF6nEsCrw9Czcrwx385KqyMHz_MWv772z5J9fkXxWtfnANIYiQ1pdM1ivGlk9QuwK4Co8Szkx3APs=w1024-h800-no)'
+          },
           className: "box",
           width: 1300,
           height: 500,
@@ -2558,17 +2566,12 @@ function (_Component) {
   _createClass(TextEditor, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormatToolbar__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space space-button",
-        type: "submit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_kit__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        icon: react_icons_kit_feather_bold__WEBPACK_IMPORTED_MODULE_5__["bold"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space space-button",
-        type: "submit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_kit__WEBPACK_IMPORTED_MODULE_4___default.a, {
-        icon: react_icons_kit_feather_italic__WEBPACK_IMPORTED_MODULE_6__["italic"]
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(slate_react__WEBPACK_IMPORTED_MODULE_1__["Editor"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormatToolbar__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(slate_react__WEBPACK_IMPORTED_MODULE_1__["Editor"], {
+        style: {
+          textAlign: 'center',
+          width: '250px'
+        },
+        placeholder: "Text",
         className: "box",
         value: this.state.value,
         onChange: this.onChange
@@ -2580,15 +2583,7 @@ function (_Component) {
         className: "button is-primary space space-button",
         type: "submit",
         onClick: this.handleOnClickDelete
-      }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space space-button",
-        type: "submit",
-        onClick: this.handleOnClickIncrease
-      }, "Increase"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space space-button",
-        type: "submit",
-        onClick: this.handleOnClickDecrease
-      }, "Decrease")) : null);
+      }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)) : null);
     }
   }]);
 
@@ -2700,10 +2695,7 @@ function (_Component) {
         className: "box toolbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
-      }, "Toolbar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaUpload__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space",
-        type: "submit"
-      }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Toolbar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaUpload__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button is-primary space",
         type: "submit"
       }, "Background"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextEditor__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -3861,23 +3853,23 @@ var createSingleMediaThunk = function createSingleMediaThunk(obj) {
               case 3:
                 _ref9 = _context5.sent;
                 data = _ref9.data;
-                // console.log('D*****ATA', data)
-                // console.log('HELLO FROM THUNK')
+                console.log('D*****ATA', data); // console.log('HELLO FROM THUNK')
+
                 dispatch(createSingleMedia(data));
-                _context5.next = 11;
+                _context5.next = 12;
                 break;
 
-              case 8:
-                _context5.prev = 8;
+              case 9:
+                _context5.prev = 9;
                 _context5.t0 = _context5["catch"](0);
                 console.log(_context5.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[0, 8]]);
+        }, _callee5, null, [[0, 9]]);
       }));
 
       return function (_x5) {

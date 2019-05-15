@@ -124,7 +124,7 @@ class Canvas extends Component {
             <div className="tile is-parent is-vertical">
               <div className="tile is-child">
                 <Stage
-                  style={{backgroundImage: 'url(https://utemplates.net/wp-content/uploads/2017/07/White-Textured-Background.jpg)'}}
+                  style={{backgroundImage: 'url(https://lh3.googleusercontent.com/5TKardQ98-xU73PKBQe6fv86GuLWFwsz44psEyyW6ioU2Zo-qCy-gGN5R72-48vT-BOQaJtgBGAKyQviBO2NNSo-gO3fYCs9b05OkXhZ6AJQdoLvisQx9tS_D4NXwz4rIIp0t2hoSS-un1mcDOAfZcWw6HRlwRCea2x8gpF5-Idn58NEbGiAlg8cg6V_AdWK4PpDXfekc7hC6U7gjRTM86DxpfLjYhYA9qRv-zhYkqpvoshlB_p_b1rjzBKY_2NsTAZsb6L2jJO-OGdTISy8HsRMhUfwFTIA15xxRbbXEO28dEaTUhep-C5-JMjG6ZiK2DH3kFr3r8nZlcYY-pXAIl2SfHgo027YsQmtKUlsiU3AUKn0WkOxlU-_lP_16SyP3sCMEB5gqtub4uSizCTC6LYhInWMGHubmVINhzqkOu8PtVEtbPQeR_s_z9U9GCuv-emY5TfBvY8QvaB-BJrGWh5NabDjn2VCGD9CrwGj-Kmdx4HYR1D3CMX6ZCOui2YcmkvgdWGitPngBjA7ammXgwy7ntpYImNxF6wuunvpvw3qj9LEYPEYWLXXd-yLa9n2Z2S_2ysz8eAOmZeJhWCF6nEsCrw9Czcrwx385KqyMHz_MWv772z5J9fkXxWtfnANIYiQ1pdM1ivGlk9QuwK4Co8Szkx3APs=w1024-h800-no)'}}
                   className="box"
                   width={1300}
                   height={500}
