@@ -197,14 +197,14 @@ class Canvas extends Component {
               </div>
               <div>
                 <div className="tile is-child">
-                  {/* <button
+                  <button
                   className="button is-primary add-page-button space-button"
                   onClick={this.handlePageSubmit}
                   type="submit"
                 >
                   Add Page
-                </button> */}
-                  <Link
+                </button>
+                  {/* <Link
                     to={`/canvas/${this.props.match.params.scrapbookid}/${
                       this.props.allPages.length
                     }`}
@@ -216,7 +216,7 @@ class Canvas extends Component {
                     >
                       Add Page
                     </button>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

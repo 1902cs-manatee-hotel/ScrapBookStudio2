@@ -12,9 +12,9 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  // console.log('HELLOO!!!!!!!!!')
+  try {
     console.log('mediaAPI', req.body)
-    console.log('HELLOO!!!!!!!!!')
-    try {
       // const arr = Object.keys(req.body)
       // const media = await Media.create(req.body)
       const media = await Media.create({path: req.body.path, scrapbookId: req.body.scrapbookId, pageId: req.body.pageId})

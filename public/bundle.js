@@ -1003,7 +1003,7 @@ function (_Component) {
         className: "input",
         name: "name",
         type: "text",
-        placeholder: "Enter Scrapbook Name",
+        placeholder: "Title (required)",
         onChange: this.handleNameChange,
         value: this.state.name
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1014,7 +1014,7 @@ function (_Component) {
         className: "input",
         name: "description",
         type: "text",
-        placeholder: "Enter a description (optional)",
+        placeholder: "Description (required)",
         onChange: this.handleDescChange,
         value: this.state.description
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
