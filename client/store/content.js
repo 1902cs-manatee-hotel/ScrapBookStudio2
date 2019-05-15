@@ -142,6 +142,7 @@ export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
 
 export const getSingleMediaThunk = id => async dispatch => {
   try {
+    console.log('Id in get single media thunk', id)
     const {data} = await axios.post(`/api/media/${id}`)
     dispatch(getSingleMedia(data))
   } catch (err) {
@@ -220,7 +221,7 @@ export default function(state = initialState, action) {
       return newState
     case GET_SINGLE_MEDIA:
       newState.selectedMedia = action.id
-      newState.allMedia = [...newState.allMedia, action.text]
+      // newState.allMedia = [...newState.allMedia, action.text]
       return newState
     case CREATE_SINGLE_MEDIA:
       newState.allMedia = [...newState.allMedia, action.media]

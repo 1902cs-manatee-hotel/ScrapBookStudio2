@@ -72,6 +72,7 @@ class CanvasMedia extends Component {
       }
 
       handleOnMouseOver = (event) => {
+        console.log('ID in handleMouseOver:', this.props.id)
         this.props.setSelectedMedia(this.props.id)
         this.props.updateMediaOnDrag({
           xCoord: event.target.x(),

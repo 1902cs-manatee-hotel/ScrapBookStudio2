@@ -123,6 +123,7 @@ class Canvas extends Component {
                         )
                       })}
                       {this.props.allMedia.map(media => {
+                        console.log('ALL MEDIA:', this.props.allMedia)
                         return (
                           <CanvasMedia
                             key={media.id}
