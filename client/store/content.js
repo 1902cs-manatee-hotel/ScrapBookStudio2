@@ -132,6 +132,18 @@ export const createSingleMediaThunk = obj => async dispatch => {
   }
 }
 
+export const createSingleCloudMediaThunk = obj => async dispatch => {
+  // console.log('obj from content.js', obj)
+  try {
+    const {data} = await axios.post('/api/media/cloudinary', obj)
+    console.log('D*****ATA', data)
+    // console.log('HELLO FROM THUNK')
+    dispatch(createSingleMedia(data))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
           const {data} = await axios.put(`/api/media/${id}`, updatedProp)

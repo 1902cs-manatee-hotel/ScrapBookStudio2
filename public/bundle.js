@@ -1588,8 +1588,13 @@ function (_Component) {
           console.log('Done! Here is the image info: ', result.info);
           console.log('CLICK HERE:', result.info.secure_url);
           var path = result.info.secure_url;
+          console.log("****CLOUD RESULT", path);
 
-          _this2.props.postMedia(path);
+          _this2.props.postMedia({
+            path: path,
+            scrapbookId: _this2.props.currentScrapbook,
+            pageId: _this2.props.singlePage
+          });
         }
       });
       myWidget.open();
@@ -1608,15 +1613,22 @@ function (_Component) {
   return MediaUpload;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
+var mapState = function mapState(state) {
+  return {
+    currentScrapbook: state.scrapbooks.singleScrapbook,
+    singlePage: state.scrapbooks.singlePage
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     postMedia: function postMedia(imageUrl) {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["createSingleMediaThunk"])(imageUrl));
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["createSingleCloudMediaThunk"])(imageUrl));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(MediaUpload));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatchToProps)(MediaUpload));
 
 /***/ }),
 
@@ -1959,7 +1971,7 @@ function (_Component) {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
           style: {
-            backgroundImage: 'url(https://lh3.googleusercontent.com/5TKardQ98-xU73PKBQe6fv86GuLWFwsz44psEyyW6ioU2Zo-qCy-gGN5R72-48vT-BOQaJtgBGAKyQviBO2NNSo-gO3fYCs9b05OkXhZ6AJQdoLvisQx9tS_D4NXwz4rIIp0t2hoSS-un1mcDOAfZcWw6HRlwRCea2x8gpF5-Idn58NEbGiAlg8cg6V_AdWK4PpDXfekc7hC6U7gjRTM86DxpfLjYhYA9qRv-zhYkqpvoshlB_p_b1rjzBKY_2NsTAZsb6L2jJO-OGdTISy8HsRMhUfwFTIA15xxRbbXEO28dEaTUhep-C5-JMjG6ZiK2DH3kFr3r8nZlcYY-pXAIl2SfHgo027YsQmtKUlsiU3AUKn0WkOxlU-_lP_16SyP3sCMEB5gqtub4uSizCTC6LYhInWMGHubmVINhzqkOu8PtVEtbPQeR_s_z9U9GCuv-emY5TfBvY8QvaB-BJrGWh5NabDjn2VCGD9CrwGj-Kmdx4HYR1D3CMX6ZCOui2YcmkvgdWGitPngBjA7ammXgwy7ntpYImNxF6wuunvpvw3qj9LEYPEYWLXXd-yLa9n2Z2S_2ysz8eAOmZeJhWCF6nEsCrw9Czcrwx385KqyMHz_MWv772z5J9fkXxWtfnANIYiQ1pdM1ivGlk9QuwK4Co8Szkx3APs=w1024-h800-no)'
+            backgroundImage: 'url(http://bgfons.com/uploads/paper/paper_texture3872.jpg)'
           },
           className: "box",
           width: 1300,
@@ -3089,7 +3101,8 @@ AuthForm.propTypes = {
 module.exports = {
   cloud_name: 'dv7hoa5iv',
   upload_preset: 'ml_default',
-  api_key: '812884794238589'
+  api_key: '812884794238589',
+  api_secret: 'Dq3tKjVpGy5_C4e3Vn061x7dC1c'
 };
 
 /***/ }),
@@ -3482,7 +3495,7 @@ socket.on('textUpdate', function (newProps) {
 /*!*********************************!*\
   !*** ./client/store/content.js ***!
   \*********************************/
-/*! exports provided: getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk, default */
+/*! exports provided: getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, createSingleCloudMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3498,6 +3511,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSingleTextThunk", function() { return updateSingleTextThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSingleTextThunk", function() { return deleteSingleTextThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSingleMediaThunk", function() { return createSingleMediaThunk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSingleCloudMediaThunk", function() { return createSingleCloudMediaThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSingleMediaThunk", function() { return updateSingleMediaThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSingleMediaThunk", function() { return getSingleMediaThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSingleMediaThunk", function() { return deleteSingleMediaThunk; });
@@ -3835,7 +3849,7 @@ var createSingleMediaThunk = function createSingleMediaThunk(obj) {
     }()
   );
 };
-var updateSingleMediaThunk = function updateSingleMediaThunk(id, updatedProp) {
+var createSingleCloudMediaThunk = function createSingleCloudMediaThunk(obj) {
   return (
     /*#__PURE__*/
     function () {
@@ -3850,27 +3864,28 @@ var updateSingleMediaThunk = function updateSingleMediaThunk(id, updatedProp) {
               case 0:
                 _context6.prev = 0;
                 _context6.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/media/".concat(id), updatedProp);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/media/cloudinary', obj);
 
               case 3:
                 _ref11 = _context6.sent;
                 data = _ref11.data;
-                dispatch(updateSingleMedia(data)); // socket.emit('mediaUpdate', data)
+                console.log('D*****ATA', data); // console.log('HELLO FROM THUNK')
 
-                _context6.next = 11;
+                dispatch(createSingleMedia(data));
+                _context6.next = 12;
                 break;
 
-              case 8:
-                _context6.prev = 8;
+              case 9:
+                _context6.prev = 9;
                 _context6.t0 = _context6["catch"](0);
                 console.log(_context6.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[0, 8]]);
+        }, _callee6, null, [[0, 9]]);
       }));
 
       return function (_x6) {
@@ -3879,7 +3894,7 @@ var updateSingleMediaThunk = function updateSingleMediaThunk(id, updatedProp) {
     }()
   );
 };
-var getSingleMediaThunk = function getSingleMediaThunk(id) {
+var updateSingleMediaThunk = function updateSingleMediaThunk(id, updatedProp) {
   return (
     /*#__PURE__*/
     function () {
@@ -3893,28 +3908,28 @@ var getSingleMediaThunk = function getSingleMediaThunk(id) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.prev = 0;
-                console.log('Id in get single media thunk', id);
-                _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/media/".concat(id));
+                _context7.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/media/".concat(id), updatedProp);
 
-              case 4:
+              case 3:
                 _ref13 = _context7.sent;
                 data = _ref13.data;
-                dispatch(getSingleMedia(data));
-                _context7.next = 12;
+                dispatch(updateSingleMedia(data)); // socket.emit('mediaUpdate', data)
+
+                _context7.next = 11;
                 break;
 
-              case 9:
-                _context7.prev = 9;
+              case 8:
+                _context7.prev = 8;
                 _context7.t0 = _context7["catch"](0);
                 console.log(_context7.t0);
 
-              case 12:
+              case 11:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, null, [[0, 9]]);
+        }, _callee7, null, [[0, 8]]);
       }));
 
       return function (_x7) {
@@ -3923,37 +3938,42 @@ var getSingleMediaThunk = function getSingleMediaThunk(id) {
     }()
   );
 };
-var deleteSingleMediaThunk = function deleteSingleMediaThunk(id) {
+var getSingleMediaThunk = function getSingleMediaThunk(id) {
   return (
     /*#__PURE__*/
     function () {
       var _ref14 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee8(dispatch) {
+        var _ref15, data;
+
         return regeneratorRuntime.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
                 _context8.prev = 0;
-                _context8.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("api/media/".concat(id));
+                console.log('Id in get single media thunk', id);
+                _context8.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/media/".concat(id));
 
-              case 3:
-                dispatch(deleteSingleMedia(id));
-                _context8.next = 9;
+              case 4:
+                _ref15 = _context8.sent;
+                data = _ref15.data;
+                dispatch(getSingleMedia(data));
+                _context8.next = 12;
                 break;
 
-              case 6:
-                _context8.prev = 6;
-                _context8.t0 = _context8["catch"](0);
-                console.error(_context8.t0);
-
               case 9:
+                _context8.prev = 9;
+                _context8.t0 = _context8["catch"](0);
+                console.log(_context8.t0);
+
+              case 12:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8, null, [[0, 6]]);
+        }, _callee8, null, [[0, 9]]);
       }));
 
       return function (_x8) {
@@ -3962,51 +3982,46 @@ var deleteSingleMediaThunk = function deleteSingleMediaThunk(id) {
     }()
   );
 };
-var increaseFontSizeThunk = function increaseFontSizeThunk(id) {
+var deleteSingleMediaThunk = function deleteSingleMediaThunk(id) {
   return (
     /*#__PURE__*/
     function () {
-      var _ref15 = _asyncToGenerator(
+      var _ref16 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee9(dispatch) {
-        var _ref16, data;
-
         return regeneratorRuntime.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
                 _context9.prev = 0;
                 _context9.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/canvastext/increase/".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("api/media/".concat(id));
 
               case 3:
-                _ref16 = _context9.sent;
-                data = _ref16.data;
-                // console.log('data from thunk', data)
-                dispatch(updateSingleText(data));
-                _context9.next = 11;
+                dispatch(deleteSingleMedia(id));
+                _context9.next = 9;
                 break;
 
-              case 8:
-                _context9.prev = 8;
+              case 6:
+                _context9.prev = 6;
                 _context9.t0 = _context9["catch"](0);
                 console.error(_context9.t0);
 
-              case 11:
+              case 9:
               case "end":
                 return _context9.stop();
             }
           }
-        }, _callee9, null, [[0, 8]]);
+        }, _callee9, null, [[0, 6]]);
       }));
 
       return function (_x9) {
-        return _ref15.apply(this, arguments);
+        return _ref16.apply(this, arguments);
       };
     }()
   );
 };
-var decreaseFontSizeThunk = function decreaseFontSizeThunk(id) {
+var increaseFontSizeThunk = function increaseFontSizeThunk(id) {
   return (
     /*#__PURE__*/
     function () {
@@ -4021,11 +4036,12 @@ var decreaseFontSizeThunk = function decreaseFontSizeThunk(id) {
               case 0:
                 _context10.prev = 0;
                 _context10.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/canvastext/decrease/".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/canvastext/increase/".concat(id));
 
               case 3:
                 _ref18 = _context10.sent;
                 data = _ref18.data;
+                // console.log('data from thunk', data)
                 dispatch(updateSingleText(data));
                 _context10.next = 11;
                 break;
@@ -4045,6 +4061,49 @@ var decreaseFontSizeThunk = function decreaseFontSizeThunk(id) {
 
       return function (_x10) {
         return _ref17.apply(this, arguments);
+      };
+    }()
+  );
+};
+var decreaseFontSizeThunk = function decreaseFontSizeThunk(id) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref19 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee11(dispatch) {
+        var _ref20, data;
+
+        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.prev = 0;
+                _context11.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/canvastext/decrease/".concat(id));
+
+              case 3:
+                _ref20 = _context11.sent;
+                data = _ref20.data;
+                dispatch(updateSingleText(data));
+                _context11.next = 11;
+                break;
+
+              case 8:
+                _context11.prev = 8;
+                _context11.t0 = _context11["catch"](0);
+                console.error(_context11.t0);
+
+              case 11:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11, null, [[0, 8]]);
+      }));
+
+      return function (_x11) {
+        return _ref19.apply(this, arguments);
       };
     }()
   );
@@ -4266,7 +4325,7 @@ var initialState = {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, logout, getSingleScrapbook, getSinglePage, setNextAndPrevious, increasePageIndex, decreasePageIndex, setPageIndex, getAllScrapbooksThunk, createScrapbookThunk, updateScrapbookThunk, deleteScrapbookThunk, getAllPagesThunk, createSinglePageThunk, deleteSinglePageThunk, getAllScrapbookMediaThunk, getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk */
+/*! exports provided: default, me, auth, logout, getSingleScrapbook, getSinglePage, setNextAndPrevious, increasePageIndex, decreasePageIndex, setPageIndex, getAllScrapbooksThunk, createScrapbookThunk, updateScrapbookThunk, deleteScrapbookThunk, getAllPagesThunk, createSinglePageThunk, deleteSinglePageThunk, getAllScrapbookMediaThunk, getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, createSingleCloudMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4337,6 +4396,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "deleteSingleTextThunk", function() { return _content__WEBPACK_IMPORTED_MODULE_6__["deleteSingleTextThunk"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createSingleMediaThunk", function() { return _content__WEBPACK_IMPORTED_MODULE_6__["createSingleMediaThunk"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createSingleCloudMediaThunk", function() { return _content__WEBPACK_IMPORTED_MODULE_6__["createSingleCloudMediaThunk"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updateSingleMediaThunk", function() { return _content__WEBPACK_IMPORTED_MODULE_6__["updateSingleMediaThunk"]; });
 
