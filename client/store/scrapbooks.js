@@ -127,6 +127,7 @@ export const deleteScrapbookThunk = id => async dispatch => {
 export const getAllPagesThunk = (scrapbookId) => async dispatch => {
     try {
         const {data} = await axios.get(`/api/scrapbooks/${scrapbookId}/pages`)
+        // console.log('pages', data)
         dispatch(getAllPages(data))
     } catch(err) {console.error(err)}
 }
@@ -134,7 +135,6 @@ export const getAllPagesThunk = (scrapbookId) => async dispatch => {
 export const createSinglePageThunk = (scrapbookid) => async dispatch => {
   try {
       const {data} = await axios.post(`/api/pages/${scrapbookid}`)
-      axios.get(`/api/pages/newpage/${scrapbookid}/${data.id}`)
       dispatch(createSinglePage(data))
   } catch(err) {console.error(err)}
 }

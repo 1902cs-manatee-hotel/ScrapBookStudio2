@@ -506,11 +506,13 @@ function (_Component) {
           type: "submit"
         }, "Next")) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tile is-child"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          to: "/canvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.allPages.length)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "button is-primary add-page-button space-button",
           onClick: _this2.handlePageSubmit,
           type: "submit"
-        }, "Add Page")))));
+        }, "Add Page"))))));
       });
     }
   }]);
@@ -1001,7 +1003,7 @@ function (_Component) {
         className: "input",
         name: "name",
         type: "text",
-        placeholder: "Enter Scrapbook Name",
+        placeholder: "Title (required)",
         onChange: this.handleNameChange,
         value: this.state.name
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1012,12 +1014,13 @@ function (_Component) {
         className: "input",
         name: "description",
         type: "text",
-        placeholder: "Enter a description (optional)",
+        placeholder: "Description (required)",
         onChange: this.handleDescChange,
         value: this.state.description
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/userinvite"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        disabled: !(this.state.name && this.state.description),
         className: "button is-primary",
         onClick: this.handleSubmit,
         type: "submit"
@@ -2984,14 +2987,12 @@ var AuthForm = function AuthForm(props) {
       className: "input",
       name: "lastName",
       type: "text"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "button is-success",
-      type: "submit"
-    }, displayName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signup"
-    }, "Sign Up")), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/auth/google"
-    }, displayName, " with Google")));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "button is-warning",
+      type: "submit"
+    }, displayName))), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-background"
@@ -3022,7 +3023,10 @@ var AuthForm = function AuthForm(props) {
       type: "submit"
     }, displayName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signup"
-    }, "Sign Up")), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "button is-warning",
+      type: "submit"
+    }, "Sign Up"))), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
   }
 };
 /**
@@ -3087,8 +3091,7 @@ AuthForm.propTypes = {
 module.exports = {
   cloud_name: 'dv7hoa5iv',
   upload_preset: 'ml_default',
-  api_key: '812884794238589',
-  api_secret: 'Dq3tKjVpGy5_C4e3Vn061x7dC1c'
+  api_key: '812884794238589'
 };
 
 /***/ }),
@@ -4721,6 +4724,7 @@ var getAllPagesThunk = function getAllPagesThunk(scrapbookId) {
               case 3:
                 _ref9 = _context5.sent;
                 data = _ref9.data;
+                // console.log('pages', data)
                 dispatch(getAllPages(data));
                 _context5.next = 11;
                 break;
@@ -4764,22 +4768,21 @@ var createSinglePageThunk = function createSinglePageThunk(scrapbookid) {
               case 3:
                 _ref11 = _context6.sent;
                 data = _ref11.data;
-                axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pages/newpage/".concat(scrapbookid, "/").concat(data.id));
                 dispatch(createSinglePage(data));
-                _context6.next = 12;
+                _context6.next = 11;
                 break;
 
-              case 9:
-                _context6.prev = 9;
+              case 8:
+                _context6.prev = 8;
                 _context6.t0 = _context6["catch"](0);
                 console.error(_context6.t0);
 
-              case 12:
+              case 11:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[0, 9]]);
+        }, _callee6, null, [[0, 8]]);
       }));
 
       return function (_x6) {
@@ -87796,7 +87799,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

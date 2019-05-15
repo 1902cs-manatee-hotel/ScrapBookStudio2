@@ -41,16 +41,16 @@ class Create extends Component {
             <div className="box form centered-forms">
                 <div className="field">
                     <div className="control">
-                        <input className="input" name="name" type="text" placeholder="Enter Scrapbook Name" onChange={this.handleNameChange} value={this.state.name}/>
+                        <input className="input" name="name" type="text" placeholder="Title (required)" onChange={this.handleNameChange} value={this.state.name}/>
                     </div>
                 </div>
                 <div className="field">
                     <div className="control">
-                        <input className="input" name="description" type="text" placeholder="Enter a description (optional)" onChange={this.handleDescChange} value={this.state.description}/>
+                        <input className="input" name="description" type="text" placeholder="Description (required)" onChange={this.handleDescChange} value={this.state.description}/>
                     </div>
                 </div>
                 <Link to="/userinvite">
-                    <button className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
+                    <button disabled={!(this.state.name && this.state.description)} className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
                 </Link>
             </div>
         )

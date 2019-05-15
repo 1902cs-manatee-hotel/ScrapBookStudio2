@@ -19,7 +19,7 @@ Go to localhost:8080
 To upload to Cloudinary, register a Cloudinary account and get an API key
 ```
 
-## Cloudinary Installation
+## Cloudinary Setup
 - Register Cloudinary account
 - Obtain API key
 - Create config directory in client/components
