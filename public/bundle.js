@@ -307,6 +307,7 @@ function (_Component) {
     };
     _this.handleOnClickNext = _this.handleOnClickNext.bind(_assertThisInitialized(_this));
     _this.handleOnClickPrevious = _this.handleOnClickPrevious.bind(_assertThisInitialized(_this));
+    _this.handleOnMouseOver = _this.handleOnMouseOver.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -435,6 +436,11 @@ function (_Component) {
       return handleOnClickPrevious;
     }()
   }, {
+    key: "handleOnMouseOver",
+    value: function handleOnMouseOver() {
+      this.props.setSinglePage(this.props.match.params.pageid);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -459,7 +465,8 @@ function (_Component) {
           width: 1300,
           height: 500,
           onMouseDown: _this2.handleStageMouseDown // onClick={this.handleOnClickLayer}
-
+          ,
+          onMouseOver: _this2.handleOnMouseOver
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_4__["Provider"], {
           store: store
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this2.props.allText.map(function (text) {
@@ -830,16 +837,18 @@ function (_Component) {
 
     _this.state = {
       isDragging: false,
-      fill: 'black' // this.handleOnClick = this.handleOnClick.bind(this)
-
+      fill: 'black'
     };
+    _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
     return _this;
-  } // handleOnClick() {
-  //   this.props.selectText(this.props.id)
-  // }
-
+  }
 
   _createClass(CanvasText, [{
+    key: "handleOnClick",
+    value: function handleOnClick() {
+      this.props.selectText(this.props.id);
+    }
+  }, {
     key: "render",
     // handleOnDragStart = () => {
     //   this.setState({
@@ -2503,6 +2512,8 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleOnClickCreate", function () {
       var content = slate_plain_serializer__WEBPACK_IMPORTED_MODULE_9__["default"].serialize(_this.state.value); // console.log('EDITOR PAGE ID:', this.props.pageId)
 
+      console.log('ID handle CLick', _this.props.currentPage);
+
       _this.props.createText(_this.props.currentPage, content);
 
       _this.setState({
@@ -3643,21 +3654,23 @@ var getPageContentThunk = function getPageContentThunk(id) {
                 data = _ref2.data;
                 canvas_texts = data.text;
                 media = data.media;
+                console.log('THUNK TEXT', canvas_texts);
+                console.log('ID', id);
                 dispatch(getPageContent(canvas_texts, media));
-                _context.next = 13;
+                _context.next = 15;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 13:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 10]]);
+        }, _callee, null, [[0, 12]]);
       }));
 
       return function (_x) {

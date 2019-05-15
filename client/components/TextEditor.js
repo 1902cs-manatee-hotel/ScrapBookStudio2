@@ -55,6 +55,7 @@ class TextEditor extends Component {
     handleOnClickCreate = () => {
         const content = Plain.serialize(this.state.value)
         // console.log('EDITOR PAGE ID:', this.props.pageId)
+        console.log('ID handle CLick', this.props.currentPage)
         this.props.createText(this.props.currentPage, content)
         this.setState({value: initialValue})
     }
@@ -66,7 +67,7 @@ class TextEditor extends Component {
   handleOnClickIncrease = () => {
     this.props.increaseFontSize(this.props.selectedText)
   }
-  
+
   handleOnClickDecrease = () => {
     this.props.decreaseFontSize(this.props.selectedText)
   }
@@ -84,7 +85,7 @@ class TextEditor extends Component {
                 </FormatToolbar>
                 <Editor style={{textAlign: 'center', width: '250px'}} placeholder='Text' className='box' value={this.state.value} onChange={this.onChange} />
                 <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickCreate}>Create</button>
-                {this.props.selectedText ? 
+                {this.props.selectedText ?
                 <div>
                   <button className='button is-primary space space-button' type="submit" onClick={this.handleOnClickDelete}>Delete</button>
                   <br />
