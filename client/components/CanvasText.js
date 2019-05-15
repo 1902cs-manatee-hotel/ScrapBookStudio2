@@ -10,12 +10,12 @@ class CanvasText extends Component {
       isDragging: false,
       fill: 'black'
     }
-    // this.handleOnClick = this.handleOnClick.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
-  // handleOnClick() {
-  //   this.props.selectText(this.props.id)
-  // }
+  handleOnClick() {
+    this.props.selectText(this.props.id)
+  }
 
   handleOnDragEnd = (event) => {
     this.props.updateText(this.props.id, {

@@ -87,6 +87,8 @@ const DESELECT_CANVAS_ELEMENT = 'DESELECT_CANVAS_ELEMENT'
     const {data} = await axios.get(`/api/pages/${id}`)
     const canvas_texts = data.text
     const media = data.media
+    console.log('THUNK TEXT',canvas_texts)
+    console.log('ID', id)
     dispatch(getPageContent(canvas_texts, media))
   } catch (err) {
     console.error(err)

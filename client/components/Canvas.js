@@ -27,6 +27,7 @@ class Canvas extends Component {
     }
     this.handleOnClickNext = this.handleOnClickNext.bind(this)
     this.handleOnClickPrevious = this.handleOnClickPrevious.bind(this)
+    this.handleOnMouseOver = this.handleOnMouseOver.bind(this)
   }
 
   async componentDidMount() {
@@ -94,6 +95,10 @@ class Canvas extends Component {
     this.props.setNextAndPrevious()
   }
 
+  handleOnMouseOver(){
+    this.props.setSinglePage(this.props.match.params.pageid)
+  }
+
   render() {
     return (
       <ReactReduxContext.Consumer>
@@ -111,6 +116,7 @@ class Canvas extends Component {
                   height={500}
                   onMouseDown={this.handleStageMouseDown}
                   // onClick={this.handleOnClickLayer}
+                  onMouseOver={this.handleOnMouseOver}
                 >
                   <Provider store={store}>
                     <Layer>
