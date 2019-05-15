@@ -1792,23 +1792,23 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Canvas =
+var StaticCanvas =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Canvas, _Component);
+  _inherits(StaticCanvas, _Component);
 
-  function Canvas() {
+  function StaticCanvas() {
     var _this;
 
-    _classCallCheck(this, Canvas);
+    _classCallCheck(this, StaticCanvas);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Canvas).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StaticCanvas).call(this));
     _this.handleOnClickNext = _this.handleOnClickNext.bind(_assertThisInitialized(_this));
     _this.handleOnClickPrevious = _this.handleOnClickPrevious.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(Canvas, [{
+  _createClass(StaticCanvas, [{
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator(
@@ -1994,7 +1994,7 @@ function (_Component) {
     }
   }]);
 
-  return Canvas;
+  return StaticCanvas;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapState = function mapState(state) {
@@ -2045,7 +2045,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapState, mapDispatch)(Canvas));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapState, mapDispatch)(StaticCanvas));
 
 /***/ }),
 

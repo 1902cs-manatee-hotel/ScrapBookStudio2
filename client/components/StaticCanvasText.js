@@ -3,21 +3,21 @@ import {Text} from 'react-konva'
 import {connect} from 'react-redux'
 import {deleteSingleTextThunk, getSingleText, updateSingleTextThunk} from '../store/content'
 
-class CanvasText extends Component {
+class StaticCanvasText extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDragging: false,
+      // isDragging: false,
       x: this.props.xCoord,
       y: this.props.yCoord,
       content: this.props.content
     }
-    this.handleOnClick = this.handleOnClick.bind(this)
+    // this.handleOnClick = this.handleOnClick.bind(this)
   }
 
-  handleOnClick() {
-    this.props.selectText(this.props.id)
-  }
+  // handleOnClick() {
+  //   this.props.selectText(this.props.id)
+  // }
 
   render() {
     return (
@@ -25,24 +25,24 @@ class CanvasText extends Component {
         text={this.state.content}
         x={this.state.x}
         y={this.state.y}
-        fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
-        onDragStart={() => {
-          this.setState({
-            isDragging: true
-          })
-        }}
-        onDragEnd={(event) => {
-          this.setState({
-            isDragging: false,
-            x: event.target.x(),
-            y: event.target.y()
-          })
-          this.props.updateText(this.props.id, {
-              xCoord: this.state.x,
-              yCoord: this.state.y
-          })
-        }}
-        onClick={this.handleOnClick}
+        // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        // onDragStart={() => {
+        //   this.setState({
+        //     isDragging: true
+        //   })
+        // }}
+        // onDragEnd={(event) => {
+        //   this.setState({
+        //     isDragging: false,
+        //     x: event.target.x(),
+        //     y: event.target.y()
+        //   })
+        //   this.props.updateText(this.props.id, {
+        //       xCoord: this.state.x,
+        //       yCoord: this.state.y
+        //   })
+        // }}
+        // onClick={this.handleOnClick}
       />
     )
   }
@@ -69,4 +69,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(CanvasText)
+export default connect(mapState, mapDispatch)(StaticCanvasText)

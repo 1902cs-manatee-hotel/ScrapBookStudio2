@@ -3,7 +3,7 @@ import {Image} from 'react-konva'
 import useImage from 'use-image'
 import {connect} from 'react-redux'
 
-class CanvasMedia extends Component {
+class StaticCanvasMedia extends Component {
     state = {
         image: null
       };
@@ -52,4 +52,4 @@ class CanvasMedia extends Component {
 }
 
 // export default connect(null, null)(CanvasMedia)
-export default CanvasMedia
+export default StaticCanvasMedia

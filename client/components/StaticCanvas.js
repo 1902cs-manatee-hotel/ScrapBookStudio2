@@ -3,8 +3,8 @@ import {Stage, Layer, Text, Rect} from 'react-konva'
 import {getPageContentThunk, deselectCanvasElement} from '../store/content'
 import {connect, ReactReduxContext, Provider} from 'react-redux'
 import {Link} from 'react-router-dom'
-import CanvasMedia from './CanvasMedia'
-import CanvasText from './CanvasText'
+import StaticCanvasMedia from './CanvasMedia'
+import StaticCanvasText from './CanvasText'
 import {
   createSinglePageThunk,
   setNextAndPrevious,
@@ -17,7 +17,7 @@ import {
 } from '../store/scrapbooks'
 import MediaResizer from './MediaResizer'
 
-class Canvas extends Component {
+class StaticCanvas extends Component {
   constructor() {
     super()
     this.handleOnClickNext = this.handleOnClickNext.bind(this)
@@ -67,7 +67,7 @@ class Canvas extends Component {
                     <Layer>
                       {this.props.allText.map(text => {
                         return (
-                          <CanvasText
+                          <StaticCanvasText
                             key={text.id}
                             content={text.content}
                             xCoord={text.xCoord}
@@ -84,7 +84,7 @@ class Canvas extends Component {
                       })}
                       {this.props.allMedia.map(media => {
                         return (
-                          <CanvasMedia
+                          <StaticCanvasMedia
                             key={media.id}
                             src={media.path}
                             xCoord={media.xCoord}
@@ -171,4 +171,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Canvas)
+export default connect(mapState, mapDispatch)(StaticCanvas)
