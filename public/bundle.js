@@ -854,17 +854,13 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Text"], {
         draggable: true,
         text: this.props.content,
         x: this.props.xCoord,
         y: this.props.yCoord,
-<<<<<<< HEAD
-        fontSize: this.props.size // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
-        ,
-        fill: this.state.fill,
-        onDragStart: this.handleOnDragStart,
-=======
         fontSize: this.props.size,
         fontFamily: "Dekko, cursive",
         fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
@@ -873,7 +869,6 @@ function (_Component) {
             isDragging: true
           });
         },
->>>>>>> mediaPoolToCanvas
         onDragEnd: this.handleOnDragEnd,
         onClick: this.handleOnClick
       });
@@ -1963,11 +1958,7 @@ function (_Component) {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
           style: {
-<<<<<<< HEAD
-            backgroundImage: 'url(http://mikekurtzplumbing.com/wp-content/uploads/parser/hd-nature-wallpaper-1.jpg)'
-=======
             backgroundImage: 'url(https://lh3.googleusercontent.com/5TKardQ98-xU73PKBQe6fv86GuLWFwsz44psEyyW6ioU2Zo-qCy-gGN5R72-48vT-BOQaJtgBGAKyQviBO2NNSo-gO3fYCs9b05OkXhZ6AJQdoLvisQx9tS_D4NXwz4rIIp0t2hoSS-un1mcDOAfZcWw6HRlwRCea2x8gpF5-Idn58NEbGiAlg8cg6V_AdWK4PpDXfekc7hC6U7gjRTM86DxpfLjYhYA9qRv-zhYkqpvoshlB_p_b1rjzBKY_2NsTAZsb6L2jJO-OGdTISy8HsRMhUfwFTIA15xxRbbXEO28dEaTUhep-C5-JMjG6ZiK2DH3kFr3r8nZlcYY-pXAIl2SfHgo027YsQmtKUlsiU3AUKn0WkOxlU-_lP_16SyP3sCMEB5gqtub4uSizCTC6LYhInWMGHubmVINhzqkOu8PtVEtbPQeR_s_z9U9GCuv-emY5TfBvY8QvaB-BJrGWh5NabDjn2VCGD9CrwGj-Kmdx4HYR1D3CMX6ZCOui2YcmkvgdWGitPngBjA7ammXgwy7ntpYImNxF6wuunvpvw3qj9LEYPEYWLXXd-yLa9n2Z2S_2ysz8eAOmZeJhWCF6nEsCrw9Czcrwx385KqyMHz_MWv772z5J9fkXxWtfnANIYiQ1pdM1ivGlk9QuwK4Co8Szkx3APs=w1024-h800-no)'
->>>>>>> mediaPoolToCanvas
           },
           className: "box",
           width: 1300,
