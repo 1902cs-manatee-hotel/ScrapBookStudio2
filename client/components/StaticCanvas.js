@@ -3,8 +3,8 @@ import {Stage, Layer, Text, Rect} from 'react-konva'
 import {getPageContentThunk, deselectCanvasElement} from '../store/content'
 import {connect, ReactReduxContext, Provider} from 'react-redux'
 import {Link} from 'react-router-dom'
-import StaticCanvasMedia from './CanvasMedia'
-import StaticCanvasText from './CanvasText'
+import StaticCanvasMedia from './StaticCanvasMedia'
+import StaticCanvasText from './StaticCanvasText'
 import {
   createSinglePageThunk,
   setNextAndPrevious,

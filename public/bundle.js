@@ -1756,8 +1756,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _CanvasMedia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CanvasMedia */ "./client/components/CanvasMedia.js");
-/* harmony import */ var _CanvasText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CanvasText */ "./client/components/CanvasText.js");
+/* harmony import */ var _StaticCanvasMedia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./StaticCanvasMedia */ "./client/components/StaticCanvasMedia.js");
+/* harmony import */ var _StaticCanvasText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./StaticCanvasText */ "./client/components/StaticCanvasText.js");
 /* harmony import */ var _store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/scrapbooks */ "./client/store/scrapbooks.js");
 /* harmony import */ var _MediaResizer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./MediaResizer */ "./client/components/MediaResizer.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1951,7 +1951,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
           store: store
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this2.props.allText.map(function (text) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasText__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasText__WEBPACK_IMPORTED_MODULE_6__["default"], {
             key: text.id,
             content: text.content,
             xCoord: text.xCoord,
@@ -1965,7 +1965,7 @@ function (_Component) {
             name: "".concat(text.id)
           });
         }), _this2.props.allMedia.map(function (media) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasMedia__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasMedia__WEBPACK_IMPORTED_MODULE_5__["default"], {
             key: media.id,
             src: media.path,
             xCoord: media.xCoord,
@@ -2046,6 +2046,325 @@ var mapDispatch = function mapDispatch(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapState, mapDispatch)(StaticCanvas));
+
+/***/ }),
+
+/***/ "./client/components/StaticCanvasMedia.js":
+/*!************************************************!*\
+  !*** ./client/components/StaticCanvasMedia.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-konva */ "./node_modules/react-konva/lib/ReactKonva.js");
+/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_konva__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var use_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-image */ "./node_modules/use-image/index.js");
+/* harmony import */ var use_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_image__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
+/* harmony import */ var _store_currentMedia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/currentMedia */ "./client/store/currentMedia.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+var StaticCanvasMedia =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(StaticCanvasMedia, _Component);
+
+  function StaticCanvasMedia(props) {
+    var _this;
+
+    _classCallCheck(this, StaticCanvasMedia);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StaticCanvasMedia).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "handleLoad", function () {
+      // after setState react-konva will update canvas and redraw the layer/////
+      // because "image" property is changed/////
+      _this.setState({
+        image: _this.image
+      }); // if you keep same image object during source updates/////
+      // you will have to update layer manually://///
+      // this.imageNode.getLayer().batchDraw();/////
+
+    });
+
+    _this.state = {
+      image: null
+    }; // this.handleOnDragEnd = this.handleOnDragEnd.bind(this)
+
+    return _this;
+  }
+
+  _createClass(StaticCanvasMedia, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadImage();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(oldProps) {
+      if (oldProps.src !== this.props.src) {
+        this.loadImage();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.image.removeEventListener('load', this.handleLoad);
+    }
+  }, {
+    key: "loadImage",
+    value: function loadImage() {
+      // save to "this" to remove "load" handler on unmount/////
+      this.image = new window.Image();
+      this.image.src = this.props.src;
+      this.image.addEventListener('load', this.handleLoad);
+    }
+  }, {
+    key: "render",
+    // handleOnDragMove = (event) => {
+    //   if(this.props.id === this.props.selectedMedia){
+    //     this.props.updateMediaOnDrag({
+    //       xCoord: event.target.x(),
+    //       yCoord: event.target.y(),
+    //       width: event.target.scaleX(),
+    //       height: event.target.scaleY(),
+    //       rotation: event.target.rotation(),
+    //     })
+    //   }
+    // }
+    // handleOnDragEnd (event) {
+    //   console.log('target x:', event.target.x())
+    //   console.log('target y:', event.target.y())
+    //   console.log('target scale-x:', event.target.scaleX())
+    //   console.log('target scale-y:', event.target.scaleY())
+    //   console.log('rotation:', event.target.rotation())
+    //   this.props.updateMedia(this.props.id, {
+    //     xCoord: event.target.x(),
+    //     yCoord: event.target.y(),
+    //     width: event.target.scaleX(),
+    //     height: event.target.scaleY(),
+    //     rotation: event.target.rotation()
+    // })
+    // }
+    // handleOnMouseOver = (event) => {
+    //   console.log('ID in handleMouseOver:', this.props.id)
+    //   this.props.setSelectedMedia(this.props.id)
+    //   this.props.updateMediaOnDrag({
+    //     xCoord: event.target.x(),
+    //     yCoord: event.target.y(),
+    //     width: event.target.scaleX(),
+    //     height: event.target.scaleY(),
+    //     rotation: event.target.rotation(),
+    //   })
+    // }
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+        x: this.props.xCoord,
+        y: this.props.yCoord,
+        scaleX: this.props.width,
+        scaleY: this.props.height,
+        rotation: this.props.rotation,
+        image: this.state.image,
+        ref: function ref(node) {
+          _this2.imageNode = node;
+        },
+        name: this.props.name // draggable
+        ,
+        onMouseOver: this.handleOnMouseOver,
+        onDragMove: this.handleOnDragMove,
+        onDragEnd: this.handleOnDragEnd
+      }));
+    }
+  }]);
+
+  return StaticCanvasMedia;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateMedia: function updateMedia(id, updatedProp) {
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_4__["updateSingleMediaThunk"])(id, updatedProp));
+    },
+    updateMediaOnDrag: function updateMediaOnDrag(newProps) {
+      return dispatch(Object(_store_currentMedia__WEBPACK_IMPORTED_MODULE_5__["updateCurrentMediaThunk"])(newProps));
+    },
+    setSelectedMedia: function setSelectedMedia(id) {
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_4__["getSingleMedia"])(id));
+    }
+  };
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    // xCoordCurrent: state.currentMedia.xCoord,
+    // yCoordCurrent: state.currentMedia.yCoord,
+    // widthCurrent: state.currentMedia.width,
+    // heightCurrent: state.currentMedia.height,
+    // rotationCurrent: state.currentMedia.rotation,
+    selectedMedia: state.content.selectedMedia
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(StaticCanvasMedia)); // export default CanvasMedia
+
+/***/ }),
+
+/***/ "./client/components/StaticCanvasText.js":
+/*!***********************************************!*\
+  !*** ./client/components/StaticCanvasText.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-konva */ "./node_modules/react-konva/lib/ReactKonva.js");
+/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_konva__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var StaticCanvasText =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(StaticCanvasText, _Component);
+
+  function StaticCanvasText(props) {
+    var _this;
+
+    _classCallCheck(this, StaticCanvasText);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StaticCanvasText).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "handleOnDragEnd", function () {
+      _this.props.updateText(_this.props.id, {
+        xCoord: _this.state.x,
+        yCoord: _this.state.y,
+        size: _this.state.size
+      });
+    });
+
+    _this.state = {
+      isDragging: false
+    };
+    _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(StaticCanvasText, [{
+    key: "handleOnClick",
+    value: function handleOnClick() {
+      this.props.selectText(this.props.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Text"] // draggable
+      , {
+        text: this.props.content,
+        x: this.props.xCoord,
+        y: this.props.yCoord,
+        fontSize: this.props.size,
+        fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
+        onDragStart: function onDragStart() {
+          _this2.setState({
+            isDragging: true
+          });
+        },
+        onDragEnd: this.handleOnDragEnd,
+        onClick: this.handleOnClick
+      });
+    }
+  }]);
+
+  return StaticCanvasText;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapState = function mapState(state) {
+  return {
+    editorText: state.content.editorText,
+    selected: state.content.selectedText // xCoord: state.currentText.xCoord,
+    // yCoord: state.currentText.yCoord,
+    // content: state.currentText.content,
+    // size: state.currentText.size
+
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    "delete": function _delete(id) {
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["deleteSingleTextThunk"])(id));
+    },
+    selectText: function selectText(id) {
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["getSingleText"])(id));
+    },
+    updateText: function updateText(id, updatedProp) {
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["updateSingleTextThunk"])(id, updatedProp));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapState, mapDispatch)(StaticCanvasText));
 
 /***/ }),
 
