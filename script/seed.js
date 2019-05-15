@@ -30,17 +30,17 @@ async function seed() {
     Page.create({scrapbookId: 4}),
     Contributor.create({ firstName: 'Tod', lastName: 'Brown', email: 'email1@email.com', scrapbookId: 1}),
     Contributor.create({ firstName: 'Samantha', lastName: 'Grey', email: 'email@email2.com', scrapbookId: 2}),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1, scrapbookId: 1 }),
-    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 70, y_coord: 70, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1, scrapbookId: 1 }),
-    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', x_coord: 75, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2, scrapbookId: 1 }),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 75, y_coord: 60, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2, scrapbookId: 1 }),
-    // Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
-    // Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', x_coord: 65, y_coord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
-    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', x_coord: 65, y_coord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 7, scrapbookId: 1 }),
-    CanvasText.create({ content: 'Great Time!', x_coord: 50, y_coord: 50, rotation: 0, color: 'blue', size: 50, pageId: 1 }),
-    CanvasText.create({ content: 'LOL', x_coord: 50, y_coord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 1 }),
-    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 2 }),
-    CanvasText.create({ content: 'LOL', x_coord: 60, y_coord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 4 })
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', xCoord: 65, yCoord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1, scrapbookId: 1 }),
+    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', xCoord: 70, yCoord: 70, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 1, scrapbookId: 1 }),
+    Media.create({ path: 'https://cdn1.thr.com/sites/default/files/imagecache/1500x845/2017/11/larry2_-_h_2017.jpg', xCoord: 75, yCoord: 65, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2, scrapbookId: 1 }),
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', xCoord: 75, yCoord: 60, rotation: 0, width: 0.1, height: 0.1, filter: 2, pageId: 2, scrapbookId: 1 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDE', xCoord: 65, yCoord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
+    Media.create({ path: 'https://www.youtube.com/watch?v=tHbCkikFfDEnpm', xCoord: 65, yCoord: 65, rotation: 0, width: 0, height: 0, filter: 2, pageId: 1, scrapbookId: 1 }),
+    Media.create({ path: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg', xCoord: 65, yCoord: 65, rotation: 0, width: 1, height: 1, filter: 2, pageId: 7, scrapbookId: 1 }),
+    CanvasText.create({ content: 'Great Time!', xCoord: 50, yCoord: 50, rotation: 0, color: 'blue', size: 50, pageId: 1 }),
+    CanvasText.create({ content: 'LOL', xCoord: 50, yCoord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 1 }),
+    CanvasText.create({ content: 'LOL', xCoord: 60, yCoord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 2 }),
+    CanvasText.create({ content: 'LOL', xCoord: 60, yCoord: 50, rotation: 0, width:.1, height: .1, color: 'red', size: 50, pageId: 4 })
 ])
 
 // console.log(`seeded ${users.length} users`)

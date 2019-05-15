@@ -7,12 +7,12 @@ const CanvasText = db.define('canvas_text', {
         allowNull: false,
         defaultValue: 'Enter Text'
     },
-    x_coord: {
+    xCoord: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 50
     },
-    y_coord: {
+    yCoord: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 50

@@ -24,63 +24,64 @@ const DESELECT_CANVAS_ELEMENT = 'DESELECT_CANVAS_ELEMENT'
  * ACTION CREATORS
  */
 
-const getPageContent = (pageText, pageMedia) => ({
-  type: GET_PAGE_CONTENT,
-  pageText,
-  pageMedia
-})
 
-export const getSingleText = id => ({
-  type: GET_SINGLE_TEXT,
-  id
-})
+ const getPageContent = (pageText, pageMedia) => ({
+   type: GET_PAGE_CONTENT,
+   pageText,
+   pageMedia
+ })
 
-const updateSingleText = text => ({
-  type: UPDATE_SINGLE_TEXT,
-  text
-})
+ export const getSingleText = (id) => ({
+     type: GET_SINGLE_TEXT,
+     id
+ })
 
-const createSingleText = text => ({
-  type: CREATE_SINGLE_TEXT,
-  text
-})
+ export const updateSingleText = (text) => ({
+     type: UPDATE_SINGLE_TEXT,
+     text
+ })
 
-const deleteSingleText = id => ({
-  type: DELETE_SINGLE_TEXT,
-  id
-})
+ const createSingleText = (text) => ({
+     type: CREATE_SINGLE_TEXT,
+     text
+ })
 
-export const getSingleMedia = id => ({
-  type: GET_SINGLE_MEDIA,
-  id
-})
+ const deleteSingleText = (id) => ({
+     type: DELETE_SINGLE_TEXT,
+     id
+ })
 
-export const updateSingleMedia = media => ({
-  type: UPDATE_SINGLE_MEDIA,
-  media
-})
+ export const getSingleMedia = (id) => ({
+     type: GET_SINGLE_MEDIA,
+     id
+ })
 
-const createSingleMedia = media => ({
-  type: CREATE_SINGLE_MEDIA,
-  media
-})
+ export const updateSingleMedia = (media) => ({
+     type: UPDATE_SINGLE_MEDIA,
+     media
+ })
 
-const deleteSingleMedia = id => ({
-  type: DELETE_SINGLE_MEDIA,
-  id
-})
+ const createSingleMedia = (media) => ({
+     type: CREATE_SINGLE_MEDIA,
+     media
+ })
 
-export const getEditorText = content => ({
-  type: GET_EDITOR_TEXT,
-  content
-})
+ const deleteSingleMedia = (id) => ({
+     type: DELETE_SINGLE_MEDIA,
+     id
+ })
 
-export const deselectCanvasElement = () => ({
-  type: DESELECT_CANVAS_ELEMENT
-})
+ export const getEditorText = (content) => ({
+      type: GET_EDITOR_TEXT,
+      content
+ })
 
-//Thunks
-export const getPageContentThunk = id => async dispatch => {
+ export const deselectCanvasElement = () => ({
+   type: DESELECT_CANVAS_ELEMENT
+ })
+
+ //Thunks
+ export const getPageContentThunk = (id) => async dispatch => {
   try {
     // console.log('PAGE ID:', id)
     const {data} = await axios.get(`/api/pages/${id}`)
@@ -132,13 +133,11 @@ export const createSingleMediaThunk = obj => async dispatch => {
 }
 
 export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
-  try {
-    const {data} = await axios.put(`/api/media/${id}`, updatedProp)
-    dispatch(updateSingleMedia(data))
-    socket.emit('mediaUpdate', data)
-  } catch (err) {
-    console.log(err)
-  }
+      try {
+          const {data} = await axios.put(`/api/media/${id}`, updatedProp)
+          dispatch(updateSingleMedia(data))
+          // socket.emit('mediaUpdate', data)
+      } catch (err) {console.log(err)}
 }
 
 export const getSingleMediaThunk = id => async dispatch => {
@@ -183,11 +182,11 @@ export const decreaseFontSizeThunk = id => async dispatch => {
  * INITIAL STATE
  */
 const initialState = {
-  allText: [],
-  selectedText: '',
-  allMedia: [],
-  selectedMedia: '',
-  editorText: ''
+    allText: [],
+    selectedText: '',
+    allMedia: [],
+    selectedMedia: 0,
+    editorText: ''
 }
 
 //Reducer
@@ -228,11 +227,9 @@ export default function(state = initialState, action) {
       newState.selectedMedia = action.media.id
       return newState
     case UPDATE_SINGLE_MEDIA:
-      newState.allMedia = [
-        ...newState.allMedia.filter(media => media.id !== action.media.id),
-        action.media
-      ]
-      return newState
+        return {...state, allMedia: [...state.allMedia.filter(media => media.id !== action.media.id), action.media]}
+        // newState.allMedia = [...newState.allMedia.filter(media => media.id !== action.media.id), action.media]
+        // return newState
     case DELETE_SINGLE_MEDIA:
       newState.allMedia = newState.allMedia.filter(
         media => media.id !== action.id

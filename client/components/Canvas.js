@@ -101,7 +101,7 @@ class Canvas extends Component {
                   width={1300}
                   height={500}
                   onMouseDown={this.handleStageMouseDown}
-                  onClick={this.handleOnClickLayer}
+                  // onClick={this.handleOnClickLayer}
                 >
                   <Provider store={store}>
                     <Layer>
@@ -110,8 +110,8 @@ class Canvas extends Component {
                           <CanvasText
                             key={text.id}
                             content={text.content}
-                            x_coord={text.x_coord}
-                            y_coord={text.y_coord}
+                            xCoord={text.xCoord}
+                            yCoord={text.yCoord}
                             rotation={text.rotation}
                             width={text.width}
                             height={text.height}
@@ -127,8 +127,8 @@ class Canvas extends Component {
                           <CanvasMedia
                             key={media.id}
                             src={media.path}
-                            x={media.x_coord}
-                            y={media.y_coord}
+                            xCoord={media.xCoord}
+                            yCoord={media.yCoord}
                             width={media.width}
                             height={media.height}
                             rotation={media.rotation}
