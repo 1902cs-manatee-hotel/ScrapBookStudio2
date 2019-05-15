@@ -29,7 +29,6 @@ const initialState = {
 //Reducer
 // eslint-disable-next-line complexity
 export default function(state = initialState, action) {
-  const newState = {...state}
   switch(action.type) {
     case UPDATE_CURRENT_MEDIA:
       return {...action.newProps}

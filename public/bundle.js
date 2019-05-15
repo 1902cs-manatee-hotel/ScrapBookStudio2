@@ -477,6 +477,7 @@ function (_Component) {
             name: "".concat(text.id)
           });
         }), _this2.props.allMedia.map(function (media) {
+          console.log('ALL MEDIA:', _this2.props.allMedia);
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasMedia__WEBPACK_IMPORTED_MODULE_6__["default"], {
             key: media.id,
             src: media.path,
@@ -495,18 +496,18 @@ function (_Component) {
           onClick: _this2.handleOnClickPrevious,
           to: "/canvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.previousPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space",
+          className: "button is-primary space space-button",
           type: "submit"
         }, "Previous")) : null, _this2.props.currentPageIndex < _this2.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           onClick: _this2.handleOnClickNext,
           to: "/canvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.nextPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space",
+          className: "button is-primary space space-button",
           type: "submit"
         }, "Next")) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary add-page-button",
+          className: "button is-primary add-page-button space-button",
           onClick: _this2.handlePageSubmit,
           type: "submit"
         }, "Add Page")))));
@@ -650,6 +651,8 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleOnMouseOver", function (event) {
+      console.log('ID in handleMouseOver:', _this.props.id);
+
       _this.props.setSelectedMedia(_this.props.id);
 
       _this.props.updateMediaOnDrag({
@@ -1112,6 +1115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_scrapbooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/scrapbooks */ "./client/store/scrapbooks.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _ScrapbookCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ScrapbookCard */ "./client/components/ScrapbookCard.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1129,6 +1133,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1158,23 +1163,21 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "box form centered-forms",
+        className: "box form centered-forms has-text-centered",
         id: "library-outer-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.user.firstName, "'s Scrapbooks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "title"
+      }, this.props.user.firstName, "'s Scrapbooks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "library-container"
       }, this.props.scrapbooks.map(function (book) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "box",
           key: book.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space",
-          type: "submit"
-        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: "/scrapbooks/".concat(book.name, "/").concat(book.id)
-        }, book.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          width: "120px",
-          height: "120px",
-          src: book.image
-        }));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrapbookCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          book: book
+        })));
       })));
     }
   }]);
@@ -1269,7 +1272,7 @@ function (_Component) {
     value: function render() {
       var _this = this;
 
-      console.log('PROPS from MediaPool*****', this.props);
+      // console.log('PROPS from MediaPool*****', this.props)
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box"
       }, this.props.allMedia.map(function (media) {
@@ -1365,7 +1368,7 @@ function (_Component) {
   _createClass(MediaPoolItem, [{
     key: "handleMountClick",
     value: function handleMountClick() {
-      console.log('props from MediaPoolItem', this.props);
+      // console.log('props from MediaPoolItem', this.props)
       this.props.mountToCanvas({
         path: this.props.path,
         scrapbookId: this.props.scrapbookId,
@@ -1377,7 +1380,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('**&props****', this.props);
+      // console.log('**&props****', this.props)
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         onClick: function onClick() {
           return _this2.handleMountClick();
@@ -1578,7 +1581,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-warning space",
+        className: "button is-primary space",
         type: "submit",
         onClick: this.uploadMedia
       }, "Image"));
@@ -1597,6 +1600,48 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(MediaUpload));
+
+/***/ }),
+
+/***/ "./client/components/ScrapbookCard.js":
+/*!********************************************!*\
+  !*** ./client/components/ScrapbookCard.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ScrapbookCard = function ScrapbookCard(_ref) {
+  var book = _ref.book;
+  var name = book.name,
+      image = book.image,
+      description = book.description; // console.log('SCRAPBOOK CARD', book)
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "has-text-centered"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space space-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "subtitle is-2"
+  }, name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space space-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    width: "120px",
+    height: "120px",
+    src: image
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space space-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "subtitle is-4"
+  }, description)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ScrapbookCard);
 
 /***/ }),
 
@@ -2022,13 +2067,13 @@ function (_Component) {
           onClick: _this2.handleOnClickPrevious,
           to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.previousPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space",
+          className: "button is-primary space-button",
           type: "submit"
         }, "Previous")) : null, _this2.props.currentPageIndex < _this2.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           onClick: _this2.handleOnClickNext,
           to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.nextPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space",
+          className: "button is-primary space-button",
           type: "submit"
         }, "Next")) : null)));
       });
@@ -2486,8 +2531,7 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleOnClickCreate", function () {
-      var content = slate_plain_serializer__WEBPACK_IMPORTED_MODULE_9__["default"].serialize(_this.state.value);
-      console.log('EDITOR PAGE ID:', _this.props.pageId);
+      var content = slate_plain_serializer__WEBPACK_IMPORTED_MODULE_9__["default"].serialize(_this.state.value); // console.log('EDITOR PAGE ID:', this.props.pageId)
 
       _this.props.createText(_this.props.currentPage, content);
 
@@ -2504,7 +2548,7 @@ function (_Component) {
       _this.props.increaseFontSize(_this.props.selectedText);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleOnClickIDecrease", function () {
+    _defineProperty(_assertThisInitialized(_this), "handleOnClickDecrease", function () {
       _this.props.decreaseFontSize(_this.props.selectedText);
     });
 
@@ -2515,10 +2559,12 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormatToolbar__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_kit__WEBPACK_IMPORTED_MODULE_4___default.a, {
         icon: react_icons_kit_feather_bold__WEBPACK_IMPORTED_MODULE_5__["bold"]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_kit__WEBPACK_IMPORTED_MODULE_4___default.a, {
         icon: react_icons_kit_feather_italic__WEBPACK_IMPORTED_MODULE_6__["italic"]
@@ -2527,15 +2573,19 @@ function (_Component) {
         value: this.state.value,
         onChange: this.onChange
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit",
         onClick: this.handleOnClickCreate
       }, "Create"), this.props.selectedText ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit",
         onClick: this.handleOnClickDelete
       }, "Delete"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit",
         onClick: this.handleOnClickIncrease
       }, "Increase"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         type: "submit",
         onClick: this.handleOnClickDecrease
       }, "Decrease")) : null);
@@ -2657,6 +2707,7 @@ function (_Component) {
         className: "button is-primary space",
         type: "submit"
       }, "Background"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextEditor__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space space-button",
         onClick: this.handleClick
       }, "Media Pool"), this.state.revealMediaPool ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaPool__WEBPACK_IMPORTED_MODULE_3__["default"], {
         scrapbookId: this.props.scrapbookId
@@ -2794,12 +2845,12 @@ var UserInvite = function UserInvite() {
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/library"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "button is-primary",
+    className: "button is-primary space-button",
     type: "submit"
   }, "Send Invites")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/library"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "button is-primary",
+    className: "button is-primary space-button",
     type: "submit"
   }, "Skip")));
 };
@@ -2864,15 +2915,21 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "has-text-centered centered-forms box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
-      }, "Hey There"), "What would you like to do?", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      }, "Hey There!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "subtitle"
+      }, "What would you like to do?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/staticcanvas/".concat(this.props.match.params.id, "/").concat(this.props.singlePage)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space-button",
         type: "submit"
       }, "View My Scrapbook")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/canvas/".concat(this.props.match.params.id, "/").concat(this.props.singlePage)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button is-primary space-button",
         type: "submit"
       }, "Edit My Scrapbook")));
     }
@@ -3624,30 +3681,29 @@ var getPageContentThunk = function getPageContentThunk(id) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                console.log('PAGE ID:', id);
-                _context.next = 4;
+                _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pages/".concat(id));
 
-              case 4:
+              case 3:
                 _ref2 = _context.sent;
                 data = _ref2.data;
                 canvas_texts = data.text;
                 media = data.media;
                 dispatch(getPageContent(canvas_texts, media));
-                _context.next = 14;
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 11]]);
+        }, _callee, null, [[0, 10]]);
       }));
 
       return function (_x) {
@@ -3797,31 +3853,30 @@ var createSingleMediaThunk = function createSingleMediaThunk(obj) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log('obj from content.js', obj);
-                _context5.prev = 1;
-                _context5.next = 4;
+                _context5.prev = 0;
+                _context5.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/media', obj);
 
-              case 4:
+              case 3:
                 _ref9 = _context5.sent;
                 data = _ref9.data;
-                console.log('D*****ATA', data);
-                console.log('HELLO FROM THUNK');
+                // console.log('D*****ATA', data)
+                // console.log('HELLO FROM THUNK')
                 dispatch(createSingleMedia(data));
-                _context5.next = 14;
+                _context5.next = 11;
                 break;
 
-              case 11:
-                _context5.prev = 11;
-                _context5.t0 = _context5["catch"](1);
+              case 8:
+                _context5.prev = 8;
+                _context5.t0 = _context5["catch"](0);
                 console.log(_context5.t0);
 
-              case 14:
+              case 11:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[1, 11]]);
+        }, _callee5, null, [[0, 8]]);
       }));
 
       return function (_x5) {
@@ -3888,27 +3943,28 @@ var getSingleMediaThunk = function getSingleMediaThunk(id) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.prev = 0;
-                _context7.next = 3;
+                console.log('Id in get single media thunk', id);
+                _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/media/".concat(id));
 
-              case 3:
+              case 4:
                 _ref13 = _context7.sent;
                 data = _ref13.data;
                 dispatch(getSingleMedia(data));
-                _context7.next = 11;
+                _context7.next = 12;
                 break;
 
-              case 8:
-                _context7.prev = 8;
+              case 9:
+                _context7.prev = 9;
                 _context7.t0 = _context7["catch"](0);
                 console.log(_context7.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, null, [[0, 8]]);
+        }, _callee7, null, [[0, 9]]);
       }));
 
       return function (_x7) {
@@ -3970,29 +4026,28 @@ var increaseFontSizeThunk = function increaseFontSizeThunk(id) {
             switch (_context9.prev = _context9.next) {
               case 0:
                 _context9.prev = 0;
-                console.log('from thunk', id);
-                _context9.next = 4;
+                _context9.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/canvastext/increase/".concat(id));
 
-              case 4:
+              case 3:
                 _ref16 = _context9.sent;
                 data = _ref16.data;
-                console.log('data from thunk', data);
+                // console.log('data from thunk', data)
                 dispatch(updateSingleText(data));
-                _context9.next = 13;
+                _context9.next = 11;
                 break;
 
-              case 10:
-                _context9.prev = 10;
+              case 8:
+                _context9.prev = 8;
                 _context9.t0 = _context9["catch"](0);
                 console.error(_context9.t0);
 
-              case 13:
+              case 11:
               case "end":
                 return _context9.stop();
             }
           }
-        }, _callee9, null, [[0, 10]]);
+        }, _callee9, null, [[0, 8]]);
       }));
 
       return function (_x9) {
@@ -4045,8 +4100,8 @@ var decreaseFontSizeThunk = function decreaseFontSizeThunk(id) {
   );
 };
 /**
-* INITIAL STATE
-*/
+ * INITIAL STATE
+ */
 
 var initialState = {
   allText: [],
@@ -4096,9 +4151,7 @@ var initialState = {
       return newState;
 
     case GET_SINGLE_MEDIA:
-      console.log('IN REDUCER:', action.id);
-      newState.selectedMedia = action.id;
-      console.log('New State Selected Media', newState.selectedMedia); // newState.allMedia = [...newState.allMedia, action.text]
+      newState.selectedMedia = action.id; // newState.allMedia = [...newState.allMedia, action.text]
 
       return newState;
 
@@ -4185,8 +4238,6 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  var newState = _objectSpread({}, state);
 
   switch (action.type) {
     case UPDATE_CURRENT_MEDIA:
@@ -4848,22 +4899,22 @@ var getAllScrapbookMediaThunk = function getAllScrapbookMediaThunk(scrapbookId) 
                 _ref14 = _context8.sent;
                 data = _ref14.data;
                 // const {data} = await axios.get(`/api/media/${scrapbookId}`)
-                console.log('***************MEDIA POOL DATA ***', data);
+                // console.log('***************MEDIA POOL DATA ***', data)
                 dispatch(getAllScrapbookMedia(data));
-                _context8.next = 12;
+                _context8.next = 11;
                 break;
 
-              case 9:
-                _context8.prev = 9;
+              case 8:
+                _context8.prev = 8;
                 _context8.t0 = _context8["catch"](0);
                 console.error(_context8.t0);
 
-              case 12:
+              case 11:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8, null, [[0, 9]]);
+        }, _callee8, null, [[0, 8]]);
       }));
 
       return function (_x8) {
