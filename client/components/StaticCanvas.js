@@ -137,8 +137,8 @@ class Canvas extends Component {
                           <StaticCanvasText
                             key={text.id}
                             content={text.content}
-                            x_coord={text.x_coord}
-                            y_coord={text.y_coord}
+                            xCoord={text.xCoord}
+                            yCoord={text.yCoord}
                             rotation={text.rotation}
                             color={text.color}
                             size={text.size}
@@ -151,8 +151,8 @@ class Canvas extends Component {
                           <StaticCanvasMedia
                             key={media.id}
                             src={media.path}
-                            x={media.x_coord}
-                            y={media.y_coord}
+                            x={media.xCoord}
+                            y={media.yCoord}
                             width={media.width}
                             height={media.height}
                             rotation={media.rotation}

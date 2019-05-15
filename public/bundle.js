@@ -2040,8 +2040,8 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasText__WEBPACK_IMPORTED_MODULE_7__["default"], {
             key: text.id,
             content: text.content,
-            x_coord: text.x_coord,
-            y_coord: text.y_coord,
+            xCoord: text.xCoord,
+            yCoord: text.yCoord,
             rotation: text.rotation,
             color: text.color,
             size: text.size,
@@ -2051,8 +2051,8 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasMedia__WEBPACK_IMPORTED_MODULE_6__["default"], {
             key: media.id,
             src: media.path,
-            x: media.x_coord,
-            y: media.y_coord,
+            x: media.xCoord,
+            y: media.yCoord,
             width: media.width,
             height: media.height,
             rotation: media.rotation,
@@ -2340,8 +2340,8 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CanvasText).call(this, props));
     _this.state = {
       isDragging: false,
-      x: _this.props.x_coord,
-      y: _this.props.y_coord,
+      x: _this.props.xCoord,
+      y: _this.props.yCoord,
       content: _this.props.content
     };
     _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
@@ -2376,8 +2376,8 @@ function (_Component) {
           });
 
           _this2.props.updateText(_this2.props.id, {
-            x_coord: _this2.state.x,
-            y_coord: _this2.state.y
+            xCoord: _this2.state.x,
+            yCoord: _this2.state.y
           });
         },
         onClick: this.handleOnClick

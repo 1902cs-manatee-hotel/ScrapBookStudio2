@@ -8,8 +8,8 @@ class CanvasText extends Component {
     super(props)
     this.state = {
       isDragging: false,
-      x: this.props.x_coord,
-      y: this.props.y_coord,
+      x: this.props.xCoord,
+      y: this.props.yCoord,
       content: this.props.content
     }
     this.handleOnClick = this.handleOnClick.bind(this)
@@ -38,8 +38,8 @@ class CanvasText extends Component {
             y: event.target.y()
           })
           this.props.updateText(this.props.id, {
-              x_coord: this.state.x,
-              y_coord: this.state.y
+              xCoord: this.state.x,
+              yCoord: this.state.y
           })
         }}
         onClick={this.handleOnClick}
