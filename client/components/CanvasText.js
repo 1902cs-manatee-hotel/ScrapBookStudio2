@@ -7,14 +7,7 @@ class CanvasText extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDragging: false,
-      x: this.props.x_coord,
-      y: this.props.y_coord,
-      content: this.props.content,
-      rotation: this.props.rotation,
-      width: this.props.width,
-      height: this.props.height,
-      size: this.props.size
+      isDragging: false
     }
     this.handleOnClick = this.handleOnClick.bind(this)
   }
@@ -23,51 +16,43 @@ class CanvasText extends Component {
     this.props.selectText(this.props.id)
   }
 
+  handleOnDragEnd = () => {
+    this.props.updateText(this.props.id, {
+      xCoord: this.state.x,
+      yCoord: this.state.y,
+      size: this.state.size
+    })
+  }
+
   render() {
     return (
       <Text
         draggable
-        text={this.state.content}
-        x={this.state.x}
-        y={this.state.y}
-        scaleX={this.state.width}
-        scaleY={this.state.height}
-        rotation={this.state.rotation}
-        fontSize={this.state.size}
+        text={this.props.content}
+        x={this.props.xCoord}
+        y={this.props.yCoord}
+        fontSize={this.props.size}
         fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
         onDragStart={() => {
           this.setState({
             isDragging: true
           })
         }}
-        onDragEnd={(event) => {
-          this.setState({
-            isDragging: false,
-            x: event.target.x(),
-            y: event.target.y()
-          })
-          this.props.updateText(this.props.id, {
-              x_coord: this.state.x,
-              y_coord: this.state.y,
-              size: this.state.size
-          })
-        }}
+        onDragEnd={this.handleOnDragEnd}
         onClick={this.handleOnClick}
       />
     )
   }
 }
 
-// const mapState = state => {
-//   return {
-//     selected: state.content.selectedText
-//   }
-// }
-
 const mapState = (state) => {
   return {
     editorText: state.content.editorText,
-    selected: state.content.selectedText
+    selected: state.content.selectedText,
+    // xCoord: state.currentText.xCoord,
+    // yCoord: state.currentText.yCoord,
+    // content: state.currentText.content,
+    // size: state.currentText.size
   }
 }
 

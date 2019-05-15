@@ -37,7 +37,7 @@ import socket from '../socket'
      id
  })
 
- const updateSingleText = (text) => ({
+ export const updateSingleText = (text) => ({
      type: UPDATE_SINGLE_TEXT,
      text
  })
@@ -129,7 +129,7 @@ export const updateSingleMediaThunk = (id, updatedProp) => async dispatch => {
       try {
           const {data} = await axios.put(`/api/media/${id}`, updatedProp)
           dispatch(updateSingleMedia(data))
-          socket.emit('mediaUpdate', data)
+          // socket.emit('mediaUpdate', data)
       } catch (err) {console.log(err)}
 }
 
@@ -170,7 +170,7 @@ const initialState = {
     allText: [],
     selectedText: '',
     allMedia: [],
-    selectedMedia: '',
+    selectedMedia: 0,
     editorText: ''
 }
 
@@ -202,16 +202,19 @@ export default function(state = initialState, action) {
          newState.selectedText = ''
          return newState
     case GET_SINGLE_MEDIA:
+        console.log('IN REDUCER:', action.id)
         newState.selectedMedia = action.id
-        newState.allMedia = [...newState.allMedia, action.text]
+        console.log('New State Selected Media', newState.selectedMedia)
+        // newState.allMedia = [...newState.allMedia, action.text]
         return newState
     case CREATE_SINGLE_MEDIA:
         newState.allMedia = [...newState.allMedia, action.media]
         newState.selectedMedia = action.media.id
         return newState
     case UPDATE_SINGLE_MEDIA:
-        newState.allMedia = [...newState.allMedia.filter(media => media.id !== action.media.id), action.media]
-        return newState
+        return {...state, allMedia: [...state.allMedia.filter(media => media.id !== action.media.id), action.media]}
+        // newState.allMedia = [...newState.allMedia.filter(media => media.id !== action.media.id), action.media]
+        // return newState
     case DELETE_SINGLE_MEDIA:
          newState.allMedia = newState.allMedia.filter(media =>
          media.id !== action.id)

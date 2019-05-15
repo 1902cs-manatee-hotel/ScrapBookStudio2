@@ -10,12 +10,12 @@ const Media = db.define('media', {
             isUrl: true
         }
     },
-    x_coord: {
+    xCoord: {
         type: Sequelize.FLOAT,
         // allowNull: false,
         defaultValue: 50
     },
-    y_coord: {
+    yCoord: {
         type: Sequelize.FLOAT,
         // allowNull: false,
         defaultValue: 50

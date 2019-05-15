@@ -5,8 +5,10 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import scrapbooks from './scrapbooks'
 import content from './content'
+import currentMedia from './currentMedia'
+import currentText from './currentText'
 
-const reducer = combineReducers({user, scrapbooks, content})
+const reducer = combineReducers({user, scrapbooks, content, currentMedia, currentText})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
