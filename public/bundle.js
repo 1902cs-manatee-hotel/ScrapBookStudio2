@@ -826,49 +826,40 @@ function (_Component) {
         yCoord: event.target.y(),
         size: _this.state.size
       });
-
-      _this.setState({
-        fill: 'black'
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleOnDragStart", function () {
-      _this.setState({
-        fill: 'green'
-      });
     });
 
     _this.state = {
       isDragging: false,
-      fill: 'black'
+      fill: 'black' // this.handleOnClick = this.handleOnClick.bind(this)
+
     };
-    _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // handleOnClick() {
+  //   this.props.selectText(this.props.id)
+  // }
+
 
   _createClass(CanvasText, [{
-    key: "handleOnClick",
-    value: function handleOnClick() {
-      this.props.selectText(this.props.id);
-    }
-  }, {
     key: "render",
+    // handleOnDragStart = () => {
+    //   this.setState({
+    //     fill: 'green'
+    //   })
+    // }
     value: function render() {
-      var _this2 = this;
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Text"], {
         draggable: true,
         text: this.props.content,
         x: this.props.xCoord,
         y: this.props.yCoord,
         fontSize: this.props.size,
-        fontFamily: "Dekko, cursive",
-        fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
-        onDragStart: function onDragStart() {
-          _this2.setState({
-            isDragging: true
-          });
-        },
+        fontFamily: "Dekko, cursive" // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        // onDragStart={() => {
+        //   this.setState({
+        //     isDragging: true
+        //   })
+        // }}
+        ,
         onDragEnd: this.handleOnDragEnd,
         onClick: this.handleOnClick
       });
@@ -3101,8 +3092,7 @@ AuthForm.propTypes = {
 module.exports = {
   cloud_name: 'dv7hoa5iv',
   upload_preset: 'ml_default',
-  api_key: '812884794238589',
-  api_secret: 'Dq3tKjVpGy5_C4e3Vn061x7dC1c'
+  api_key: '812884794238589'
 };
 
 /***/ }),
