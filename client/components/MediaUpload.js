@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {cloud_name, api_key, upload_preset} from './config/cloudinary'
-import {createSingleMediaThunk} from '../store/content'
+import {createSingleCloudMediaThunk} from '../store/content'
 
 class MediaUpload extends Component {
     constructor() {
@@ -18,7 +18,8 @@ class MediaUpload extends Component {
                 console.log('Done! Here is the image info: ', result.info);
                 console.log('CLICK HERE:', result.info.secure_url);
                 let path = result.info.secure_url
-                this.props.postMedia(path)
+                console.log("****CLOUD RESULT", path )
+                this.props.postMedia({path: path, scrapbookId: this.props.currentScrapbook, pageId: this.props.singlePage })
               }
             }
           )
@@ -34,10 +35,17 @@ class MediaUpload extends Component {
     }
 }
 
+const mapState = state => {
+    return {
+        currentScrapbook: state.scrapbooks.singleScrapbook,
+        singlePage: state.scrapbooks.singlePage
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        postMedia: (imageUrl) => dispatch(createSingleMediaThunk(imageUrl))
+        postMedia: (imageUrl) => dispatch(createSingleCloudMediaThunk(imageUrl))
     }
 }
 
-export default connect(null, mapDispatchToProps)(MediaUpload)
+export default connect(mapState, mapDispatchToProps)(MediaUpload)
