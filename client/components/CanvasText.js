@@ -10,12 +10,12 @@ class CanvasText extends Component {
       isDragging: false,
       fill: 'black'
     }
-    this.handleOnClick = this.handleOnClick.bind(this)
+    // this.handleOnClick = this.handleOnClick.bind(this)
   }
 
-  handleOnClick() {
-    this.props.selectText(this.props.id)
-  }
+  // handleOnClick() {
+  //   this.props.selectText(this.props.id)
+  // }
 
   handleOnDragEnd = (event) => {
     this.props.updateText(this.props.id, {
@@ -23,16 +23,13 @@ class CanvasText extends Component {
       yCoord: event.target.y(),
       size: this.state.size
     })
-    this.setState({
-      fill: 'black'
-    })
   }
 
-  handleOnDragStart = () => {
-    this.setState({
-      fill: 'green'
-    })
-  }
+  // handleOnDragStart = () => {
+  //   this.setState({
+  //     fill: 'green'
+  //   })
+  // }
 
   render() {
     return (
@@ -43,12 +40,12 @@ class CanvasText extends Component {
         y={this.props.yCoord}
         fontSize={this.props.size}
         fontFamily='Dekko, cursive'
-        fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
-        onDragStart={() => {
-          this.setState({
-            isDragging: true
-          })
-        }}
+        // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        // onDragStart={() => {
+        //   this.setState({
+        //     isDragging: true
+        //   })
+        // }}
         onDragEnd={this.handleOnDragEnd}
         onClick={this.handleOnClick}
       />
