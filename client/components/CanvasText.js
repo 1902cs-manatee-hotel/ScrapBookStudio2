@@ -42,9 +42,13 @@ class CanvasText extends Component {
         x={this.props.xCoord}
         y={this.props.yCoord}
         fontSize={this.props.size}
-        // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
-        fill={this.state.fill}
-        onDragStart={this.handleOnDragStart}
+        fontFamily='Dekko, cursive'
+        fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        onDragStart={() => {
+          this.setState({
+            isDragging: true
+          })
+        }}
         onDragEnd={this.handleOnDragEnd}
         onClick={this.handleOnClick}
       />
