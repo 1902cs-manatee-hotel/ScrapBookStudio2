@@ -7,7 +7,8 @@ class CanvasText extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDragging: false
+      isDragging: false,
+      fill: 'black'
     }
     this.handleOnClick = this.handleOnClick.bind(this)
   }
@@ -16,11 +17,20 @@ class CanvasText extends Component {
     this.props.selectText(this.props.id)
   }
 
-  handleOnDragEnd = () => {
+  handleOnDragEnd = (event) => {
     this.props.updateText(this.props.id, {
-      xCoord: this.state.x,
-      yCoord: this.state.y,
+      xCoord: event.target.x(),
+      yCoord: event.target.y(),
       size: this.state.size
+    })
+    this.setState({
+      fill: 'black'
+    })
+  }
+
+  handleOnDragStart = () => {
+    this.setState({
+      fill: 'green'
     })
   }
 
@@ -32,12 +42,9 @@ class CanvasText extends Component {
         x={this.props.xCoord}
         y={this.props.yCoord}
         fontSize={this.props.size}
-        fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
-        onDragStart={() => {
-          this.setState({
-            isDragging: true
-          })
-        }}
+        // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        fill={this.state.fill}
+        onDragStart={this.handleOnDragStart}
         onDragEnd={this.handleOnDragEnd}
         onClick={this.handleOnClick}
       />

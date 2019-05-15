@@ -820,16 +820,27 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CanvasText).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_this), "handleOnDragEnd", function () {
+    _defineProperty(_assertThisInitialized(_this), "handleOnDragEnd", function (event) {
       _this.props.updateText(_this.props.id, {
-        xCoord: _this.state.x,
-        yCoord: _this.state.y,
+        xCoord: event.target.x(),
+        yCoord: event.target.y(),
         size: _this.state.size
+      });
+
+      _this.setState({
+        fill: 'black'
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleOnDragStart", function () {
+      _this.setState({
+        fill: 'green'
       });
     });
 
     _this.state = {
-      isDragging: false
+      isDragging: false,
+      fill: 'black'
     };
     _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
     return _this;
@@ -843,20 +854,15 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Text"], {
         draggable: true,
         text: this.props.content,
         x: this.props.xCoord,
         y: this.props.yCoord,
-        fontSize: this.props.size,
-        fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
-        onDragStart: function onDragStart() {
-          _this2.setState({
-            isDragging: true
-          });
-        },
+        fontSize: this.props.size // fill={this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black'}
+        ,
+        fill: this.state.fill,
+        onDragStart: this.handleOnDragStart,
         onDragEnd: this.handleOnDragEnd,
         onClick: this.handleOnClick
       });
@@ -87795,7 +87801,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
