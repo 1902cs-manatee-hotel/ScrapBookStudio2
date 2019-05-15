@@ -11,12 +11,18 @@ Scrapbook Studio is an online studio space where users can collaborate in creati
 
 ## Get Started
 ```
-Git clone git@github.com:1902cs-manatee-hotel/ScrapBookStudio2.git
+git clone https://github.com/1902cs-manatee-hotel/ScrapBookStudio2.git
 npm install
+npm run seed
 npm start
+Go to localhost:8080
 To upload to Cloudinary, register a Cloudinary account and get an API key
 ```
 
-## API Keys
-![](./screenshots/config.png)
-![](./screenshots/cloudinary.png)
+## Cloudinary Installation
+- Register Cloudinary account
+- Obtain API key
+- Create config directory in client/components
+- - ![](./screenshots/config.png)
+- Create cloudinary.js file containing API key
+- - ![](./screenshots/cloudinary.png)

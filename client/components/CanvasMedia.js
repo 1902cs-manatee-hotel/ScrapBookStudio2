@@ -53,7 +53,6 @@ class CanvasMedia extends Component {
         }
       }
 
-
       handleOnDragEnd (event) {
         console.log('target x:', event.target.x())
         console.log('target y:', event.target.y())
