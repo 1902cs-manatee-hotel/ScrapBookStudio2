@@ -15,6 +15,7 @@ git clone https://github.com/1902cs-manatee-hotel/ScrapBookStudio2.git
 npm install
 npm run seed
 npm start
+Go to [localhost:8080](localhost:8080)
 To upload to Cloudinary, register a Cloudinary account and get an API key
 ```
 
