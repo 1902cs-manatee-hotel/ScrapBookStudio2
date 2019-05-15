@@ -24,6 +24,19 @@ router.post('/', async (req, res, next) => {
     } catch(err) {next(err)}
 })
 
+router.post('/cloudinary', async (req, res, next) => {
+    // console.log('HELLOO!!!!!!!!!')
+    try {
+      console.log('mediaAPICloud', req.body)
+        
+        // const media = await Media.create(req.body)
+        const media = await Media.create({path: req.body.path, scrapbookId: req.body.scrapbookId, pageId: req.body.pageId})
+        console.log('mediaAPI - media', media)
+  
+        res.status(200).json(media)
+      } catch(err) {next(err)}
+  })
+
 router.put('/:id', async (req, res, next) => {
     try {
         const media = await Media.findByPk(req.params.id)
