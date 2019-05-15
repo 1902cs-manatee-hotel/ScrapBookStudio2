@@ -15,11 +15,6 @@ class CanvasMedia extends Component {
   }
       componentDidMount() {
         this.loadImage();
-        console.log('XCOORD on mount:', this.props.xCoord)
-        console.log('YCOORD on mount:', this.props.yCoord)
-        console.log('width on mount:', this.props.width)
-        console.log('height on mount:', this.props.height)
-        console.log('rotation on mount:', this.props.rotation)
       }
       componentDidUpdate(oldProps) {
         if (oldProps.src !== this.props.src) {
@@ -47,9 +42,6 @@ class CanvasMedia extends Component {
       };
 
       handleOnDragMove = (event) => {
-        console.log('ID Props', this.props.id)
-        console.log('SelectedMedia', this.props.selectedMedia)
-        console.log('xCoord', this.props.xCoord)
         if(this.props.id === this.props.selectedMedia){
           this.props.updateMediaOnDrag({
             xCoord: event.target.x(),
@@ -93,7 +85,7 @@ class CanvasMedia extends Component {
       render() {
         return (
           <Fragment>
-            {this.props.id === this.props.selectedMedia ?
+            {/* {this.props.id === this.props.selectedMedia ?
          <Image
          x={this.props.xCoordCurrent}
          y={this.props.yCoordCurrent}
@@ -127,8 +119,9 @@ class CanvasMedia extends Component {
             onDragMove={this.handleOnDragMove}
             onDragEnd={this.handleOnDragEnd}
           />
-          }
-          {/* <Image
+          } */}
+
+          <Image
             x={this.props.xCoord}
             y={this.props.yCoord}
             scaleX={this.props.width}
@@ -140,10 +133,10 @@ class CanvasMedia extends Component {
             }}
             name={this.props.name}
             draggable
-            onDragStart={this.handleOnDragStart}
+            onMouseOver={this.handleOnMouseOver}
             onDragMove={this.handleOnDragMove}
             onDragEnd={this.handleOnDragEnd}
-          /> */}
+          />
           </Fragment>
         );
       }
@@ -159,11 +152,11 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-  xCoordCurrent: state.currentMedia.xCoord,
-  yCoordCurrent: state.currentMedia.yCoord,
-  widthCurrent: state.currentMedia.width,
-  heightCurrent: state.currentMedia.height,
-  rotationCurrent: state.currentMedia.rotation,
+  // xCoordCurrent: state.currentMedia.xCoord,
+  // yCoordCurrent: state.currentMedia.yCoord,
+  // widthCurrent: state.currentMedia.width,
+  // heightCurrent: state.currentMedia.height,
+  // rotationCurrent: state.currentMedia.rotation,
   selectedMedia: state.content.selectedMedia
   }
 }

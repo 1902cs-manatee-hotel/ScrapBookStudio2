@@ -638,10 +638,6 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleOnDragMove", function (event) {
-      console.log('ID Props', _this.props.id);
-      console.log('SelectedMedia', _this.props.selectedMedia);
-      console.log('xCoord', _this.props.xCoord);
-
       if (_this.props.id === _this.props.selectedMedia) {
         _this.props.updateMediaOnDrag({
           xCoord: event.target.x(),
@@ -676,11 +672,6 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadImage();
-      console.log('XCOORD on mount:', this.props.xCoord);
-      console.log('YCOORD on mount:', this.props.yCoord);
-      console.log('width on mount:', this.props.width);
-      console.log('height on mount:', this.props.height);
-      console.log('rotation on mount:', this.props.rotation);
     }
   }, {
     key: "componentDidUpdate",
@@ -723,22 +714,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, this.props.id === this.props.selectedMedia ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-        x: this.props.xCoordCurrent,
-        y: this.props.yCoordCurrent,
-        scaleX: this.props.widthCurrent,
-        scaleY: this.props.heightCurrent,
-        rotation: this.props.rotationCurrent,
-        image: this.state.image,
-        ref: function ref(node) {
-          _this2.imageNode = node;
-        },
-        name: this.props.name,
-        draggable: true,
-        onMouseOver: this.handleOnMouseOver,
-        onDragMove: this.handleOnDragMove,
-        onDragEnd: this.handleOnDragEnd
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Image"], {
         x: this.props.xCoord,
         y: this.props.yCoord,
         scaleX: this.props.width,
@@ -776,11 +752,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    xCoordCurrent: state.currentMedia.xCoord,
-    yCoordCurrent: state.currentMedia.yCoord,
-    widthCurrent: state.currentMedia.width,
-    heightCurrent: state.currentMedia.height,
-    rotationCurrent: state.currentMedia.rotation,
+    // xCoordCurrent: state.currentMedia.xCoord,
+    // yCoordCurrent: state.currentMedia.yCoord,
+    // widthCurrent: state.currentMedia.width,
+    // heightCurrent: state.currentMedia.height,
+    // rotationCurrent: state.currentMedia.rotation,
     selectedMedia: state.content.selectedMedia
   };
 };
