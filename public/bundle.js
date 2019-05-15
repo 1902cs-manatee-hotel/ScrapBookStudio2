@@ -1753,17 +1753,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-konva */ "./node_modules/react-konva/lib/ReactKonva.js");
 /* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_konva__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Toolbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Toolbar */ "./client/components/Toolbar.js");
-/* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _StaticCanvasMedia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./StaticCanvasMedia */ "./client/components/StaticCanvasMedia.js");
-/* harmony import */ var _StaticCanvasText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./StaticCanvasText */ "./client/components/StaticCanvasText.js");
-/* harmony import */ var _store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/scrapbooks */ "./client/store/scrapbooks.js");
-/* harmony import */ var _MediaResizer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./MediaResizer */ "./client/components/MediaResizer.js");
+/* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _CanvasMedia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CanvasMedia */ "./client/components/CanvasMedia.js");
+/* harmony import */ var _CanvasText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CanvasText */ "./client/components/CanvasText.js");
+/* harmony import */ var _store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/scrapbooks */ "./client/store/scrapbooks.js");
+/* harmony import */ var _MediaResizer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./MediaResizer */ "./client/components/MediaResizer.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1777,16 +1774,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -1804,95 +1798,9 @@ function (_Component) {
   _inherits(Canvas, _Component);
 
   function Canvas() {
-    var _this;
-
     _classCallCheck(this, Canvas);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Canvas).call(this));
-
-    _defineProperty(_assertThisInitialized(_this), "handleStageMouseDown", function (e) {
-      // clicked on stage - cler selection
-      if (e.target === e.target.getStage()) {
-        _this.setState({
-          selectedShapeName: ''
-        });
-
-        return;
-      } // clicked on transformer - do nothing
-
-
-      var clickedOnTransformer = e.target.getParent().className === 'Transformer';
-
-      if (clickedOnTransformer) {
-        return;
-      } // refactoring code to select image by id
-      // find image by id
-
-
-      var id = e.target.id();
-
-      var image = _this.props.allMedia.find(function (i) {
-        return i.id === id;
-      });
-
-      if (image) {
-        if (image) {
-          _this.setState({
-            selectedShapeName: id
-          });
-        } else {
-          _this.setState({
-            selectedShapeName: ''
-          });
-        }
-      } // find clicked rect by its name
-
-
-      var name = e.target.name();
-
-      var rect = _this.state.rectangles.find(function (r) {
-        return r.name === name;
-      });
-
-      var images = _this.props.allMedia;
-
-      if (rect || images) {
-        _this.setState({
-          selectedShapeName: name
-        });
-      } else {
-        _this.setState({
-          selectedShapeName: ''
-        });
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleOnClickLayer", function () {
-      _this.props.deselectCanvasElement();
-    });
-
-    _this.handlePageSubmit = _this.handlePageSubmit.bind(_assertThisInitialized(_this));
-    _this.state = {
-      rectangles: [{
-        x: 10,
-        y: 10,
-        width: 100,
-        height: 100,
-        fill: 'red',
-        name: 'rect1'
-      }, {
-        x: 150,
-        y: 150,
-        width: 100,
-        height: 100,
-        fill: 'green',
-        name: 'rect2'
-      }],
-      selectedShapeName: ''
-    };
-    _this.handleOnClickNext = _this.handleOnClickNext.bind(_assertThisInitialized(_this));
-    _this.handleOnClickPrevious = _this.handleOnClickPrevious.bind(_assertThisInitialized(_this));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Canvas).apply(this, arguments));
   }
 
   _createClass(Canvas, [{
@@ -1917,10 +1825,14 @@ function (_Component) {
                 return this.props.setPageIndex(this.props.match.params.pageid);
 
               case 6:
-                this.props.getSingleScrapbook(this.props.match.params.scrapbookid);
-                this.props.setNextAndPrevious(); // get from state
+                _context.next = 8;
+                return this.props.setSingleScrapbook(this.props.match.params.scrapbookid);
 
               case 8:
+                this.props.setSinglePage(this.props.match.params.pageid);
+                this.props.setNextAndPrevious();
+
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -1935,92 +1847,11 @@ function (_Component) {
       return componentDidMount;
     }()
   }, {
-    key: "handlePageSubmit",
-    value: function handlePageSubmit() {
-      this.props.addPage();
-    }
-  }, {
-    key: "handleOnClickNext",
-    value: function () {
-      var _handleOnClickNext = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return this.props.getAllPages(this.props.match.params.scrapbookid);
-
-              case 2:
-                _context2.next = 4;
-                return this.props.getPageContent(this.props.nextPage);
-
-              case 4:
-                _context2.next = 6;
-                return this.props.increasePageIndex();
-
-              case 6:
-                this.props.setNextAndPrevious();
-
-              case 7:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function handleOnClickNext() {
-        return _handleOnClickNext.apply(this, arguments);
-      }
-
-      return handleOnClickNext;
-    }()
-  }, {
-    key: "handleOnClickPrevious",
-    value: function () {
-      var _handleOnClickPrevious = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return this.props.getAllPages(this.props.match.params.scrapbookid);
-
-              case 2:
-                _context3.next = 4;
-                return this.props.getPageContent(this.props.previousPage);
-
-              case 4:
-                _context3.next = 6;
-                return this.props.decreasePageIndex();
-
-              case 6:
-                this.props.setNextAndPrevious();
-
-              case 7:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function handleOnClickPrevious() {
-        return _handleOnClickPrevious.apply(this, arguments);
-      }
-
-      return handleOnClickPrevious;
-    }()
-  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_4__["ReactReduxContext"].Consumer, null, function (_ref) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["ReactReduxContext"].Consumer, null, function (_ref) {
         var store = _ref.store;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tile is-ancestor canvas"
@@ -2029,51 +1860,53 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
+          style: {
+            backgroundImage: 'url(http://mikekurtzplumbing.com/wp-content/uploads/parser/hd-nature-wallpaper-1.jpg)'
+          },
           className: "box",
           width: 1300,
           height: 500,
-          onMouseDown: _this2.handleStageMouseDown,
-          onClick: _this2.handleOnClickLayer
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_4__["Provider"], {
+          onMouseDown: _this.handleStageMouseDown
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
           store: store
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this2.props.allText.map(function (text) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasText__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Layer"], null, _this.props.allText.map(function (text) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasText__WEBPACK_IMPORTED_MODULE_6__["default"], {
             key: text.id,
             content: text.content,
             xCoord: text.xCoord,
             yCoord: text.yCoord,
             rotation: text.rotation,
+            width: text.width,
+            height: text.height,
             color: text.color,
             size: text.size,
-            id: text.id
+            id: text.id,
+            name: "".concat(text.id)
           });
-        }), _this2.props.allMedia.map(function (media) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaticCanvasMedia__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), _this.props.allMedia.map(function (media) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CanvasMedia__WEBPACK_IMPORTED_MODULE_5__["default"], {
             key: media.id,
             src: media.path,
-            x: media.xCoord,
-            y: media.yCoord,
+            xCoord: media.xCoord,
+            yCoord: media.yCoord,
             width: media.width,
             height: media.height,
             rotation: media.rotation,
             filter: media.filter,
-            name: "rect"
+            name: "".concat(media.id),
+            id: media.id
           });
-        }), _this2.state.rectangles.map(function (rect, i) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Rectangle, _extends({
-            key: i
-          }, rect));
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _this2.props.currentPageIndex !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-          onClick: _this2.handleOnClickPrevious,
-          to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.previousPage)
+        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, _this.props.currentPageIndex !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+          onClick: _this.handleOnClickPrevious,
+          to: "/canvas/".concat(_this.props.match.params.scrapbookid, "/").concat(_this.props.previousPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space-button",
+          className: "button is-primary space space-button",
           type: "submit"
-        }, "Previous")) : null, _this2.props.currentPageIndex < _this2.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-          onClick: _this2.handleOnClickNext,
-          to: "/staticcanvas/".concat(_this2.props.match.params.scrapbookid, "/").concat(_this2.props.nextPage)
+        }, "Previous")) : null, _this.props.currentPageIndex < _this.props.allPages.length - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+          onClick: _this.handleOnClickNext,
+          to: "/canvas/".concat(_this.props.match.params.scrapbookid, "/").concat(_this.props.nextPage)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button is-primary space-button",
+          className: "button is-primary space space-button",
           type: "submit"
         }, "Next")) : null)));
       });
@@ -2099,322 +1932,39 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     getPageContent: function getPageContent(pageId) {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["getPageContentThunk"])(pageId));
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_2__["getPageContentThunk"])(pageId));
     },
-    addPage: function addPage() {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["createSinglePageThunk"])());
+    addPage: function addPage(scrapbookId) {
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["createSinglePageThunk"])(scrapbookId));
     },
     deselectCanvasElement: function deselectCanvasElement() {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["deselectCanvasElement"])());
+      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_2__["deselectCanvasElement"])());
     },
     setNextAndPrevious: function setNextAndPrevious() {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["setNextAndPrevious"])());
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["setNextAndPrevious"])());
     },
     getAllPages: function getAllPages(id) {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["getAllPagesThunk"])(id));
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["getAllPagesThunk"])(id));
     },
     increasePageIndex: function increasePageIndex() {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["increasePageIndex"])());
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["increasePageIndex"])());
     },
     decreasePageIndex: function decreasePageIndex() {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["decreasePageIndex"])());
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["decreasePageIndex"])());
     },
     setPageIndex: function setPageIndex(pageId) {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["setPageIndex"])(pageId));
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["setPageIndex"])(pageId));
     },
-    getSingleScrapbook: function getSingleScrapbook(scrapbookid) {
-      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_8__["getSingleScrapbook"])(scrapbookid));
+    setSinglePage: function setSinglePage(pageId) {
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["getSinglePage"])(pageId));
+    },
+    setSingleScrapbook: function setSingleScrapbook(scrapbookId) {
+      return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_7__["getSingleScrapbook"])(scrapbookId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapState, mapDispatch)(Canvas));
-
-var Rectangle =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits(Rectangle, _Component2);
-
-  function Rectangle() {
-    _classCallCheck(this, Rectangle);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Rectangle).apply(this, arguments));
-  }
-
-  _createClass(Rectangle, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Rect"], {
-        x: this.props.x,
-        y: this.props.y,
-        width: this.props.width,
-        height: this.props.height,
-        fill: this.props.fill,
-        name: this.props.name
-      });
-    }
-  }]);
-
-  return Rectangle;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/***/ }),
-
-/***/ "./client/components/StaticCanvasMedia.js":
-/*!************************************************!*\
-  !*** ./client/components/StaticCanvasMedia.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-konva */ "./node_modules/react-konva/lib/ReactKonva.js");
-/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_konva__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var use_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-image */ "./node_modules/use-image/index.js");
-/* harmony import */ var use_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(use_image__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-var CanvasMedia =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CanvasMedia, _Component);
-
-  function CanvasMedia() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    _classCallCheck(this, CanvasMedia);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CanvasMedia)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      image: null
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleLoad", function () {
-      // after setState react-konva will update canvas and redraw the layer
-      // because "image" property is changed
-      _this.setState({
-        image: _this.image
-      }); // if you keep same image object during source updates
-      // you will have to update layer manually:
-      // this.imageNode.getLayer().batchDraw();
-
-    });
-
-    return _this;
-  }
-
-  _createClass(CanvasMedia, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.loadImage();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(oldProps) {
-      if (oldProps.src !== this.props.src) {
-        this.loadImage();
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.image.removeEventListener('load', this.handleLoad);
-    }
-  }, {
-    key: "loadImage",
-    value: function loadImage() {
-      // save to "this" to remove "load" handler on unmount
-      this.image = new window.Image();
-      this.image.src = this.props.src;
-      this.image.addEventListener('load', this.handleLoad);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-        x: this.props.x,
-        y: this.props.y,
-        width: this.props.width,
-        height: this.props.height,
-        image: this.state.image,
-        ref: function ref(node) {
-          _this2.imageNode = node;
-        },
-        name: this.props.name
-      });
-    }
-  }]);
-
-  return CanvasMedia;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // export default connect(null, null)(CanvasMedia)
-
-
-/* harmony default export */ __webpack_exports__["default"] = (CanvasMedia);
-
-/***/ }),
-
-/***/ "./client/components/StaticCanvasText.js":
-/*!***********************************************!*\
-  !*** ./client/components/StaticCanvasText.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-konva */ "./node_modules/react-konva/lib/ReactKonva.js");
-/* harmony import */ var react_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_konva__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/content */ "./client/store/content.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-var CanvasText =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CanvasText, _Component);
-
-  function CanvasText(props) {
-    var _this;
-
-    _classCallCheck(this, CanvasText);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CanvasText).call(this, props));
-    _this.state = {
-      isDragging: false,
-      x: _this.props.xCoord,
-      y: _this.props.yCoord,
-      content: _this.props.content
-    };
-    _this.handleOnClick = _this.handleOnClick.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(CanvasText, [{
-    key: "handleOnClick",
-    value: function handleOnClick() {
-      this.props.selectText(this.props.id);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-        text: this.state.content,
-        x: this.state.x,
-        y: this.state.y,
-        fill: this.state.isDragging || this.props.selected === this.props.id ? 'green' : 'black',
-        onDragStart: function onDragStart() {
-          _this2.setState({
-            isDragging: true
-          });
-        },
-        onDragEnd: function onDragEnd(event) {
-          _this2.setState({
-            isDragging: false,
-            x: event.target.x(),
-            y: event.target.y()
-          });
-
-          _this2.props.updateText(_this2.props.id, {
-            xCoord: _this2.state.x,
-            yCoord: _this2.state.y
-          });
-        },
-        onClick: this.handleOnClick
-      });
-    }
-  }]);
-
-  return CanvasText;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // const mapState = state => {
-//   return {
-//     selected: state.content.selectedText
-//   }
-// }
-
-
-var mapState = function mapState(state) {
-  return {
-    editorText: state.content.editorText,
-    selected: state.content.selectedText
-  };
-};
-
-var mapDispatch = function mapDispatch(dispatch) {
-  return {
-    "delete": function _delete(id) {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["deleteSingleTextThunk"])(id));
-    },
-    selectText: function selectText(id) {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["getSingleText"])(id));
-    },
-    updateText: function updateText(id, updatedProp) {
-      return dispatch(Object(_store_content__WEBPACK_IMPORTED_MODULE_3__["updateSingleTextThunk"])(id, updatedProp));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapState, mapDispatch)(CanvasText));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapState, mapDispatch)(Canvas));
 
 /***/ }),
 
