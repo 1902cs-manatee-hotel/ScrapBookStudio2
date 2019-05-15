@@ -147,14 +147,14 @@ class Canvas extends Component {
                 </Stage>
               </div>
               <div>
-                {this.props.currentPageIndex !== 0 ? <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}><button className='button is-primary space' type='submit'>Previous</button></Link> : null}
-                {this.props.currentPageIndex < this.props.allPages.length -1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}><button className='button is-primary space' type='submit'>Next</button></Link> : null}
+                {this.props.currentPageIndex !== 0 ? <Link onClick={this.handleOnClickPrevious} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.previousPage}`}><button className='button is-primary space space-button' type='submit'>Previous</button></Link> : null}
+                {this.props.currentPageIndex < this.props.allPages.length -1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}><button className='button is-primary space space-button' type='submit'>Next</button></Link> : null}
                 {/* {this.props.allPages.length === 1 ? <Link onClick={this.handleOnClickNext} to={`/canvas/${this.props.match.params.scrapbookid}/${this.props.nextPage}`}><button className='button is-primary space' type='submit'>Next</button></Link> : null} */}
               </div>
               <div>
               <div className="tile is-child">
                 <button
-                  className="button is-primary add-page-button"
+                  className="button is-primary add-page-button space-button"
                   onClick={this.handlePageSubmit}
                   type="submit"
                 >

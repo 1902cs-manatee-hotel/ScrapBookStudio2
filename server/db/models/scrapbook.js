@@ -18,7 +18,11 @@ const Scrapbook = db.define('scrapbook', {
     },
     password: {
         type: Sequelize.STRING
-    },  
+    },
+    // userId: {
+    //     type: Sequelize.INTEGER,
+    //     defaultValue: 1
+    // }
 })
 
 module.exports = Scrapbook

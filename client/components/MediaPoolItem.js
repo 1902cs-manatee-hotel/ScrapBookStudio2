@@ -11,7 +11,7 @@ import { createSingleMediaThunk } from '../store/content';
      }
 
   handleMountClick() {
-      console.log('props from MediaPoolItem', this.props)
+      // console.log('props from MediaPoolItem', this.props)
         this.props.mountToCanvas({path: this.props.path,
             scrapbookId: this.props.scrapbookId,
             pageId: this.props.pageId
@@ -19,7 +19,7 @@ import { createSingleMediaThunk } from '../store/content';
       }
     
   render() {
-      console.log('**&props****', this.props)
+      // console.log('**&props****', this.props)
       return (
               <div>
                 <br />
