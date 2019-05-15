@@ -42,11 +42,13 @@ const AuthForm = props => {
           </label>
           <input className="input" name="lastName" type="text" />
         </div>
-          <button className="button is-success" type="submit">{displayName}</button>
         </div>
         <br />
         <div>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">
+          <button className="button is-warning" type="submit">{displayName}</button>
+        {/* Sign Up */}
+        </Link>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
         <br />
@@ -77,7 +79,10 @@ const AuthForm = props => {
         </div>
         <br />
         <div>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">
+        <button className="button is-warning" type="submit">Sign Up</button>
+        {/* Sign Up */}
+        </Link>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
         <br />

@@ -2984,12 +2984,12 @@ var AuthForm = function AuthForm(props) {
       className: "input",
       name: "lastName",
       type: "text"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "button is-success",
-      type: "submit"
-    }, displayName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signup"
-    }, "Sign Up")), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "button is-warning",
+      type: "submit"
+    }, displayName))), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-background"
@@ -3020,7 +3020,10 @@ var AuthForm = function AuthForm(props) {
       type: "submit"
     }, displayName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signup"
-    }, "Sign Up")), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "button is-warning",
+      type: "submit"
+    }, "Sign Up"))), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
   }
 };
 /**
