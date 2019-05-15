@@ -96,7 +96,7 @@ class Canvas extends Component {
             <div className="tile is-parent is-vertical">
               <div className="tile is-child">
                 <Stage
-                  style={{backgroundImage: 'url(http://mikekurtzplumbing.com/wp-content/uploads/parser/hd-nature-wallpaper-1.jpg)'}}
+                  style={{backgroundImage: 'url(https://utemplates.net/wp-content/uploads/2017/07/White-Textured-Background.jpg)'}}
                   className="box"
                   width={1300}
                   height={500}

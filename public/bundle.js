@@ -453,7 +453,7 @@ function (_Component) {
           className: "tile is-child"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_konva__WEBPACK_IMPORTED_MODULE_1__["Stage"], {
           style: {
-            backgroundImage: 'url(http://mikekurtzplumbing.com/wp-content/uploads/parser/hd-nature-wallpaper-1.jpg)'
+            backgroundImage: 'url(https://utemplates.net/wp-content/uploads/2017/07/White-Textured-Background.jpg)'
           },
           className: "box",
           width: 1300,
@@ -3139,7 +3139,8 @@ AuthForm.propTypes = {
 module.exports = {
   cloud_name: 'dv7hoa5iv',
   upload_preset: 'ml_default',
-  api_key: '812884794238589'
+  api_key: '812884794238589',
+  api_secret: 'Dq3tKjVpGy5_C4e3Vn061x7dC1c'
 };
 
 /***/ }),
