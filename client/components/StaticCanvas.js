@@ -23,6 +23,7 @@ class StaticCanvas extends Component {
     this.handleOnClickNext = this.handleOnClickNext.bind(this)
     this.handleOnClickPrevious = this.handleOnClickPrevious.bind(this)
   }
+
   async componentDidMount() {
     await this.props.getAllPages(this.props.match.params.scrapbookid)
     await this.props.getPageContent(this.props.match.params.pageid)
@@ -32,14 +33,14 @@ class StaticCanvas extends Component {
     this.props.setNextAndPrevious()
   }
 
-  async handleOnClickNext () {
+  async handleOnClickNext() {
     await this.props.getAllPages(this.props.match.params.scrapbookid)
     await this.props.getPageContent(this.props.nextPage)
     await this.props.increasePageIndex()
     this.props.setNextAndPrevious()
   }
 
-  async handleOnClickPrevious () {
+  async handleOnClickPrevious() {
     await this.props.getAllPages(this.props.match.params.scrapbookid)
     await this.props.getPageContent(this.props.previousPage)
     await this.props.decreasePageIndex()
