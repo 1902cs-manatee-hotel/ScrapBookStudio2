@@ -50,7 +50,7 @@ class Create extends Component {
                     </div>
                 </div>
                 <Link to="/userinvite">
-                    <button className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
+                    <button disabled={!(this.state.name && this.state.description)} className="button is-primary" onClick={this.handleSubmit} type="submit">Create Scrapbook</button>
                 </Link>
             </div>
         )
