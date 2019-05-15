@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { createSingleMediaThunk } from '../store/content';
 
-
  class MediaPoolItem extends Component {
      constructor(props) {
          super(props)

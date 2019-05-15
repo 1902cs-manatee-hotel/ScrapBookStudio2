@@ -4,8 +4,6 @@ import { getAllScrapbookMediaThunk } from '../store/scrapbooks'
 import { createSingleMediaThunk } from '../store/content';
 import MediaPoolItem from './MediaPoolItem';
 
-
-
 class MediaPool extends Component {
 
   componentDidMount() {
