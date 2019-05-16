@@ -7,7 +7,13 @@
 * [Grace Lee](https://github.com/graceleaper)
 
 ## Description
-Scrapbook Studio is an online studio space where users can collaborate in creating a shared scrapbook with text and images. Features of the editing space include resizing and rotating media, selecting backgrounds, and seeing another user’s edits on the same scrapbook--in real time. Friends and family can preserve their memories while showing their creative flairs thanks to this digital scrapbooking experience.
+Scrapbook Studio is an online studio space where users can create a shared scrapbook with text and images. Users can add new scrapbooks and edit existing ones. Features of the editing space include resizing and rotating media, adding images from a media pool, and creating multiple pages. Friends and family can preserve their memories while showing their creative flairs thanks to this digital scrapbooking experience.
+
+## Deployed Link
+[http://scrapbook-studio.herokuapp.com/](http://scrapbook-studio.herokuapp.com/)
+
+## Technologies used
+Our team learned new technologies to couple with the stack we used throughout our time at Fullstack Academy. We used PostgreSQL, Sequelize, and Express for the backend along with React/Redux for the frontend. We also implemented Cloudinary to store and process our images and React Konva for our canvas. 
 
 ## Get Started
 ```
