@@ -2668,10 +2668,7 @@ function (_Component) {
         className: "box toolbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
-      }, "Toolbar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaUpload__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button is-primary space",
-        type: "submit"
-      }, "Background"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextEditor__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Toolbar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaUpload__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextEditor__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button is-primary space space-button",
         onClick: this.handleClick
       }, "Media Pool"), this.state.revealMediaPool ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MediaPool__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2999,12 +2996,10 @@ var AuthForm = function AuthForm(props) {
       className: "input",
       name: "lastName",
       type: "text"
-    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-      to: "/signup"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "button is-warning",
       type: "submit"
-    }, displayName))), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+    }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
   } else {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-background"
@@ -3066,7 +3061,7 @@ var mapSignup = function mapSignup(state) {
   };
 };
 
-var mapDispatch = function mapDispatch(dispatch) {
+var mapDispatchLogIn = function mapDispatchLogIn(dispatch) {
   return {
     handleSubmit: function handleSubmit(evt) {
       evt.preventDefault();
@@ -3078,8 +3073,22 @@ var mapDispatch = function mapDispatch(dispatch) {
   };
 };
 
-var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapLogin, mapDispatch)(AuthForm);
-var Signup = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapSignup, mapDispatch)(AuthForm);
+var mapDispatchSignUp = function mapDispatchSignUp(dispatch) {
+  return {
+    handleSubmit: function handleSubmit(evt) {
+      evt.preventDefault();
+      var formName = evt.target.name;
+      var firstName = evt.target.firstName.value;
+      var lastName = evt.target.lastName.value;
+      var email = evt.target.email.value;
+      var password = evt.target.password.value;
+      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, formName, firstName, lastName));
+    }
+  };
+};
+
+var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapLogin, mapDispatchLogIn)(AuthForm);
+var Signup = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapSignup, mapDispatchSignUp)(AuthForm);
 /**
  * PROP TYPES
  */
@@ -5149,7 +5158,7 @@ var me = function me() {
     }()
   );
 };
-var auth = function auth(email, password, method) {
+var auth = function auth(email, password, method, firstName, lastName) {
   return (
     /*#__PURE__*/
     function () {
@@ -5161,26 +5170,30 @@ var auth = function auth(email, password, method) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                console.log('email, password, method, firstName, lastName ', email, password, method, firstName, lastName);
+                _context2.prev = 1;
+                _context2.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/auth/".concat(method), {
                   email: email,
-                  password: password
+                  password: password,
+                  firstName: firstName,
+                  lastName: lastName
                 });
 
-              case 3:
+              case 4:
                 res = _context2.sent;
-                _context2.next = 9;
+                console.log('RESPONSE', res);
+                _context2.next = 11;
                 break;
 
-              case 6:
-                _context2.prev = 6;
-                _context2.t0 = _context2["catch"](0);
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
                 return _context2.abrupt("return", dispatch(getUser({
                   error: _context2.t0
                 })));
 
-              case 9:
+              case 11:
                 try {
                   dispatch(getUser(res.data));
                   _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/home');
@@ -5188,12 +5201,12 @@ var auth = function auth(email, password, method) {
                   console.error(dispatchOrHistoryErr);
                 }
 
-              case 10:
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 6]]);
+        }, _callee2, null, [[1, 8]]);
       }));
 
       return function (_x2) {

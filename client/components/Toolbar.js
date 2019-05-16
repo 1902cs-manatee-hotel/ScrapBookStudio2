@@ -24,7 +24,7 @@ class Toolbar extends Component {
         <h1 className="title">Toolbar</h1>
         <MediaUpload />
         <br/>
-        <button className='button is-primary space' type='submit'>Background</button>
+        {/* <button className='button is-primary space' type='submit'>Background</button> */}
         <TextEditor />
         <br />
         <br />
