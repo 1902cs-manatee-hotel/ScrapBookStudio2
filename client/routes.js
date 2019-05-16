@@ -21,6 +21,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/staticcanvas/:scrapbookid/:pageid" component={StaticCanvas} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -30,7 +31,6 @@ class Routes extends Component {
             <Route path="/scrapbooksetup" component={ScrapbookSetup} />
             <Route path="/addcontributorform" component={AddContributorForm} />
             <Route path="/canvas/:scrapbookid/:pageid" component={Canvas} />
-            <Route path="/staticcanvas/:scrapbookid/:pageid" component={StaticCanvas} />
             <Route path="/canvastext" component={CanvasText} />
             <Route path="/scrapbooks/:scrapbookname/:id" component={ViewOrEdit} />
             <Route path="/userinvite/" component={UserInvite} />

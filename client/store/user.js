@@ -62,6 +62,15 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const sendScrapbookThunk = (scrapbookid, pageid, email) => dispatch => {
+  try {
+    axios.post('/api/users/sendscrapbook', {scrapbookid, pageid, email} )
+    // dispatch(getUser(res.data || initialState))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */

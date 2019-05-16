@@ -2835,6 +2835,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_scrapbooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/scrapbooks */ "./client/store/scrapbooks.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2845,13 +2846,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2864,9 +2868,30 @@ function (_Component) {
   _inherits(ViewOrEdit, _Component);
 
   function ViewOrEdit() {
+    var _this;
+
     _classCallCheck(this, ViewOrEdit);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ViewOrEdit).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ViewOrEdit).call(this));
+
+    _defineProperty(_assertThisInitialized(_this), "handleOnClickSendYourScrapbook", function () {
+      _this.setState({
+        sendingScrapbook: true
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleOnSubmitEmail", function (event) {
+      _this.props.sendScrapbook(_this.props.match.params.id, _this.props.singlePage, event.target.email.value);
+
+      _this.setState({
+        sendingScrapbook: false
+      });
+    });
+
+    _this.state = {
+      sendingScrapbook: false
+    };
+    return _this;
   }
 
   _createClass(ViewOrEdit, [{
@@ -2893,7 +2918,19 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button is-primary space-button",
         type: "submit"
-      }, "Edit My Scrapbook")));
+      }, "Edit My Scrapbook")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.handleOnClickSendYourScrapbook
+      }, "Send Your Scrapbook"), this.state.sendingScrapbook ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        method: "post",
+        onSubmit: this.handleOnSubmitEmail
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "input",
+        name: "email",
+        type: "email"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "Send"))) : null);
     }
   }]);
 
@@ -2912,6 +2949,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getAllPages: function getAllPages(id) {
       return dispatch(Object(_store_scrapbooks__WEBPACK_IMPORTED_MODULE_1__["getAllPagesThunk"])(id));
+    },
+    sendScrapbook: function sendScrapbook(scrapbookid, pageid, email) {
+      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_4__["sendScrapbookThunk"])(scrapbookid, pageid, email));
     }
   };
 };
@@ -3112,8 +3152,7 @@ AuthForm.propTypes = {
 module.exports = {
   cloud_name: 'dv7hoa5iv',
   upload_preset: 'ml_default',
-  api_key: '812884794238589',
-  api_secret: 'Dq3tKjVpGy5_C4e3Vn061x7dC1c'
+  api_key: '812884794238589'
 };
 
 /***/ }),
@@ -3399,6 +3438,9 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/signup",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Signup"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/staticcanvas/:scrapbookid/:pageid",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["StaticCanvas"]
       }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Library"]
@@ -3417,9 +3459,6 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/canvas/:scrapbookid/:pageid",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Canvas"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/staticcanvas/:scrapbookid/:pageid",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["StaticCanvas"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/canvastext",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["CanvasText"]
@@ -4338,7 +4377,7 @@ var initialState = {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, logout, getSingleScrapbook, getSinglePage, setNextAndPrevious, increasePageIndex, decreasePageIndex, setPageIndex, getAllScrapbooksThunk, createScrapbookThunk, updateScrapbookThunk, deleteScrapbookThunk, getAllPagesThunk, createSinglePageThunk, deleteSinglePageThunk, getAllScrapbookMediaThunk, getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, createSingleCloudMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk */
+/*! exports provided: default, me, auth, logout, sendScrapbookThunk, getSingleScrapbook, getSinglePage, setNextAndPrevious, increasePageIndex, decreasePageIndex, setPageIndex, getAllScrapbooksThunk, createScrapbookThunk, updateScrapbookThunk, deleteScrapbookThunk, getAllPagesThunk, createSinglePageThunk, deleteSinglePageThunk, getAllScrapbookMediaThunk, getSingleText, updateSingleText, getSingleMedia, updateSingleMedia, getEditorText, deselectCanvasElement, getPageContentThunk, createSingleTextThunk, updateSingleTextThunk, deleteSingleTextThunk, createSingleMediaThunk, createSingleCloudMediaThunk, updateSingleMediaThunk, getSingleMediaThunk, deleteSingleMediaThunk, increaseFontSizeThunk, decreaseFontSizeThunk */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4359,6 +4398,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["auth"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["logout"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sendScrapbookThunk", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["sendScrapbookThunk"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getSingleScrapbook", function() { return _scrapbooks__WEBPACK_IMPORTED_MODULE_5__["getSingleScrapbook"]; });
 
@@ -5065,7 +5106,7 @@ var initialState = {
 /*!******************************!*\
   !*** ./client/store/user.js ***!
   \******************************/
-/*! exports provided: me, auth, logout, default */
+/*! exports provided: me, auth, logout, sendScrapbookThunk, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5073,6 +5114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "me", function() { return me; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return auth; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendScrapbookThunk", function() { return sendScrapbookThunk; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
@@ -5254,6 +5296,19 @@ var logout = function logout() {
       };
     }()
   );
+};
+var sendScrapbookThunk = function sendScrapbookThunk(scrapbookid, pageid, email) {
+  return function (dispatch) {
+    try {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/users/sendscrapbook', {
+        scrapbookid: scrapbookid,
+        pageid: pageid,
+        email: email
+      }); // dispatch(getUser(res.data || initialState))
+    } catch (err) {
+      console.error(err);
+    }
+  };
 };
 /**
  * REDUCER
@@ -87875,7 +87930,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

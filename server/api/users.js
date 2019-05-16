@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Scrapbook} = require('../db/models')
+const sendScrapbookEmail = require('../utils')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -23,6 +24,17 @@ router.get('/:id/scrapbooks', async (req, res, next) => {
           where: { userId: id }
       })
       res.status(200).json(scrapbooks)
+    } catch(err){
+        next(err)
+    }
+})
+
+router.post('/sendscrapbook', (req, res, next) => {
+  console.log('REQUEST BODY:', req.body)
+  try {
+      const { scrapbookid, pageid, email } = req.body
+      sendScrapbookEmail(email, req.user.firstName, req.user.lastName, scrapbookid, pageid)
+      res.sendStatus(200)
     } catch(err){
         next(err)
     }
