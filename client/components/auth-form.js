@@ -45,10 +45,10 @@ const AuthForm = props => {
         </div>
         <br />
         <div>
-        <Link to="/signup">
+        {/* <Link to="/signup"> */}
           <button className="button is-warning" type="submit">{displayName}</button>
         {/* Sign Up */}
-        </Link>
+        {/* </Link> */}
         </div>
         {error && error.response && <div> {error.response.data} </div>}
         <br />
@@ -117,7 +117,7 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchLogIn = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -129,8 +129,24 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+const mapDispatchSignUp = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(auth(email, password, formName, firstName, lastName))
+    }
+  }
+}
+
+
+
+export const Login = connect(mapLogin, mapDispatchLogIn)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatchSignUp)(AuthForm)
 
 /**
  * PROP TYPES
