@@ -3,13 +3,15 @@ const nodemailer = require("nodemailer")
  function sendScrapbookEmail(email, userFirstName, userLastName, scrapbookid, pageid) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
+    secure: false,
+    // port: 8080,
     auth: {
-      user: 'scrapbookstudiofs@gmail.com',
+      user: 'scrapbookfs@gmail.com',
       pass: 'alwaysbecoding'
     }
   });
   const mailOptions = {
-    from: 'scrapbookstudiofs@gmail.com',
+    from: 'scrapbookfs@gmail.com',
     to: email,
     subject: `${userFirstName} ${userLastName} wants to share their scrapbook with you!`,
     html: `<h1>${userFirstName} made a scrapbook using ScrapBook Studio<h1>
